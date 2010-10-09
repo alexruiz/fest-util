@@ -14,11 +14,11 @@
  */
 package org.fest.util;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.*;
 import static org.fest.util.Strings.quote;
 
 import java.util.*;
-import java.util.Arrays;
 
 /**
  * Understands utility methods related to collections.
@@ -33,11 +33,23 @@ public final class Collections {
    * Creates a list containing the given elements.
    * @param <T> the type of elements of the list to create.
    * @param elements the elements to store in the list.
-   * @return a list containing the given elements.
+   * @return the created list.
    */
   public static <T> List<T> list(T... elements) {
     if (elements == null) return null;
-    return new ArrayList<T>(Arrays.asList(elements));
+    return new ArrayList<T>(asList(elements));
+  }
+
+  /**
+   * Creates a set containing the given elements.
+   * @param <T> the type of elements of the set to create.
+   * @param elements the elements to store in the set.
+   * @return the created set.
+   * @since 1.1.5
+   */
+  public static <T> Set<T> set(T... elements) {
+    if (elements == null) return null;
+    return new LinkedHashSet<T>(asList(elements));
   }
 
   /**
