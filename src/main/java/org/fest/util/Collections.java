@@ -15,10 +15,16 @@
 package org.fest.util;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.*;
-import static org.fest.util.Strings.quote;
+import static java.util.Collections.unmodifiableCollection;
+import static java.util.Collections.unmodifiableList;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Understands utility methods related to collections.
@@ -102,7 +108,7 @@ public final class Collections {
     b.append('[');
     for (;;) {
       Object e = i.next();
-      b.append(e == c ? "(this Collection)" : quote(e));
+      b.append(e == c ? "(this Collection)" : ToString.toStringOf(e));
       if (!i.hasNext()) return b.append(']').toString();
       b.append(", ");
     }
