@@ -47,12 +47,12 @@ public class ToString_toStringOf_Test {
     assertEquals("''", Strings.quote(""));
   }
 
-  @Test public void should_describe_Dimension_within_parenthesis_separating_width_and_length_by_comma_and_space() {
+  @Test public void should_describe_Dimension() {
     Dimension o = new Dimension(10, 20);
     assertEquals("(10, 20)", toStringOf(o));
   }
 
-  @Test public void should_describe_File_with_its_absolute_path() {
+  @Test public void should_describe_File() {
     final String path = "/someFile.txt";
     File o = new File(path) {
       private static final long serialVersionUID = 1L;
