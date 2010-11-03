@@ -14,7 +14,6 @@
  */
 package org.fest.util;
 
-import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableCollection;
 import static java.util.Collections.unmodifiableList;
 
@@ -43,7 +42,9 @@ public final class Collections {
    */
   public static <T> List<T> list(T... elements) {
     if (elements == null) return null;
-    return new ArrayList<T>(asList(elements));
+    List<T> list = new ArrayList<T>();
+    for (T e : elements) list.add(e);
+    return list;
   }
 
   /**
@@ -55,7 +56,9 @@ public final class Collections {
    */
   public static <T> Set<T> set(T... elements) {
     if (elements == null) return null;
-    return new LinkedHashSet<T>(asList(elements));
+    Set<T> set = new LinkedHashSet<T>();
+    for (T e: elements) set.add(e);
+    return set;
   }
 
   /**
