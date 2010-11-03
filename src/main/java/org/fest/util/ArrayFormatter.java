@@ -15,10 +15,13 @@
 package org.fest.util;
 
 import static java.lang.reflect.Array.getLength;
-import static org.fest.util.Strings.*;
 
-import java.util.*;
+import static org.fest.util.Strings.concat;
+import static org.fest.util.ToString.toStringOf;
+
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Understands how to create a <code>String</code> representation of an array.
@@ -66,7 +69,7 @@ final class ArrayFormatter {
       if (i != 0) buffer.append(", ");
       Object element = array[i];
       if (!isArray(element)) {
-        buffer.append(element == null ? NULL : quote(element));
+        buffer.append(element == null ? NULL : toStringOf(element));
         continue;
       }
       if (!isObjectArray(element)) {
