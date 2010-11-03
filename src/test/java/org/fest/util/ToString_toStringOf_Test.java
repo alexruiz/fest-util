@@ -10,7 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2006 the original author or authors.
+ * Copyright @2006-2010 the original author or authors.
  */
 package org.fest.util;
 
@@ -68,33 +68,33 @@ public class ToString_toStringOf_Test {
     assertEquals("java.lang.Object", toStringOf(Object.class));
   }
 
-  @Test public void should_describe_Collection_of_String_within_brackets_separating_quoted_strings_by_comma_and_space() {
+  @Test public void should_describe_Collection_of_String() {
     Collection<String> collection = list("s1", "s2");
     assertEquals("['s1', 's2']", toStringOf(collection));
   }
 
-  @Test public void should_describe_Collection_of_boolean_array_within_brackets_separating_boolean_arrays_by_comma_and_space() {
+  @Test public void should_describe_Collection_of_arrays() {
     List<Boolean[]> collection = list(array(true, false), array(true, false, true));
     assertEquals("[[true, false], [true, false, true]]", toStringOf(collection));
   }
 
-  @Test public void should_describe_Collection_of_string_list_within_brackets_separating_string_lists_by_comma_and_space() {
+  @Test public void should_describe_Collection_of_Collections() {
     Collection<List<String>> collection = new ArrayList<List<String>>();
     collection.add(list("s1", "s2"));
     collection.add(list("s3", "s4", "s5"));
     assertEquals("[['s1', 's2'], ['s3', 's4', 's5']]", toStringOf(collection));
   }
 
-  @Test public void should_describe_Array_of_String_within_brackets_separating_quoted_strings_by_comma_and_space() {
+  @Test public void should_describe_array() {
     assertEquals("['s1', 's2']", toStringOf(array("s1", "s2")));
   }
 
-  @Test public void should_describe_Array_of_string_array_within_brackets_separating_string_arrays_by_comma_and_space() {
+  @Test public void should_describe_arrays_of_arrays() {
     String[][] array = array(array("s1", "s2"), array("s3", "s4", "s5"));
     assertEquals("[['s1', 's2'], ['s3', 's4', 's5']]", toStringOf(array));
   }
 
-  @Test public void should_describe_Map_of_string_string_within_brackets_separating_entries_by_comma_and_space() {
+  @Test public void should_describe_Map() {
     Map<String, String> map = new LinkedHashMap<String, String>();
     map.put("key1", "value1");
     map.put("key2", "value2");
