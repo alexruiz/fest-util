@@ -23,10 +23,7 @@ import static org.junit.Assert.assertNull;
 
 import java.awt.Dimension;
 import java.io.File;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -37,75 +34,71 @@ import org.junit.Test;
  */
 public class ToString_toStringOf_Test {
 
-  @Test
-  public void should_return_null_if_object_is_null() {
+  @Test public void should_return_null_if_object_is_null() {
     assertNull(toStringOf(null));
   }
-  
-  @Test
-  public void should_quote_String() {
+
+  @Test public void should_quote_String() {
     String o = "Hello";
     assertEquals("'Hello'", toStringOf(o));
   }
-  
-  @Test
-  public void should_quote_empty_String() {
+
+  @Test public void should_quote_empty_String() {
     assertEquals("''", Strings.quote(""));
   }
-  
-  @Test
-  public void should_decribe_Dimension_within_parenthesis_separating_width_and_length_by_comma_and_space() {
+
+  @Test public void should_describe_Dimension_within_parenthesis_separating_width_and_length_by_comma_and_space() {
     Dimension o = new Dimension(10, 20);
     assertEquals("(10, 20)", toStringOf(o));
   }
-  
-  @Test
-  public void should_decribe_File_with_its_absolute_path() {
-    File o = new File("/someFile.txt");
-    assertEquals("/someFile.txt", toStringOf(o));
+
+  @Test public void should_describe_File_with_its_absolute_path() {
+    final String path = "/someFile.txt";
+    File o = new File(path) {
+      private static final long serialVersionUID = 1L;
+
+      @Override public String getAbsolutePath() {
+        return path;
+      }
+    };
+    assertEquals(path, toStringOf(o));
   }
-  
-  @Test
-  public void should_decribe_Class_with_its_name() {
+
+  @Test public void should_describe_Class_with_its_name() {
     assertEquals("java.lang.Object", toStringOf(Object.class));
   }
-  
-  @Test
-  public void should_decribe_Collection_of_String_within_brackets_separating_quoted_strings_by_comma_and_space() {
+
+  @Test public void should_describe_Collection_of_String_within_brackets_separating_quoted_strings_by_comma_and_space() {
     Collection<String> collection = list("s1", "s2");
     assertEquals("['s1', 's2']", toStringOf(collection));
   }
-  
-  @Test
-  public void should_decribe_Collection_of_boolean_array_within_brackets_separating_boolean_arrays_by_comma_and_space() {
+
+  @Test public void should_describe_Collection_of_boolean_array_within_brackets_separating_boolean_arrays_by_comma_and_space() {
     List<Boolean[]> collection = list(array(true, false), array(true, false, true));
     assertEquals("[[true, false], [true, false, true]]", toStringOf(collection));
   }
-  
-  @SuppressWarnings("unchecked")
-  @Test
-  public void should_decribe_Collection_of_string_list_within_brackets_separating_string_lists_by_comma_and_space() {
-    Collection<List<String>> collection = list(list("s1", "s2"), list("s3", "s4", "s5"));
+
+  @Test public void should_describe_Collection_of_string_list_within_brackets_separating_string_lists_by_comma_and_space() {
+    Collection<List<String>> collection = new ArrayList<List<String>>();
+    collection.add(list("s1", "s2"));
+    collection.add(list("s3", "s4", "s5"));
     assertEquals("[['s1', 's2'], ['s3', 's4', 's5']]", toStringOf(collection));
   }
-  
-  @Test
-  public void should_decribe_Array_of_String_within_brackets_separating_quoted_strings_by_comma_and_space() {
+
+  @Test public void should_describe_Array_of_String_within_brackets_separating_quoted_strings_by_comma_and_space() {
     assertEquals("['s1', 's2']", toStringOf(array("s1", "s2")));
   }
-  
-  @Test
-  public void should_decribe_Array_of_string_array_within_brackets_separating_string_arrays_by_comma_and_space() {
+
+  @Test public void should_describe_Array_of_string_array_within_brackets_separating_string_arrays_by_comma_and_space() {
     String[][] array = array(array("s1", "s2"), array("s3", "s4", "s5"));
     assertEquals("[['s1', 's2'], ['s3', 's4', 's5']]", toStringOf(array));
   }
-  
-  @Test
-  public void should_decribe_Map_of_string_string_within_brackets_separating_entries_by_comma_and_space() {
-    Map<String, String> map = new HashMap<String, String>();
+
+  @Test public void should_describe_Map_of_string_string_within_brackets_separating_entries_by_comma_and_space() {
+    Map<String, String> map = new LinkedHashMap<String, String>();
     map.put("key1", "value1");
     map.put("key2", "value2");
-    assertEquals("{'key2'='value2', 'key1'='value1'}", toStringOf(map));
+    assertEquals("{'key1'='value1', 'key2'='value2'}", toStringOf(map));
   }
-  
+
 }
