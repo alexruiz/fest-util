@@ -31,6 +31,15 @@ public class Arrays {
   private static final ArrayFormatter formatter = new ArrayFormatter();
 
   /**
+   * Returns <code>true</code> if the given object is not <code>null</code> and is an array.
+   * @param o the given object.
+   * @return <code>true</code> if the given object is not <code>null</code> and is an array, otherwise <code>false</code>.
+   */
+  public static boolean isArray(Object o) {
+    return o != null && o.getClass().isArray();
+  }
+
+  /**
    * Returns <code>true</code> if the given array is <code>null</code> or empty.
    * @param <T> the type of elements of the array.
    * @param array the array to check.
@@ -39,7 +48,7 @@ public class Arrays {
   public static <T> boolean isEmpty(T[] array) {
     return array == null || !hasElements(array);
   }
-
+  
   /**
    * Returns an array containing the given arguments.
    * @param <T> the type of the array to return.
