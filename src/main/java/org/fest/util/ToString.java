@@ -25,9 +25,10 @@ import java.util.Map;
 /**
  * Understands how to obtain the <code>toString</code> representation of an object.
  * 
+ * @author Joel Costigliola
  * @author Alex Ruiz
  */
-final class ToString {
+public final class ToString {
 
   public static String toStringOf(Object o) {
     if (isOneDimensionalArray(o)) return Arrays.format(o);
@@ -41,7 +42,7 @@ final class ToString {
   }
 
   private static boolean isOneDimensionalArray(Object o) {
-    return o != null && o.getClass().isArray();
+    return Arrays.isArray(o);
   }
 
   private static String toStringOf(Class<?> c) {

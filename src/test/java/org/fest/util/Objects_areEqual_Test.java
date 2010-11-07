@@ -14,7 +14,8 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -24,7 +25,7 @@ import org.junit.Test;
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
-public class Objects_areEqual_Test {
+public class Objects_areEqual_Test { // TODO : complete with array equals
 
   @Test
   public void should_return_true_if_both_Objects_are_null() {
