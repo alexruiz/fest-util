@@ -15,9 +15,13 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Strings.*;
+import static org.fest.util.Strings.concat;
+import static org.fest.util.Strings.isEmpty;
+import static org.fest.util.Strings.quote;
 
-import java.beans.*;
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 
 /**
  * Understands utility methods related to
@@ -42,7 +46,7 @@ public final class Introspection {
     BeanInfo beanInfo = null;
     Class<?> type = target.getClass();
     try {
-      beanInfo = Introspector.getBeanInfo(type, Object.class);
+      beanInfo = Introspector.getBeanInfo(type);
     } catch (Exception e) {
       throw new IntrospectionError(concat("Unable to get BeanInfo for type ", type.getName()), e);
     }
