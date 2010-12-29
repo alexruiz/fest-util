@@ -16,8 +16,7 @@ package org.fest.util;
 
 import static org.fest.util.Strings.quote;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 /**

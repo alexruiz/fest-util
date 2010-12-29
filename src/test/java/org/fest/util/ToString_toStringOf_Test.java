@@ -17,9 +17,7 @@ package org.fest.util;
 import static org.fest.util.Arrays.array;
 import static org.fest.util.Collections.list;
 import static org.fest.util.ToString.toStringOf;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 import java.awt.Dimension;
 import java.io.File;

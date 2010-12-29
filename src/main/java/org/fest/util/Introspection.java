@@ -15,13 +15,9 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Strings.concat;
-import static org.fest.util.Strings.isEmpty;
-import static org.fest.util.Strings.quote;
+import static org.fest.util.Strings.*;
 
-import java.beans.BeanInfo;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
+import java.beans.*;
 
 /**
  * Understands utility methods related to
