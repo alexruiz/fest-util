@@ -29,19 +29,19 @@ import java.util.Map.Entry;
 public class Maps {
 
   /**
-   * Returns <code>true</code> if the given map is <code>null</code> or empty.
+   * Returns {@code true} if the given map is {@code null} or empty.
    * @param map the map to check.
-   * @return <code>true</code> if the given map is <code>null</code> or empty, otherwise <code>false</code>.
+   * @return {@code true} if the given map is {@code null} or empty, otherwise {@code false}.
    */
   public static boolean isEmpty(Map<?, ?> map) {
     return map == null || map.isEmpty();
   }
 
   /**
-   * Returns the <code>String</code> representation of the given map, or <code>null</code> if the given map is
-   * <code>null</code>.
+   * Returns the {@code String} representation of the given map, or {@code null} if the given map is
+   * {@code null}.
    * @param map the map to format.
-   * @return the <code>String</code> representation of the given map.
+   * @return the {@code String} representation of the given map.
    */
   public static String format(Map<?, ?> map) {
     if (map == null) return null;

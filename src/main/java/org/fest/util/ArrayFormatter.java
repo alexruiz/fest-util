@@ -24,7 +24,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Understands how to create a <code>String</code> representation of an array.
+ * Understands how to create a {@code String} representation of an array.
  *
  * @author Alex Ruiz
  */

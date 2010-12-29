@@ -36,9 +36,9 @@ public final class Introspection {
    * @param propertyName the given property name.
    * @param target the given object.
    * @return a {@code PropertyDescriptor} for a property matching the given name in the given object.
-   * @throws NullPointerException if the given property name is <code>null</code>.
+   * @throws NullPointerException if the given property name is {@code null}.
    * @throws IllegalArgumentException if the given property name is empty.
-   * @throws NullPointerException if the given object is <code>null</code>.
+   * @throws NullPointerException if the given object is {@code null}.
    * @throws IntrospectionError if a matching property cannot be found or accessed.
    */
   public static PropertyDescriptor descriptorForProperty(String propertyName, Object target) {

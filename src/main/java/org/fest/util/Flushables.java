@@ -26,7 +26,7 @@ public class Flushables {
 
   /**
    * Flushes the given <code>{@link Flushable}</code>s, ignoring any thrown exceptions.
-   * @param flushables the <code>Flushable</code>s to flush.
+   * @param flushables the {@code Flushable}s to flush.
    */
   public static void flush(Flushable...flushables) {
     for (Flushable f : flushables) flushFlushable(f);
