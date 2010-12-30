@@ -27,10 +27,10 @@ public final class Objects {
   public static final int HASH_CODE_PRIME = 31;
 
   /**
-   * Returns <code>true</code> if the given objects are equal or if both objects are <code>null</code>.
+   * Returns {@code true} if the given objects are equal or if both objects are {@code null}.
    * @param o1 one of the objects to compare.
    * @param o2 one of the objects to compare.
-   * @return <code>true</code> if the given objects are equal or if both objects are <code>null</code>.
+   * @return {@code true} if the given objects are equal or if both objects are {@code null}.
    */
   public static boolean areEqual(Object o1, Object o2) {
     if (o1 == null) return o2 == null;
@@ -48,7 +48,7 @@ public final class Objects {
     }
     return false;
   }
-  
+
   /**
    * Returns an array containing the names of the given types.
    * @param types the given types.
@@ -62,8 +62,8 @@ public final class Objects {
   }
 
   /**
-   * Returns the hash code for the given object. If the object is <code>null</code>, this method returns zero. Otherwise
-   * calls the method <code>hashCode</code> of the given object.
+   * Returns the hash code for the given object. If the object is {@code null}, this method returns zero. Otherwise
+   * calls the method {@code hashCode} of the given object.
    * @param o the given object.
    * @return the hash code for the given object
    */
@@ -73,11 +73,11 @@ public final class Objects {
 
   /**
    * Casts the given object to the given type only if the object is of the given type. If the object is not of the given
-   * type, this method returns <code>null</code>.
+   * type, this method returns {@code null}.
    * @param <T> the generic type to cast the given object to.
    * @param o the object to cast.
    * @param type the given type.
-   * @return the casted object, or <code>null</code> if the given object is not to the given type.
+   * @return the casted object, or {@code null} if the given object is not to the given type.
    */
   public static <T> T castIfBelongsToType(Object o, Class<T> type) {
     if (o != null && type.isAssignableFrom(o.getClass())) return type.cast(o);

@@ -45,7 +45,7 @@ public class TypeFilter<T> implements CollectionFilter<T> {
    * Filters the given collection by the type specified in this filter.
    * @param target the collection to filter.
    * @return a list containing the filtered elements.
-   * @throws IllegalArgumentException if the given collection is <code>null</code>.
+   * @throws IllegalArgumentException if the given collection is {@code null}.
    */
   @SuppressWarnings("unchecked")
   public List<T> filter(Collection<?> target) {

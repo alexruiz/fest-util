@@ -35,7 +35,7 @@ public class Files {
   /**
    * Returns the names of the files inside the specified directory.
    * @param dirName the name of the directory to start the search from.
-   * @param recurse if <code>true</code>, we will look in subdirectories.
+   * @param recurse if {@code true}, we will look in subdirectories.
    * @return the names of the files inside the specified directory.
    * @throws IllegalArgumentException if the given directory name does not point to an existing directory.
    */
@@ -49,7 +49,7 @@ public class Files {
   /**
    * Returns the names of the files inside the specified directory.
    * @param dir the name of the directory to start the search from.
-   * @param recurse if <code>true</code>, we will look in subdirectories.
+   * @param recurse if {@code true}, we will look in subdirectories.
    * @return the names of the files inside the specified directory.
    */
   private static List<String> fileNamesIn(File dir, boolean recurse) {

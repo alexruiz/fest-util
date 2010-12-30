@@ -14,16 +14,9 @@
  */
 package org.fest.util;
 
-import static java.util.Collections.unmodifiableCollection;
-import static java.util.Collections.unmodifiableList;
+import static java.util.Collections.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Understands utility methods related to collections.
@@ -83,9 +76,9 @@ public final class Collections {
   }
 
   /**
-   * Returns <code>true</code> if the given collection is <code>null</code> or empty.
+   * Returns {@code true} if the given collection is {@code null} or empty.
    * @param c the collection to check.
-   * @return <code>true</code> if the given collection is <code>null</code> or empty, otherwise <code>false</code>.
+   * @return {@code true} if the given collection is {@code null} or empty, otherwise {@code false}.
    */
   public static boolean isEmpty(Collection<?> c) {
     return c == null || c.isEmpty();
@@ -98,10 +91,10 @@ public final class Collections {
   }
 
   /**
-   * Returns the <code>String</code> representation of the given collection, or <code>null</code> if the given
-   * collection is <code>null</code>.
+   * Returns the {@code String} representation of the given collection, or {@code null} if the given collection is
+   * {@code null}.
    * @param c the collection to format.
-   * @return the <code>String</code> representation of the given collection.
+   * @return the {@code String} representation of the given collection.
    */
   public static String format(Collection<?> c) {
     if (c == null) return null;
@@ -119,12 +112,12 @@ public final class Collections {
 
   /**
    * Returns a new unmodifiable collection containing the non-null elements of the given collection. This method returns
-   * an empty unmodifiable collection if the given collection has only <code>null</code> elements or if it is empty. This
-   * method returns <code>null</code> if the given collection is <code>null</code>.
+   * an empty unmodifiable collection if the given collection has only {@code null} elements or if it is empty. This
+   * method returns {@code null} if the given collection is {@code null}.
    * @param <T> the type of elements of the collection.
    * @param c the collection we want to extract non null elements from.
    * @return a new unmodifiable collection containing the non-null elements of the given collection, or
-   * <code>null</code> if the given collection is <code>null</code>.
+   * {@code null} if the given collection is {@code null}.
    * @since 1.1.3
    */
   public static <T> Collection<T> nonNullElements(Collection<T> c) {
@@ -136,12 +129,12 @@ public final class Collections {
 
   /**
    * Returns a new unmodifiable list containing the non-null elements of the given list. This method returns an empty
-   * unmodifiable list if the given list has only <code>null</code> elements or if it is empty. This method returns
-   * <code>null</code> if the given list is <code>null</code>.
+   * unmodifiable list if the given list has only {@code null} elements or if it is empty. This method returns
+   * {@code null} if the given list is {@code null}.
    * @param <T> the type of elements of the list.
    * @param l the list we want to extract non null elements from.
-   * @return a new unmodifiable list containing the non-null elements of the given list, or <code>null</code> if the
-   * given list is <code>null</code>.
+   * @return a new unmodifiable list containing the non-null elements of the given list, or {@code null} if the
+   * given list is {@code null}.
    * @since 1.1.3
    */
   public static <T> List<T> nonNullElements(List<T> l) {
@@ -151,12 +144,11 @@ public final class Collections {
   }
 
   /**
-   * Returns <code>true</code> if the given collection has only <code>null</code> elements, <code>false</code>
-   * otherwise. If given collection is empty, this method returns <code>true</code>.
+   * Returns {@code true} if the given collection has only {@code null} elements, {@code false} otherwise. If given
+   * collection is empty, this method returns {@code true}.
    * @param c the given collection. <b>It must not be null</b>.
-   * @return <code>true</code> if the given collection has only <code>null</code> elements or is empty,
-   * <code>false</code> otherwise.
-   * @throws NullPointerException if the given collection is <code>null</code>.
+   * @return {@code true} if the given collection has only {@code null} elements or is empty, {@code false} otherwise.
+   * @throws NullPointerException if the given collection is {@code null}.
    * @since 1.1.3
    */
   public static boolean hasOnlyNullElements(Collection<?> c) {

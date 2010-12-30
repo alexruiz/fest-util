@@ -26,7 +26,7 @@ public final class Closeables {
 
   /**
    * Closes the given <code>{@link Closeable}</code>s, ignoring any thrown exceptions.
-   * @param closeables the <code>Closeable</code>s to close.
+   * @param closeables the {@code Closeable}s to close.
    */
   public static void close(Closeable...closeables) {
     for (Closeable c : closeables) closeCloseable(c);

@@ -15,37 +15,37 @@
 package org.fest.util;
 
 /**
- * Understands utility methods related to <code>String</code>s.
+ * Understands utility methods related to {@code String}s.
  *
  * @author Alex Ruiz
  */
 public final class Strings {
 
   /**
-   * Returns <code>true</code> if the given <code>String</code> is <code>null</code> or empty.
-   * @param s the <code>String</code> to check.
-   * @return <code>true</code> if the given <code>String</code> is <code>null</code> or empty, otherwise
-   *          <code>false</code>.
+   * Returns {@code true} if the given {@code String} is {@code null} or empty.
+   * @param s the {@code String} to check.
+   * @return {@code true} if the given {@code String} is {@code null} or empty, otherwise
+   *          {@code false}.
    */
   public static boolean isEmpty(String s) {
     return s == null || s.length() == 0;
   }
 
   /**
-   * Returns the given <code>String</code> surrounded by single quotes, or <code>null</code> if the given
-   * <code>String</code> is <code>null</code>.
-   * @param s the given <code>String</code>.
-   * @return the given <code>String</code> surrounded by single quotes, or <code>null</code> if the given
-   * <code>String</code> is <code>null</code>.
+   * Returns the given {@code String} surrounded by single quotes, or {@code null} if the given
+   * {@code String} is {@code null}.
+   * @param s the given {@code String}.
+   * @return the given {@code String} surrounded by single quotes, or {@code null} if the given
+   * {@code String} is {@code null}.
    */
   public static String quote(String s) {
     return s != null ? concat("'", s, "'") : null;
   }
 
   /**
-   * Returns the given object surrounded by single quotes, only if the object is a <code>String</code>.
+   * Returns the given object surrounded by single quotes, only if the object is a {@code String}.
    * @param o the given object.
-   * @return the given object surrounded by single quotes, only if the object is a <code>String</code>.
+   * @return the given object surrounded by single quotes, only if the object is a {@code String}.
    * @see #quote(String)
    */
   public static Object quote(Object o) {
@@ -53,10 +53,10 @@ public final class Strings {
   }
 
   /**
-   * Concatenates the given objects into a single <code>String</code>. This method is more efficient than concatenating
+   * Concatenates the given objects into a single {@code String}. This method is more efficient than concatenating
    * using "+", since only one <code>{@link StringBuilder}</code> is created.
    * @param objects the objects to concatenate.
-   * @return a <code>String</code> containing the given objects.
+   * @return a {@code String} containing the given objects.
    */
   public static String concat(Object... objects) {
     if (Arrays.isEmpty(objects)) return null;
@@ -66,15 +66,15 @@ public final class Strings {
   }
 
   /**
-   * Joins the given <code>String</code>s using a given delimiter. The following example illustrates proper usage of
+   * Joins the given {@code String}s using a given delimiter. The following example illustrates proper usage of
    * this method:
    * <pre>
    * Strings.join("a", "b", "c").with("|")
    * </pre>
-   * which will result in the <code>String</code> <code>"a|b|c"</code>.
-   * @param strings the <code>String</code>s to join.
+   * which will result in the {@code String} <code>"a|b|c"</code>.
+   * @param strings the {@code String}s to join.
    * @return an intermediate object that takes a given delimiter and understands how to join the given
-   * <code>String</code>s.
+   * {@code String}s.
    * @see StringsToJoin#with(String)
    */
   public static StringsToJoin join(String...strings) {
@@ -82,26 +82,26 @@ public final class Strings {
   }
 
   /**
-   * Understands how to join <code>String</code>s using a given delimiter.
+   * Understands how to join {@code String}s using a given delimiter.
    * @see Strings#join(String[])
    */
   public static class StringsToJoin {
 
-    /** The <code>String</code>s to join. */
+    /** The {@code String}s to join. */
     private final String[] strings;
 
     /**
      * Creates a new <code>{@link StringsToJoin}</code>.
-     * @param strings the <code>String</code>s to join.
+     * @param strings the {@code String}s to join.
      */
     StringsToJoin(String...strings) {
       this.strings = strings;
     }
 
     /**
-     * Specifies the delimeter to use to join <code>String</code>s.
+     * Specifies the delimeter to use to join {@code String}s.
      * @param delimeter the delimeter to use.
-     * @return the <code>String</code>s joined using the given delimeter.
+     * @return the {@code String}s joined using the given delimeter.
      */
     public String with(String delimeter) {
       if (delimeter == null) throw new IllegalArgumentException("Delimiter should not be null");
@@ -118,17 +118,17 @@ public final class Strings {
   }
 
   /**
-   * Appends a given <code>String</code> to the given target, only if the target does not end with the given
-   * <code>String</code> to append. The following example illustrates proper usage of
+   * Appends a given {@code String} to the given target, only if the target does not end with the given
+   * {@code String} to append. The following example illustrates proper usage of
    * this method:
    * <pre>
    * Strings.append("c").to("ab");
    * Strings.append("c").to("abc");
    * </pre>
-   * which will result in the <code>String</code> <code>"abc"</code> for both cases.
-   * @param toAppend the <code>String</code> to append.
-   * @return an intermediate object that takes the target <code>String</code> and knows to append the given
-   * <code>String</code>.
+   * which will result in the {@code String} <code>"abc"</code> for both cases.
+   * @param toAppend the {@code String} to append.
+   * @return an intermediate object that takes the target {@code String} and knows to append the given
+   * {@code String}.
    * @see StringToAppend#to(String)
    */
   public static StringToAppend append(String toAppend) {
@@ -136,26 +136,26 @@ public final class Strings {
   }
 
   /**
-   * Understands how to append a given <code>String</code> to the given target, only if the target does not end with the
-   * given <code>String</code> to append.
+   * Understands how to append a given {@code String} to the given target, only if the target does not end with the
+   * given {@code String} to append.
    */
   public static class StringToAppend {
 
-    /** The <code>String</code> to append. */
+    /** The {@code String} to append. */
     private final String toAppend;
 
     /**
      * Creates a new <code>{@link StringToAppend}</code>.
-     * @param toAppend the <code>String</code> to append.
+     * @param toAppend the {@code String} to append.
      */
     StringToAppend(String toAppend) {
       this.toAppend = toAppend;
     }
 
     /**
-     * Appends the <code>String</code> specified in the constructor to the <code>String</code> passed as argument.
-     * @param s the target <code>String</code>.
-     * @return a <code>String</code> containing the target <code>String</code> with the given <code>String</code>
+     * Appends the {@code String} specified in the constructor to the {@code String} passed as argument.
+     * @param s the target {@code String}.
+     * @return a {@code String} containing the target {@code String} with the given {@code String}
      * to append added to the end.
      */
     public String to(String s) {

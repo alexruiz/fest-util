@@ -15,16 +15,14 @@
 package org.fest.util;
 
 import static java.lang.reflect.Array.getLength;
-
 import static org.fest.util.Strings.concat;
 import static org.fest.util.ToString.toStringOf;
 
+import java.util.*;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
- * Understands how to create a <code>String</code> representation of an array.
+ * Understands how to create a {@code String} representation of an array.
  *
  * @author Alex Ruiz
  */
