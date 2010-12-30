@@ -22,6 +22,8 @@ import static org.fest.util.Strings.quote;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 /**
  * Understands utility methods related to
@@ -52,7 +54,17 @@ public final class Introspection {
     }
     for (PropertyDescriptor d : beanInfo.getPropertyDescriptors())
       if (propertyName.equals(d.getName())) return d;
-    throw new IntrospectionError(concat("Unable to find property ", quote(propertyName), " in ", type.getName()));
+    throw buildIntrospectionErrorForMissingProperty(propertyName, target);
+  }
+
+  private static IntrospectionError buildIntrospectionErrorForMissingProperty(String propertyName, Object target) {
+    // no PropertyDescriptor found, try to give user a precise error message
+    if (!fieldHasGetter(propertyName, target))
+      return new IntrospectionError(concat("No getter for property ", quote(propertyName), " in ", target.getClass().getName()));
+    if (!fieldHasPublicGetter(propertyName, target))
+      return new IntrospectionError(concat("No public getter for property ", quote(propertyName), " in ", target.getClass().getName()));
+    // generic message
+    return new IntrospectionError(concat("Unable to find property ", quote(propertyName), " in ", target.getClass().getName()));
   }
 
   private static void validate(String propertyName, Object target) {
@@ -61,5 +73,62 @@ public final class Introspection {
     if (target == null) throw new NullPointerException("The target object should not be null");
   }
 
+  /**
+   * Return <code>true</code> if the specified bean class has a getter for the given propertyName;
+   * otherwise, return <code>false</code>.
+   * @param propertyName Property name to be evaluated
+   * @param target Bean to be examined
+   * 
+   * @return <code>true</code> if the specified bean class has a getter for the given propertyName, <code>false</code> otherwise.
+   */
+  private static boolean fieldHasGetter(String propertyName, Object target) {
+    if (beanGetter(propertyName, target) != null) return true;
+    return false;
+  }
+
+  /**
+   * Return <code>true</code> if the specified bean class has a <b>public</b> getter for the given propertyName;
+   * otherwise, return <code>false</code>.
+   * @param propertyName Property name to be evaluated
+   * @param target Bean to be examined
+   * 
+   * @return <code>true</code> if the specified bean class has a <b>public</b> getter for the given propertyName, <code>false</code> otherwise.
+   */
+  private static boolean fieldHasPublicGetter(String propertyName, Object target) {
+    if (!fieldHasGetter(propertyName, target)) return false;
+    return Modifier.isPublic(beanGetter(propertyName, target).getModifiers());
+  }
+
+  /**
+   * Returns the getter method for the given property of target object class.
+   * @param propertyName the name of property to look for getter
+   * @param target an object to introspect
+   * @return the getter method for the given property of target object class or null if nothing found.
+   */
+  private static Method beanGetter(String propertyName, Object target) {
+    validate(propertyName, target);
+    Method getterMethod = null;
+    String propertyWithFirstLetterUppercased = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
+    try {
+      // try to find getProperty
+      getterMethod = target.getClass().getDeclaredMethod("get" + propertyWithFirstLetterUppercased);
+      if (getterMethod != null) return getterMethod;
+    } catch (SecurityException e) {
+      // nothing to do
+    } catch (NoSuchMethodException e) {
+      // nothing to do
+    }
+    try {
+      // try to find isProperty for boolean properties
+      getterMethod = target.getClass().getDeclaredMethod("is" + propertyWithFirstLetterUppercased);
+    } catch (SecurityException e) {
+      return null;
+    } catch (NoSuchMethodException e) {
+      return null;
+    }
+    return getterMethod;
+  }
+
+  
   private Introspection() {}
 }
