@@ -16,6 +16,7 @@
 package org.fest.util;
 
 import static java.io.File.separator;
+import static java.lang.String.format;
 import static org.fest.util.Arrays.isEmpty;
 import static org.fest.util.Strings.*;
 import static org.junit.Assert.assertTrue;
@@ -61,11 +62,11 @@ public final class FolderFixture {
     dir = new File(path);
     if (!dir.exists()) {
       assertTrue(dir.mkdir());
-      logger.info(concat("Created directory ", quote(path)));
+      logger.info(format("Created directory %s", quote(path)));
       return;
     }
-    assertTrue(dir.isDirectory());
-    logger.info(concat("The directory ", quote(path), " already exists"));
+    if (!dir.isDirectory()) throw new AssertionError(String.format("%s should be a directory", quote(path)));
+    logger.info(format("The directory %s already exists", quote(path)));
   }
 
   public FolderFixture addFolder(String folderName) {
@@ -83,8 +84,9 @@ public final class FolderFixture {
     for (FolderFixture folder : folders) folder.delete();
     for (FileFixture file : files) file.delete();
     String path = relativePath();
-    assertTrue(dir.delete());
-    logger.info(concat("The directory ", quote(path), " was deleted"));
+    boolean dirDeleted = dir.delete();
+    if (!dirDeleted) throw new AssertionError(String.format("Unable to delete directory %s", quote(path)));
+    logger.info(format("The directory %s was deleted", quote(path)));
   }
 
   String relativePath() {

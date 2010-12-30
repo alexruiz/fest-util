@@ -15,6 +15,7 @@
  */
 package org.fest.util;
 
+import static java.lang.String.format;
 import static org.fest.util.Strings.*;
 
 import java.beans.*;
@@ -44,11 +45,11 @@ public final class Introspection {
     try {
       beanInfo = Introspector.getBeanInfo(type);
     } catch (Exception e) {
-      throw new IntrospectionError(concat("Unable to get BeanInfo for type ", type.getName()), e);
+      throw new IntrospectionError(format("Unable to get BeanInfo for type %s", type.getName()), e);
     }
     for (PropertyDescriptor d : beanInfo.getPropertyDescriptors())
       if (propertyName.equals(d.getName())) return d;
-    throw new IntrospectionError(concat("Unable to find property ", quote(propertyName), " in ", type.getName()));
+    throw new IntrospectionError(format("Unable to find property %s in %s", quote(propertyName), type.getName()));
   }
 
   private static void validate(String propertyName, Object target) {

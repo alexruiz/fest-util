@@ -15,6 +15,7 @@
 package org.fest.util;
 
 import static java.io.File.separator;
+import static java.lang.String.*;
 import static org.fest.util.Arrays.isEmpty;
 import static org.fest.util.Closeables.close;
 import static org.fest.util.Flushables.flush;
@@ -42,7 +43,7 @@ public class Files {
   public static List<String> fileNamesIn(String dirName, boolean recurse) {
     File dir = new File(dirName);
     if (!dir.isDirectory())
-      throw new IllegalArgumentException(concat(quote(dirName), " is not a directory or does not exist"));
+      throw new IllegalArgumentException(format("%s is not a directory", quote(dirName)));
     return fileNamesIn(dir, recurse);
   }
 
@@ -68,39 +69,39 @@ public class Files {
   }
 
   /**
-   * Returns the system's temporary folder.
-   * @return the system's temporary folder.
-   * @throws FilesException if this method cannot find or create the system's temporary folder.
+   * Returns the system's temporary directory.
+   * @return the system's temporary directory.
+   * @throws FilesException if this method cannot find or create the system's temporary directory.
    */
   public static File temporaryFolder() {
     File temp = new File(temporaryFolderPath());
-    if (!temp.isDirectory()) throw new FilesException("Unable to find temporary folder");
+    if (!temp.isDirectory()) throw new FilesException("Unable to find temporary directory");
     return temp;
   }
 
   /**
-   * Returns the path of the system's temporary folder. This method appends the system's file separator at the end of
+   * Returns the path of the system's temporary directory. This method appends the system's file separator at the end of
    * the path.
-   * @return the path of the system's temporary folder.
+   * @return the path of the system's temporary directory.
    */
   public static String temporaryFolderPath() {
     return append(separator).to(System.getProperty("java.io.tmpdir"));
   }
 
   /**
-   * Creates a new file in the system's temporary folder. The name of the file will be the result of:
+   * Creates a new file in the system's temporary directory. The name of the file will be the result of:
    * <pre>
    * concat(String.valueOf(System.currentTimeMillis()), ".txt");
    * </pre>
    * @return the created file.
    */
   public static File newTemporaryFile() {
-    String tempFileName = concat(String.valueOf(System.currentTimeMillis()), ".txt");
+    String tempFileName = concat(valueOf(System.currentTimeMillis()), ".txt");
     return newFile(concat(temporaryFolderPath(), tempFileName));
   }
 
   /**
-   * Creates a new folder in the system's temporary folder. The name of the folder will be the result of:
+   * Creates a new directory in the system's temporary directory. The name of the directory will be the result of:
    * <pre>
    * System.currentTimeMillis();
    * </pre>
@@ -132,12 +133,12 @@ public class Files {
   }
 
   /**
-   * Creates a new folder using the given path.
-   * @param path the path of the new folder.
-   * @return the new created folder.
+   * Creates a new directory using the given path.
+   * @param path the path of the new directory.
+   * @return the new created directory.
    * @throws FilesException if the path belongs to an existing non-empty directory.
    * @throws FilesException if the path belongs to an existing file.
-   * @throws FilesException if any I/O error is thrown when creating the new folder.
+   * @throws FilesException if any I/O error is thrown when creating the new directory.
    */
   public static File newFolder(String path) {
     File file = new File(path);
@@ -160,7 +161,7 @@ public class Files {
   }
 
   private static FilesException cannotCreateNewFile(String path, String reason, Exception cause) {
-    String message = concat("Unable to create the new file ", quote(path));
+    String message = String.format("Unable to create the new file %s", quote(path));
     if (!Strings.isEmpty(reason)) message = concat(message, ": ", reason);
     if (cause != null) throw new FilesException(message, cause);
     throw new FilesException(message);

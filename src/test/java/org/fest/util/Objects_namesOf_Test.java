@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Strings.concat;
+import static java.lang.String.format;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
@@ -43,6 +43,6 @@ public class Objects_namesOf_Test {
   public void should_return_class_names() {
     String[] e = { String.class.getName(), Integer.class.getName() };
     String[] a = Objects.namesOf(String.class, Integer.class);
-    assertTrue(concat("expected:<", Arrays.toString(e), "> actual:<", Arrays.toString(a), ">"), Arrays.equals(e, a));
+    assertTrue(format("expected:<%s> but got:<%s>", Arrays.toString(e), Arrays.toString(a)), Arrays.equals(e, a));
   }
 }

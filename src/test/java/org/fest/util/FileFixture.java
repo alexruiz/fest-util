@@ -16,8 +16,8 @@
 package org.fest.util;
 
 import static java.io.File.separator;
+import static java.lang.String.format;
 import static org.fest.util.Strings.*;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,17 +48,19 @@ public final class FileFixture {
     String path = relativePath();
     file = new File(path);
     if (!file.exists()) {
-      assertTrue(concat("Unable to create file ", quote(path)), file.createNewFile());
-      logger.info(concat("Created file ", quote(path)));
+      boolean fileCreated = file.createNewFile();
+      if (!fileCreated) throw new AssertionError(format("Unable to create file %s", quote(path)));
+      logger.info(format("Created file %s", quote(path)));
     }
-    assertTrue(concat("The file ", quote(path), " should be a file"), file.isFile());
-    logger.info(concat("The file ", quote(path), " exists"));
+    if (!file.isFile()) throw new AssertionError(format("%s should be a file", quote(path)));
+    logger.info(format("The file %s exists", quote(path)));
   }
 
   public void delete() {
     String path = relativePath();
-    assertTrue(concat("Unable to delete file ", quote(path)), file.delete());
-    logger.info(concat("The file ", quote(path), " was deleted"));
+    boolean fileDeleted = file.delete();
+    if (!fileDeleted) throw new AssertionError(String.format("Unable to delete file %s", quote(path)));
+    logger.info(format("The file %s was deleted", quote(path)));
   }
 
   String relativePath() {

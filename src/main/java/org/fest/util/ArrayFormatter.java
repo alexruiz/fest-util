@@ -15,7 +15,6 @@
 package org.fest.util;
 
 import static java.lang.reflect.Array.getLength;
-import static org.fest.util.Strings.concat;
 import static org.fest.util.ToString.toStringOf;
 
 import java.util.*;
@@ -95,7 +94,7 @@ final class ArrayFormatter {
     if (elementType.equals(long.class)) return format((long[])o);
     if (elementType.equals(float.class)) return format((float[])o);
     if (elementType.equals(double.class)) return format((double[])o);
-    throw new IllegalArgumentException(concat("<", o, "> is not an array of primitives"));
+    throw new IllegalArgumentException(String.format("<%s> is not an array of primitives", o));
   }
 
   private String format(boolean[] array) {
