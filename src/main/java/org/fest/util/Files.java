@@ -42,8 +42,7 @@ public class Files {
    */
   public static List<String> fileNamesIn(String dirName, boolean recurse) {
     File dir = new File(dirName);
-    if (!dir.isDirectory())
-      throw new IllegalArgumentException(format("%s is not a directory", quote(dirName)));
+    if (!dir.isDirectory()) throw new IllegalArgumentException(format("%s is not a directory", quote(dirName)));
     return fileNamesIn(dir, recurse);
   }
 
@@ -168,8 +167,8 @@ public class Files {
   }
 
   /**
-   * Flushes and closes the given <code>{@link Writer}</code>. Any I/O errors catched by this method are ignored and
-   * not rethrown.
+   * Flushes and closes the given <code>{@link Writer}</code>. Any I/O errors catched by this method are ignored and not
+   * rethrown.
    * @param writer the writer to flush and close.
    */
   public static void flushAndClose(Writer writer) {
@@ -212,7 +211,8 @@ public class Files {
       return;
     }
     if (!file.isDirectory()) return;
-    for (File f : file.listFiles()) delete(f);
+    for (File f : file.listFiles())
+      delete(f);
     file.delete();
   }
 

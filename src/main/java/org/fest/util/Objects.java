@@ -16,10 +16,13 @@ package org.fest.util;
 
 import static org.fest.util.Arrays.isEmpty;
 
+import java.lang.reflect.Array;
+
 /**
  * Understands utility methods related to objects.
  *
  * @author Alex Ruiz
+ * @author Joel Costigliola
  */
 public final class Objects {
 
@@ -34,19 +37,25 @@ public final class Objects {
    */
   public static boolean areEqual(Object o1, Object o2) {
     if (o1 == null) return o2 == null;
-    if (o1.equals(o2)) { return true; }
-    if (o1.getClass().isArray() && o2.getClass().isArray()) {
-      if (o1 instanceof Object[] && o2 instanceof Object[]) { return java.util.Arrays.equals((Object[]) o1, (Object[]) o2); }
-      if (o1 instanceof boolean[] && o2 instanceof boolean[]) { return java.util.Arrays.equals((boolean[]) o1, (boolean[]) o2); }
-      if (o1 instanceof byte[] && o2 instanceof byte[]) { return java.util.Arrays.equals((byte[]) o1, (byte[]) o2); }
-      if (o1 instanceof char[] && o2 instanceof char[]) { return java.util.Arrays.equals((char[]) o1, (char[]) o2); }
-      if (o1 instanceof double[] && o2 instanceof double[]) { return java.util.Arrays.equals((double[]) o1, (double[]) o2); }
-      if (o1 instanceof float[] && o2 instanceof float[]) { return java.util.Arrays.equals((float[]) o1, (float[]) o2); }
-      if (o1 instanceof int[] && o2 instanceof int[]) { return java.util.Arrays.equals((int[]) o1, (int[]) o2); }
-      if (o1 instanceof long[] && o2 instanceof long[]) { return java.util.Arrays.equals((long[]) o1, (long[]) o2); }
-      if (o1 instanceof short[] && o2 instanceof short[]) { return java.util.Arrays.equals((short[]) o1, (short[]) o2); }
+    if (o1.equals(o2)) return true;
+    return areEqualArrays(o1, o2);
+  }
+
+  private static boolean areEqualArrays(Object o1, Object o2) {
+    if (!isArray(o1) || !isArray(o2)) return false;
+    if (o1 == o2) return true;
+    int size = Array.getLength(o1);
+    if (Array.getLength(o2) != size) return false;
+    for (int i = 0; i < size; i++) {
+      Object e1 = Array.get(o1, i);
+      Object e2 = Array.get(o2, i);
+      if (!areEqual(e1, e2)) return false;
     }
-    return false;
+    return true;
+  }
+
+  private static boolean isArray(Object o) {
+    return o == null ? false : o.getClass().isArray();
   }
 
   /**
@@ -57,7 +66,8 @@ public final class Objects {
   public static String[] namesOf(Class<?>... types) {
     if (isEmpty(types)) return new String[0];
     String[] names = new String[types.length];
-    for (int i = 0; i < types.length; i++) names[i] = types[i].getName();
+    for (int i = 0; i < types.length; i++)
+      names[i] = types[i].getName();
     return names;
   }
 

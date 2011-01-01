@@ -24,19 +24,18 @@ public final class Strings {
   /**
    * Returns {@code true} if the given {@code String} is {@code null} or empty.
    * @param s the {@code String} to check.
-   * @return {@code true} if the given {@code String} is {@code null} or empty, otherwise
-   *          {@code false}.
+   * @return {@code true} if the given {@code String} is {@code null} or empty, otherwise {@code false}.
    */
   public static boolean isEmpty(String s) {
     return s == null || s.length() == 0;
   }
 
   /**
-   * Returns the given {@code String} surrounded by single quotes, or {@code null} if the given
-   * {@code String} is {@code null}.
+   * Returns the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is
+   * {@code null}.
    * @param s the given {@code String}.
-   * @return the given {@code String} surrounded by single quotes, or {@code null} if the given
-   * {@code String} is {@code null}.
+   * @return the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is
+   * {@code null}.
    */
   public static String quote(String s) {
     return s != null ? concat("'", s, "'") : null;
@@ -53,31 +52,33 @@ public final class Strings {
   }
 
   /**
-   * Concatenates the given objects into a single {@code String}. This method is more efficient than concatenating
-   * using "+", since only one <code>{@link StringBuilder}</code> is created.
+   * Concatenates the given objects into a single {@code String}. This method is more efficient than concatenating using
+   * "+", since only one <code>{@link StringBuilder}</code> is created.
    * @param objects the objects to concatenate.
    * @return a {@code String} containing the given objects.
    */
   public static String concat(Object... objects) {
     if (Arrays.isEmpty(objects)) return null;
     StringBuilder b = new StringBuilder();
-    for (Object o : objects) b.append(o);
+    for (Object o : objects)
+      b.append(o);
     return b.toString();
   }
 
   /**
-   * Joins the given {@code String}s using a given delimiter. The following example illustrates proper usage of
-   * this method:
+   * Joins the given {@code String}s using a given delimiter. The following example illustrates proper usage of this
+   * method:
+   *
    * <pre>
    * Strings.join("a", "b", "c").with("|")
    * </pre>
+   *
    * which will result in the {@code String} <code>"a|b|c"</code>.
    * @param strings the {@code String}s to join.
-   * @return an intermediate object that takes a given delimiter and understands how to join the given
-   * {@code String}s.
+   * @return an intermediate object that takes a given delimiter and understands how to join the given {@code String}s.
    * @see StringsToJoin#with(String)
    */
-  public static StringsToJoin join(String...strings) {
+  public static StringsToJoin join(String... strings) {
     return new StringsToJoin(strings);
   }
 
@@ -94,7 +95,7 @@ public final class Strings {
      * Creates a new <code>{@link StringsToJoin}</code>.
      * @param strings the {@code String}s to join.
      */
-    StringsToJoin(String...strings) {
+    StringsToJoin(String... strings) {
       this.strings = strings;
     }
 
@@ -118,17 +119,15 @@ public final class Strings {
   }
 
   /**
-   * Appends a given {@code String} to the given target, only if the target does not end with the given
-   * {@code String} to append. The following example illustrates proper usage of
-   * this method:
+   * Appends a given {@code String} to the given target, only if the target does not end with the given {@code String}
+   * to append. The following example illustrates proper usage of this method:
    * <pre>
    * Strings.append("c").to("ab");
    * Strings.append("c").to("abc");
    * </pre>
-   * which will result in the {@code String} <code>"abc"</code> for both cases.
+   * resulting in the {@code String} <code>"abc"</code> for both cases.
    * @param toAppend the {@code String} to append.
-   * @return an intermediate object that takes the target {@code String} and knows to append the given
-   * {@code String}.
+   * @return an intermediate object that takes the target {@code String} and knows to append the given {@code String}.
    * @see StringToAppend#to(String)
    */
   public static StringToAppend append(String toAppend) {
@@ -155,8 +154,8 @@ public final class Strings {
     /**
      * Appends the {@code String} specified in the constructor to the {@code String} passed as argument.
      * @param s the target {@code String}.
-     * @return a {@code String} containing the target {@code String} with the given {@code String}
-     * to append added to the end.
+     * @return a {@code String} containing the target {@code String} with the given {@code String} to append added to
+     * the end.
      */
     public String to(String s) {
       if (!s.endsWith(toAppend)) return concat(s, toAppend);

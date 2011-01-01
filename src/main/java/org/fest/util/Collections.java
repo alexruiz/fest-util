@@ -50,7 +50,7 @@ public final class Collections {
   public static <T> Set<T> set(T... elements) {
     if (elements == null) return null;
     Set<T> set = new LinkedHashSet<T>();
-    for (T e: elements) set.add(e);
+    for (T e : elements) set.add(e);
     return set;
   }
 
@@ -84,8 +84,6 @@ public final class Collections {
     return c == null || c.isEmpty();
   }
 
-  private Collections() {}
-
   public static <T> List<T> filter(Collection<?> target, CollectionFilter<T> filter) {
     return filter.filter(target);
   }
@@ -116,14 +114,15 @@ public final class Collections {
    * method returns {@code null} if the given collection is {@code null}.
    * @param <T> the type of elements of the collection.
    * @param c the collection we want to extract non null elements from.
-   * @return a new unmodifiable collection containing the non-null elements of the given collection, or
-   * {@code null} if the given collection is {@code null}.
+   * @return a new unmodifiable collection containing the non-null elements of the given collection, or {@code null} if
+   * the given collection is {@code null}.
    * @since 1.1.3
    */
   public static <T> Collection<T> nonNullElements(Collection<T> c) {
     if (c == null) return null;
     Collection<T> nonNullElements = new ArrayList<T>();
-    for (T o : c) if (o != null) nonNullElements.add(o);
+    for (T o : c)
+      if (o != null) nonNullElements.add(o);
     return unmodifiableCollection(nonNullElements);
   }
 
@@ -133,12 +132,12 @@ public final class Collections {
    * {@code null} if the given list is {@code null}.
    * @param <T> the type of elements of the list.
    * @param l the list we want to extract non null elements from.
-   * @return a new unmodifiable list containing the non-null elements of the given list, or {@code null} if the
-   * given list is {@code null}.
+   * @return a new unmodifiable list containing the non-null elements of the given list, or {@code null} if the given
+   * list is {@code null}.
    * @since 1.1.3
    */
   public static <T> List<T> nonNullElements(List<T> l) {
-    Collection<T> nonNullElements = nonNullElements((Collection<T>)l);
+    Collection<T> nonNullElements = nonNullElements((Collection<T>) l);
     if (nonNullElements == null) return null;
     return unmodifiableList(new ArrayList<T>(nonNullElements));
   }
@@ -154,7 +153,10 @@ public final class Collections {
   public static boolean hasOnlyNullElements(Collection<?> c) {
     if (c == null) throw new NullPointerException("The collection to check should not be null");
     if (c.isEmpty()) return false;
-    for (Object element : c) if (element != null) return false;
+    for (Object element : c)
+      if (element != null) return false;
     return true;
   }
+
+  private Collections() {}
 }

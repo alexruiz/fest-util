@@ -1,15 +1,15 @@
 /*
  * Created on Jan 25, 2008
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- *
+ * 
  * Copyright @2008 the original author or authors.
  */
 package org.fest.util;
@@ -21,7 +21,7 @@ import java.util.Map.Entry;
 
 /**
  * Understands utility methods related to maps.
- *
+ * 
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
@@ -37,8 +37,7 @@ public class Maps {
   }
 
   /**
-   * Returns the {@code String} representation of the given map, or {@code null} if the given map is
-   * {@code null}.
+   * Returns the {@code String} representation of the given map, or {@code null} if the given map is {@code null}.
    * @param map the map to format.
    * @return the {@code String} representation of the given map.
    */
@@ -49,7 +48,7 @@ public class Maps {
     StringBuilder b = new StringBuilder();
     b.append("{");
     for (;;) {
-      Entry<?, ?> e = (Entry<?, ?>)i.next();
+      Entry<?, ?> e = (Entry<?, ?>) i.next();
       b.append(format(map, e.getKey()));
       b.append('=');
       b.append(format(map, e.getValue()));

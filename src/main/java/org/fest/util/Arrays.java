@@ -83,7 +83,8 @@ public class Arrays {
   public static <T> T[] nonNullElements(T[] array) {
     if (array == null) return null;
     List<T> nonNullElements = new ArrayList<T>();
-    for (T o : array) if (o != null) nonNullElements.add(o);
+    for (T o : array)
+      if (o != null) nonNullElements.add(o);
     int elementCount = nonNullElements.size();
     T[] newArray = (T[]) Array.newInstance(array.getClass().getComponentType(), elementCount);
     arraycopy(nonNullElements.toArray(), 0, newArray, 0, elementCount);
@@ -91,8 +92,8 @@ public class Arrays {
   }
 
   /**
-   * Returns {@code true} if the given array has only {@code null} elements, {@code false} otherwise.
-   * If given array is empty, this method returns {@code true}.
+   * Returns {@code true} if the given array has only {@code null} elements, {@code false} otherwise. If given array is
+   * empty, this method returns {@code true}.
    * @param <T> the type of elements of the array.
    * @param array the given array. <b>It must not be null</b>.
    * @return {@code true} if the given array has only {@code null} elements or is empty, {@code false} otherwise.
@@ -102,7 +103,8 @@ public class Arrays {
   public static <T> boolean hasOnlyNullElements(T[] array) {
     if (array == null) throw new NullPointerException("The array to check should not be null");
     if (!hasElements(array)) return false;
-    for (T o : array) if (o != null) return false;
+    for (T o : array)
+      if (o != null) return false;
     return true;
   }
 
@@ -129,5 +131,6 @@ public class Arrays {
     arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
     return copy;
   }
+
   private Arrays() {}
 }
