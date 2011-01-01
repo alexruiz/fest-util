@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Arrays.isEmpty;
+import static org.fest.util.Arrays.*;
 
 import java.lang.reflect.Array;
 
@@ -52,10 +52,6 @@ public final class Objects {
       if (!areEqual(e1, e2)) return false;
     }
     return true;
-  }
-
-  private static boolean isArray(Object o) {
-    return o == null ? false : o.getClass().isArray();
   }
 
   /**

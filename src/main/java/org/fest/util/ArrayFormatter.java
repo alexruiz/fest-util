@@ -15,10 +15,12 @@
 package org.fest.util;
 
 import static java.lang.reflect.Array.getLength;
+import static org.fest.util.Arrays.isArray;
 import static org.fest.util.ToString.toStringOf;
 
-import java.util.*;
-import java.util.Arrays;
+import java.lang.reflect.Array;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Understands how to create a {@code String} representation of an array.
@@ -36,21 +38,11 @@ final class ArrayFormatter {
     return formatPrimitiveArray(o);
   }
 
-  private boolean isArray(Object o) {
-    if (o == null) return false;
-    return o.getClass().isArray();
-  }
-
-  private boolean isObjectArray(Object o) {
-    Class<?> type = o.getClass();
-    return type.isArray() && !type.getComponentType().isPrimitive();
-  }
-
   private String formatObjectArray(Object o) {
     Object[] array = (Object[]) o;
-    int arrayLength = getLength(o);
-    if (arrayLength == 0) return "[]";
-    StringBuilder buffer = new StringBuilder((20 * (arrayLength - 1)));
+    int size = array.length;
+    if (size == 0) return "[]";
+    StringBuilder buffer = new StringBuilder((20 * (size - 1)));
     deepToString(array, buffer, new HashSet<Object[]>());
     return buffer.toString();
   }
@@ -62,8 +54,8 @@ final class ArrayFormatter {
     }
     alreadyFormatted.add(array);
     buffer.append('[');
-    int length = array.length;
-    for (int i = 0; i < length; i++) {
+    int size = array.length;
+    for (int i = 0; i < size; i++) {
       if (i != 0) buffer.append(", ");
       Object element = array[i];
       if (!isArray(element)) {
@@ -84,17 +76,31 @@ final class ArrayFormatter {
     alreadyFormatted.remove(array);
   }
 
+  private boolean isObjectArray(Object o) {
+    return isArray(o) && !isArrayTypePrimitive(o);
+  }
+
   private String formatPrimitiveArray(Object o) {
     if (!isArray(o)) return null;
-    Class<?> elementType = o.getClass().getComponentType();
-    if (elementType.equals(boolean.class)) return Arrays.toString(((boolean[]) o));
-    if (elementType.equals(char.class)) return Arrays.toString(((char[]) o));
-    if (elementType.equals(byte.class)) return Arrays.toString(((byte[]) o));
-    if (elementType.equals(short.class)) return Arrays.toString(((short[]) o));
-    if (elementType.equals(int.class)) return Arrays.toString(((int[]) o));
-    if (elementType.equals(long.class)) return Arrays.toString(((long[]) o));
-    if (elementType.equals(float.class)) return Arrays.toString(((float[]) o));
-    if (elementType.equals(double.class)) return Arrays.toString(((double[]) o));
-    throw new IllegalArgumentException(String.format("<%s> is not an array of primitives", o));
+    if (!isArrayTypePrimitive(o)) throw notAnArrayOfPrimitives(o);
+    int size = getLength(o);
+    if (size == 0) return "[]";
+    StringBuilder buffer = new StringBuilder();
+    buffer.append('[');
+    buffer.append(Array.get(o, 0));
+    for (int i = 1; i < size; i++) {
+      buffer.append(", ");
+      buffer.append(Array.get(o, i));
+    }
+    buffer.append("]");
+    return buffer.toString();
+  }
+
+  private boolean isArrayTypePrimitive(Object o) {
+    return o.getClass().getComponentType().isPrimitive();
+  }
+
+  private IllegalArgumentException notAnArrayOfPrimitives(Object o) {
+    return new IllegalArgumentException(String.format("<%s> is not an array of primitives", o));
   }
 }
