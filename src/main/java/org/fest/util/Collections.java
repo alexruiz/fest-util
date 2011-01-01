@@ -15,6 +15,7 @@
 package org.fest.util;
 
 import static java.util.Collections.*;
+import static org.fest.util.ToString.toStringOf;
 
 import java.util.*;
 
@@ -102,7 +103,7 @@ public final class Collections {
     b.append('[');
     for (;;) {
       Object e = i.next();
-      b.append(e == c ? "(this Collection)" : ToString.toStringOf(e));
+      b.append(e == c ? "(this Collection)" : toStringOf(e));
       if (!i.hasNext()) return b.append(']').toString();
       b.append(", ");
     }
