@@ -16,6 +16,7 @@ package org.fest.util;
 
 import static java.lang.String.format;
 import static java.lang.reflect.Modifier.isPublic;
+import static java.util.Locale.ENGLISH;
 import static org.fest.util.Strings.*;
 
 import java.beans.*;
@@ -57,31 +58,23 @@ public final class Introspection {
     String targetTypeName = target.getClass().getName();
     String property = quote(propertyName);
     // no PropertyDescriptor found, try to give user a precise error message
-    if (!fieldHasGetter(propertyName, target))
+    Method getter = beanGetter(propertyName, target);
+    if (getter == null)
       return format("No getter for property %s in %s", property, targetTypeName);
-    if (!fieldHasPublicGetter(propertyName, target))
+    if (!isPublic(getter.getModifiers()))
       return format("No public getter for property %s in %s", property, targetTypeName);
     // generic message
     return format("Unable to find property %s in %s", property, targetTypeName);
   }
 
-  private static boolean fieldHasGetter(String propertyName, Object target) {
-    return beanGetter(propertyName, target) != null;
-  }
-
-  private static boolean fieldHasPublicGetter(String propertyName, Object target) {
-    Method getter = beanGetter(propertyName, target);
-    return getter != null && isPublic(getter.getModifiers());
-  }
-
   private static Method beanGetter(String propertyName, Object target) {
     validate(propertyName, target);
-    String propertyWithFirstLetterUppercased = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
+    String capitalized = propertyName.substring(0, 1).toUpperCase(ENGLISH) + propertyName.substring(1);
     // try to find getProperty
-    Method getter = findMethod("get" + propertyWithFirstLetterUppercased, target);
+    Method getter = findMethod("get" + capitalized, target);
     if (getter != null) return getter;
     // try to find isProperty for boolean properties
-    return findMethod("is" + propertyWithFirstLetterUppercased, target);
+    return findMethod("is" + capitalized, target);
   }
 
   private static Method findMethod(String name, Object target) {
