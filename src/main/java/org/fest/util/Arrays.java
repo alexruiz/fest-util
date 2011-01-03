@@ -125,7 +125,8 @@ public class Arrays {
    * @throws NullPointerException if {@code original} is {@code null}.
    * @since 1.1.5
    */
-  @SuppressWarnings("unchecked") public static <T> T[] copyOf(T[] original, int newLength) {
+  @SuppressWarnings("unchecked")
+  public static <T> T[] copyOf(T[] original, int newLength) {
     // TODO test
     T[] copy = (T[]) Array.newInstance(original.getClass().getComponentType(), newLength);
     arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
