@@ -76,26 +76,21 @@ public final class Introspection {
 
   private static Method beanGetter(String propertyName, Object target) {
     validate(propertyName, target);
-    Method getterMethod = null;
     String propertyWithFirstLetterUppercased = propertyName.substring(0, 1).toUpperCase() + propertyName.substring(1);
+    // try to find getProperty
+    Method getter = findMethod("get" + propertyWithFirstLetterUppercased, target);
+    if (getter != null) return getter;
+    // try to find isProperty for boolean properties
+    return findMethod("is" + propertyWithFirstLetterUppercased, target);
+  }
+
+  private static Method findMethod(String name, Object target) {
+    // TODO walk class hierarchy to check if any superclass declares the method we are looking for.
     try {
-      // try to find getProperty
-      getterMethod = target.getClass().getDeclaredMethod("get" + propertyWithFirstLetterUppercased);
-      if (getterMethod != null) return getterMethod;
-    } catch (SecurityException e) {
-      // nothing to do
-    } catch (NoSuchMethodException e) {
-      // nothing to do
-    }
-    try {
-      // try to find isProperty for boolean properties
-      getterMethod = target.getClass().getDeclaredMethod("is" + propertyWithFirstLetterUppercased);
-    } catch (SecurityException e) {
-      return null;
-    } catch (NoSuchMethodException e) {
+      return target.getClass().getDeclaredMethod(name);
+    } catch (Throwable t) {
       return null;
     }
-    return getterMethod;
   }
 
   private static void validate(String propertyName, Object target) {

@@ -16,43 +16,37 @@
 package org.fest.util;
 
 /**
- * class used for testing Introspection 
+ * Class used for testing <code>{@link Introspection}</code>.
  *
- * @author Joel Costigliola 
- *
+ * @author Joel Costigliola
  */
 public class Employee {
 
   // field public getter => valid property
   private int age;
-
   public int getAge() {
     return age;
   }
 
   // fields without public getter => not a property
   private String company = "google";
-  private boolean firstJob;
-
   String getCompany() {
     return company;
   }
 
+  private boolean firstJob;
   boolean isFirstJob() {
     return firstJob;
   }
-  
+
   // field without getter => not a property
   @SuppressWarnings("unused")
   private double salary;
-
-  // field without getter => not a property
 
   public Employee(double salary, int age) {
     super();
     this.salary = salary;
     this.age = age;
   }
-  
 }
 
