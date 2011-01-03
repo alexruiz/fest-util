@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Strings.*;
+import static org.fest.util.Strings.quote;
 
 import java.awt.Dimension;
 import java.io.File;
@@ -61,7 +61,7 @@ public final class ToString {
   }
 
   private static String toStringOf(Dimension d) {
-    return concat("(", d.width, ", ", d.height, ")");
+    return String.format("(w=%s, h=%s)", d.width, d.height);
   }
 
   private ToString() {}

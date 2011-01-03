@@ -45,7 +45,7 @@ public class ToString_toStringOf_Test {
 
   @Test public void should_return_toString_of_Dimension() {
     Dimension o = new Dimension(10, 20);
-    assertEquals("(10, 20)", ToString.toStringOf(o));
+    assertEquals("(w=10, h=20)", ToString.toStringOf(o));
   }
 
   @Test public void should_return_toString_of_File() {
