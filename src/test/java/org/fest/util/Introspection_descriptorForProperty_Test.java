@@ -15,9 +15,7 @@
  */
 package org.fest.util;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-
+import static junit.framework.Assert.*;
 import static org.fest.util.Introspection.descriptorForProperty;
 
 import java.beans.PropertyDescriptor;
@@ -34,29 +32,25 @@ public class Introspection_descriptorForProperty_Test {
 
   private Employee judy;
 
-  @Before
-  public void initData() {
+  @Before public void initData() {
     judy = new Employee(100000.0, 31);
   }
-  
-  @Test
-  public void get_descriptor_for_property() {
+
+  @Test public void get_descriptor_for_property() {
     PropertyDescriptor propertyDescriptor = descriptorForProperty("age", judy);
     assertNotNull(propertyDescriptor);
     assertEquals("age",propertyDescriptor.getName());
   }
 
-  @Test
-  public void should_raise_an_error_because_of_missing_getter() {
+  @Test public void should_raise_an_error_because_of_missing_getter() {
     try {
       descriptorForProperty("salary", judy);
     } catch (IntrospectionError error) {
       assertEquals("No getter for property 'salary' in org.fest.util.Employee", error.getMessage());
     }
   }
-  
-  @Test
-  public void should_raise_an_error_because_of_non_public_getter() {
+
+  @Test public void should_raise_an_error_because_of_non_public_getter() {
     try {
       descriptorForProperty("company", judy);
     } catch (IntrospectionError error) {
@@ -68,5 +62,5 @@ public class Introspection_descriptorForProperty_Test {
       assertEquals("No public getter for property 'firstJob' in org.fest.util.Employee", error.getMessage());
     }
   }
-  
+
 }
