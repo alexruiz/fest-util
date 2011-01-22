@@ -18,7 +18,9 @@ import static org.fest.util.Strings.quote;
 
 import java.awt.Dimension;
 import java.io.File;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -36,6 +38,8 @@ public final class ToString {
     if (o instanceof Map<?, ?>) return toStringOf((Map<?, ?>) o);
     if (o instanceof File) return toStringOf((File) o);
     if (o instanceof Dimension) return toStringOf((Dimension) o);
+    if (o instanceof Date) return toStringOf((Date) o);
+    if (o instanceof Calendar) return toStringOf((Calendar) o);
     if (o instanceof String) return quote((String) o);
     return o == null ? null : o.toString();
   }
@@ -62,6 +66,14 @@ public final class ToString {
 
   private static String toStringOf(Dimension d) {
     return String.format("(w=%s, h=%s)", d.width, d.height);
+  }
+
+  private static String toStringOf(Date d) {
+	  return Dates.format(d);
+  }
+
+  private static String toStringOf(Calendar c) {
+	  return Dates.format(c);
   }
 
   private ToString() {}

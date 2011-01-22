@@ -101,4 +101,16 @@ public class ToString_toStringOf_Test {
     Class<?>[] array = { String.class, File.class };
     assertEquals("[java.lang.String, java.io.File]", ToString.toStringOf(array));
   }
+
+  @Test public void should_return_toString_of_calendar() {
+    Locale.setDefault(Locale.UK);
+    final GregorianCalendar calendar = new GregorianCalendar(2011, Calendar.JANUARY, 18, 23, 53, 17);
+    assertEquals("18 January 2011 23:53:17 CET", ToString.toStringOf(calendar));
+  }
+
+  @Test public void should_return_toString_of_date() {
+    Locale.setDefault(Locale.UK);
+    final Date date = new GregorianCalendar(2011, Calendar.JUNE, 18, 23, 53, 17).getTime();
+    assertEquals("18 June 2011 23:53:17 CEST", ToString.toStringOf(date));
+  }
 }
