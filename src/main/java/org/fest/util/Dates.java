@@ -1,19 +1,25 @@
 package org.fest.util;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.text.*;
+import java.util.*;
 
 /**
  * @author Tomasz Nurkiewicz
- * @since 18.01.11, 23:47
+ * @author Joel Costigliola
  */
 public class Dates {
 
+  /**
+   * ISO 8601 date format "yyyy-MM-dd", example : <code>"2008-12-29"</code>
+   */
+  public static final DateFormat ISO_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+  /**
+   * ISO 8601 datetime format for error message, example : <code>"2003-04-01T13:01:02"</code> 
+   */
+  static final DateFormat ISO_DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+  
 	public static String format(Date date) {
-		return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(date);
+		return ISO_DATE_TIME_FORMAT.format(date);
 	}
 
 	public static String format(Calendar calendar) {
