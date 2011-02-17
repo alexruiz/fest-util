@@ -19,7 +19,7 @@ import static org.fest.util.Arrays.*;
 import java.lang.reflect.Array;
 
 /**
- * Understands utility methods related to objects.
+ * Utility methods related to objects.
  *
  * @author Alex Ruiz
  * @author Joel Costigliola

@@ -15,7 +15,7 @@
 package org.fest.util;
 
 /**
- * Understands utility methods related to stack traces.
+ * Utility methods related to stack traces.
  * 
  * @author Alex Ruiz
  * 

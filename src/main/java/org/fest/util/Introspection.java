@@ -23,7 +23,7 @@ import java.beans.*;
 import java.lang.reflect.Method;
 
 /**
- * Understands utility methods related to <a
+ * Utility methods related to <a
  * href="http://java.sun.com/docs/books/tutorial/javabeans/introspection/index.html">JavaBeans Introspection</a>.
  *
  * @author Alex Ruiz

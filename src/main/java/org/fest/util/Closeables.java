@@ -17,7 +17,7 @@ package org.fest.util;
 import java.io.Closeable;
 
 /**
- * Understands utility methods related to <code>{@link Closeable}</code>.
+ * Utility methods related to <code>{@link Closeable}</code>.
  *
  * @author Yvonne Wang
  */

@@ -17,11 +17,10 @@ package org.fest.util;
 import static java.lang.System.arraycopy;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
- * Understands utility methods related to arrays.
+ * Utility methods related to arrays.
  *
  * @author Alex Ruiz
  * @author Joel Costigliola

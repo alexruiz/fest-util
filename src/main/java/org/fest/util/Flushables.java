@@ -17,7 +17,7 @@ package org.fest.util;
 import java.io.Flushable;
 
 /**
- * Understands utility methods related to <code>{@link Flushable}</code>.
+ * Utility methods related to <code>{@link Flushable}</code>.
  *
  * @author Yvonne Wang
  */

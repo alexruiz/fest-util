@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Understands utility methods related to files.
+ * Utility methods related to files.
  *
  * @author Yvonne Wang
  * @author Alex Ruiz

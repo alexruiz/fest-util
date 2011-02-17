@@ -20,7 +20,7 @@ import static org.fest.util.ToString.toStringOf;
 import java.util.*;
 
 /**
- * Understands utility methods related to collections.
+ * Utility methods related to collections.
  *
  * @author Yvonne Wang
  * @author Alex Ruiz

@@ -14,38 +14,43 @@
  */
 package org.fest.util;
 
+import static org.fest.util.Arrays.isArray;
 import static org.fest.util.Strings.quote;
 
 import java.awt.Dimension;
 import java.io.File;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 /**
- * Understands how to obtain the {@code toString} representation of an object.
+ * Obtains the {@code toString} representation of an object.
  *
  * @author Alex Ruiz
  * @author Joel Costigliola
+ * @author Yvonne Wang
  */
 public final class ToString {
 
+  /**
+   * Returns the {@code toString} representation of the given object. It may or not the object's own implementation of
+   * {@code toString}.
+   * @param o the given object.
+   * @return the {@code toString} representation of the given object.
+   */
   public static String toStringOf(Object o) {
-    if (isOneDimensionalArray(o)) return Arrays.format(o);
+    if (isArray(o)) return Arrays.format(o);
+    if (o instanceof Calendar) return toStringOf((Calendar) o);
     if (o instanceof Class<?>) return toStringOf((Class<?>) o);
     if (o instanceof Collection<?>) return toStringOf((Collection<?>) o);
-    if (o instanceof Map<?, ?>) return toStringOf((Map<?, ?>) o);
-    if (o instanceof File) return toStringOf((File) o);
-    if (o instanceof Dimension) return toStringOf((Dimension) o);
     if (o instanceof Date) return toStringOf((Date) o);
-    if (o instanceof Calendar) return toStringOf((Calendar) o);
+    if (o instanceof Dimension) return toStringOf((Dimension) o);
+    if (o instanceof File) return toStringOf((File) o);
+    if (o instanceof Map<?, ?>) return toStringOf((Map<?, ?>) o);
     if (o instanceof String) return quote((String) o);
     return o == null ? null : o.toString();
   }
 
-  private static boolean isOneDimensionalArray(Object o) {
-    return Arrays.isArray(o);
+  private static String toStringOf(Calendar c) {
+	  return Dates.format(c);
   }
 
   private static String toStringOf(Class<?> c) {
@@ -56,24 +61,20 @@ public final class ToString {
     return Collections.format(c);
   }
 
-  private static String toStringOf(Map<?, ?> m) {
-    return Maps.format(m);
-  }
-
-  private static String toStringOf(File f) {
-    return f.getAbsolutePath();
+  private static String toStringOf(Date d) {
+	  return Dates.format(d);
   }
 
   private static String toStringOf(Dimension d) {
     return String.format("(w=%s, h=%s)", d.width, d.height);
   }
 
-  private static String toStringOf(Date d) {
-	  return Dates.format(d);
+  private static String toStringOf(File f) {
+    return f.getAbsolutePath();
   }
 
-  private static String toStringOf(Calendar c) {
-	  return Dates.format(c);
+  private static String toStringOf(Map<?, ?> m) {
+    return Maps.format(m);
   }
 
   private ToString() {}

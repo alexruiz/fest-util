@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Understands utility methods related to <code>{@link Throwable}</code>s.
+ * Utility methods related to <code>{@link Throwable}</code>s.
  * 
  * @author Alex Ruiz
  */

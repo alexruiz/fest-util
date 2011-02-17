@@ -16,7 +16,6 @@ package org.fest.util;
 
 import static org.fest.util.Arrays.array;
 import static org.fest.util.Collections.list;
-
 import static org.junit.Assert.*;
 
 import java.awt.Dimension;
@@ -104,12 +103,12 @@ public class ToString_toStringOf_Test {
   }
 
   @Test public void should_return_toString_of_calendar() {
-    final GregorianCalendar calendar = new GregorianCalendar(2011, Calendar.JANUARY, 18, 23, 53, 17);
+    GregorianCalendar calendar = new GregorianCalendar(2011, Calendar.JANUARY, 18, 23, 53, 17);
     assertEquals("2011-01-18T23:53:17", ToString.toStringOf(calendar));
   }
 
   @Test public void should_return_toString_of_date() {
-    final Date date = new GregorianCalendar(2011, Calendar.JUNE, 18, 23, 53, 17).getTime();
+    Date date = new GregorianCalendar(2011, Calendar.JUNE, 18, 23, 53, 17).getTime();
     assertEquals("2011-06-18T23:53:17", ToString.toStringOf(date));
   }
 }

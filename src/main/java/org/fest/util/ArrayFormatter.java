@@ -19,11 +19,10 @@ import static org.fest.util.Arrays.isArray;
 import static org.fest.util.ToString.toStringOf;
 
 import java.lang.reflect.Array;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
- * Understands how to create a {@code String} representation of an array.
+ * Creates a {@code String} representation of an array.
  *
  * @author Alex Ruiz
  * @author Joel Costigliola

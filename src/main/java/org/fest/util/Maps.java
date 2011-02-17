@@ -20,7 +20,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 /**
- * Understands utility methods related to maps.
+ * Utility methods related to maps.
  *
  * @author Yvonne Wang
  * @author Alex Ruiz

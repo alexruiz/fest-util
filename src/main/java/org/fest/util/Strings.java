@@ -15,7 +15,7 @@
 package org.fest.util;
 
 /**
- * Understands utility methods related to {@code String}s.
+ * Utility methods related to {@code String}s.
  *
  * @author Alex Ruiz
  */
@@ -75,7 +75,7 @@ public final class Strings {
    *
    * which will result in the {@code String} <code>"a|b|c"</code>.
    * @param strings the {@code String}s to join.
-   * @return an intermediate object that takes a given delimiter and understands how to join the given {@code String}s.
+   * @return an intermediate object that takes a given delimiter and knows how to join the given {@code String}s.
    * @see StringsToJoin#with(String)
    */
   public static StringsToJoin join(String... strings) {
@@ -83,7 +83,7 @@ public final class Strings {
   }
 
   /**
-   * Understands how to join {@code String}s using a given delimiter.
+   * Knows how to join {@code String}s using a given delimiter.
    * @see Strings#join(String[])
    */
   public static class StringsToJoin {
@@ -135,7 +135,7 @@ public final class Strings {
   }
 
   /**
-   * Understands how to append a given {@code String} to the given target, only if the target does not end with the
+   * Knows how to append a given {@code String} to the given target, only if the target does not end with the
    * given {@code String} to append.
    */
   public static class StringToAppend {
