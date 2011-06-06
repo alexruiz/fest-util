@@ -32,8 +32,13 @@ public class Dates {
   /**
    * ISO 8601 date-time format (yyyy-MM-dd'T'HH:mm:ss), example : <code>2003-04-26T13:01:02</code>
    */
-  private static final DateFormat ISO_DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+  public static final DateFormat ISO_DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
+  /**
+   * ISO 8601 date-time format with millisecond (yyyy-MM-dd'T'HH:mm:ss.SSS), example : <code>2003-04-26T03:01:02.999</code>
+   */
+  public static final DateFormat ISO_DATE_TIME_FORMAT_WITH_MS = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+  
   /**
    * Formats the given date using the ISO 8601 date-time format (yyyy-MM-dd'T'HH:mm:ss).<br>
    * Method in synchronized because SimpleDateFormat is not thread safe (sigh).
@@ -42,8 +47,20 @@ public class Dates {
    * @param date the date to format.
    * @return the formatted date or null if given the date was null.
    */
-  public static synchronized String format(Date date) {
+  public static synchronized String formatAsDatetime(Date date) {
     return date == null ? null : ISO_DATE_TIME_FORMAT.format(date);
+  }
+
+  /**
+   * Formats the given date using the ISO 8601 date-time format with millisecond (yyyy-MM-dd'T'HH:mm:ss:SSS).<br>
+   * Method in synchronized because SimpleDateFormat is not thread safe (sigh).
+   * <p>
+   * Returns null if given the date is null.
+   * @param date the date to format.
+   * @return the formatted date or null if given the date was null.
+   */
+  public static synchronized String formatAsDatetimeWithMs(Date date) {
+    return date == null ? null : ISO_DATE_TIME_FORMAT_WITH_MS.format(date);
   }
 
   /**
@@ -54,8 +71,8 @@ public class Dates {
    * @param calendar the calendar to format.
    * @return the formatted calendar or null if the given calendar was null.
    */
-  public static String format(Calendar calendar) {
-    return calendar == null ? null : format(calendar.getTime());
+  public static String formatAsDatetime(Calendar calendar) {
+    return calendar == null ? null : formatAsDatetime(calendar.getTime());
   }
 
   /**
@@ -72,6 +89,20 @@ public class Dates {
     }
   }
 
+  /**
+   * Utillity method to parse a Date following {@link #ISO_DATE_TIME_FORMAT}, returns null if the given String is null.
+   * @param dateAsString the string to parse as a Date following {@link #ISO_DATE_TIME_FORMAT}
+   * @return the corrresponding Date with time details or null if the given String is null.
+   * @throws RuntimeException encapsulating ParseException if the string can't be parsed as a Date
+   */
+  public static Date parseDatetime(String dateAsString) {
+    try {
+      return dateAsString == null ? null : ISO_DATE_TIME_FORMAT.parse(dateAsString);
+    } catch (ParseException e) {
+      throw new RuntimeException(e);
+    }
+  }
+  
   /**
    * Converts the given Date to Calendar, returns null if the given Date is null.
    * @param date the date to convert to a Calendar.

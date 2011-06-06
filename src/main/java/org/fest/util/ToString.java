@@ -50,7 +50,7 @@ public final class ToString {
   }
 
   private static String toStringOf(Calendar c) {
-	  return Dates.format(c);
+	  return Dates.formatAsDatetime(c);
   }
 
   private static String toStringOf(Class<?> c) {
@@ -62,7 +62,7 @@ public final class ToString {
   }
 
   private static String toStringOf(Date d) {
-	  return Dates.format(d);
+	  return Dates.formatAsDatetime(d);
   }
 
   private static String toStringOf(Dimension d) {
