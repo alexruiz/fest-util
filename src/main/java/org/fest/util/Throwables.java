@@ -16,8 +16,7 @@ package org.fest.util;
 
 import static org.fest.util.Collections.list;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Utility methods related to <code>{@link Throwable}</code>s.
@@ -35,6 +34,60 @@ public final class Throwables {
     List<StackTraceElement> stackTrace = list(t.getStackTrace());
     stackTrace.addAll(currentThreadStackTrace(methodToStartFrom));
     t.setStackTrace(stackTrace.toArray(new StackTraceElement[stackTrace.size()]));
+  }
+
+/**
+   * Removes the Fest elements from the <code>{@link Throwable}</code> stack trace that have little value for end user.
+   * <pre>So instead of seeing this:
+
+org.junit.ComparisonFailure: expected:<'[Ronaldo]'> but was:<'[Messi]'>
+  at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+  at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+  at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+  at java.lang.reflect.Constructor.newInstance(Constructor.java:501)
+  at org.fest.assertions.error.ConstructorInvoker.newInstance(ConstructorInvoker.java:34)
+  at org.fest.assertions.error.ShouldBeEqual.newComparisonFailure(ShouldBeEqual.java:111)
+  at org.fest.assertions.error.ShouldBeEqual.comparisonFailure(ShouldBeEqual.java:103)
+  at org.fest.assertions.error.ShouldBeEqual.newAssertionError(ShouldBeEqual.java:81)
+  at org.fest.assertions.internal.Failures.failure(Failures.java:76)
+  at org.fest.assertions.internal.Objects.assertEqual(Objects.java:116)
+  at org.fest.assertions.api.AbstractAssert.isEqualTo(AbstractAssert.java:74)
+  at examples.StackTraceFilterExample.main(StackTraceFilterExample.java:13)
+  
+We get this:
+
+org.junit.ComparisonFailure: expected:<'[Ronaldo]'> but was:<'[Messi]'>
+  at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+  at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+  at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+  at examples.StackTraceFilterExample.main(StackTraceFilterExample.java:20)
+   * </pre>
+   * @param throwable the {@code Throwable} to filter stack trace.
+   */
+  public static void removeFestRelatedElementsFromStackTrace(Throwable throwable) {
+    List<StackTraceElement> filteredStackTrace = list(throwable.getStackTrace());
+    StackTraceElement previousStackTraceElement = null;
+    for (StackTraceElement stackTraceElement : throwable.getStackTrace()) {
+      if (stackTraceElement.getClassName().contains("org.fest")) {
+        filteredStackTrace.remove(stackTraceElement);
+        // handle the case when Fest builds a ComparisonFailure by reflection (see ShouldBeEqual.newAssertionError
+        // method), the stack trace looks like :
+        // java.lang.reflect.Constructor.newInstance(Constructor.java:501),
+        // org.fest.assertions.error.ConstructorInvoker.newInstance(ConstructorInvoker.java:34),
+        // we want to get rid of java.lang.reflect.Constructor.newInstance element because it is related to Fest.
+        if (stackTraceElementClassNameIs(previousStackTraceElement, "java.lang.reflect.Constructor")
+            && stackTraceElement.getClassName().contains("org.fest.assertions.error.ConstructorInvoker")) {
+          filteredStackTrace.remove(previousStackTraceElement);
+        }
+      }
+      previousStackTraceElement = stackTraceElement;
+    }
+    throwable.setStackTrace(filteredStackTrace.toArray(new StackTraceElement[filteredStackTrace.size()]));
+  }
+
+  private static boolean stackTraceElementClassNameIs(StackTraceElement stackTraceElement, String className) {
+    if (stackTraceElement == null) return false;
+    return stackTraceElement.getClassName().equals(className);
   }
 
   private static List<StackTraceElement> currentThreadStackTrace(String methodToStartFrom) {
