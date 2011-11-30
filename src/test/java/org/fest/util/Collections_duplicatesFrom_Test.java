@@ -16,8 +16,7 @@ package org.fest.util;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -30,9 +29,10 @@ import org.junit.Test;
 public class Collections_duplicatesFrom_Test {
 
   @Test public void should_return_existing_duplicates() {
-    Collection<String> duplicates = Collections.duplicatesFrom(Collections.list("Frodo", "Sam", "Frodo"));
-    assertEquals(1, duplicates.size());
+    Collection<String> duplicates = Collections.duplicatesFrom(Collections.list("Merry", "Frodo", "Merry", "Sam", "Frodo"));
+    assertEquals(2, duplicates.size());
     assertTrue(duplicates.contains("Frodo"));
+    assertTrue(duplicates.contains("Merry"));
   }
 
   @Test public void should_not_return_any_duplicates() {
