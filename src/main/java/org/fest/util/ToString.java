@@ -46,9 +46,15 @@ public final class ToString {
     if (o instanceof File) return toStringOf((File) o);
     if (o instanceof Map<?, ?>) return toStringOf((Map<?, ?>) o);
     if (o instanceof String) return quote((String) o);
+    if (o instanceof Comparator) return toStringOf((Comparator<?>) o);
     return o == null ? null : o.toString();
   }
 
+  private static String toStringOf(Comparator<?> comparator) {
+    String comparatorSimpleClassName = comparator.getClass().getSimpleName();
+    return quote(comparatorSimpleClassName.length() > 0 ? comparatorSimpleClassName : "anonymous comparator class");
+  }
+  
   private static String toStringOf(Calendar c) {
 	  return Dates.formatAsDatetime(c);
   }

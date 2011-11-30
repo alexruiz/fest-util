@@ -14,35 +14,25 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.util.List;
 
 import org.junit.Test;
 
 /**
- * Tests for {@link Objects#castIfBelongsToType(Object, Class)}.
+ * Tests for {@link StandardComparisonStrategy#collectionRemoves(java.util.Collection, Object)}.
  * 
- * @author Yvonne Wang
- * @author Alex Ruiz
  * @author Joel Costigliola
  */
-public class Objects_castIfBelongsToType_Test {
-
+public class StandardComparisonStrategy_collectionRemove_Test extends AbstractTest_StandardComparisonStrategy {
+  
   @Test
-  public void should_return_object_casted_to_given_type() {
-    Object o = "Frodo";
-    String casted = Objects.castIfBelongsToType(o, String.class);
-    assertSame(casted, o);
+  public void verify_that_collectionRemoves_delegates_to_collection_parameter_remove_method() {
+    List<?> list = mock(List.class);
+    String value = "Frodo";
+    standardComparisonStrategy.collectionRemoves(list, value);
+    verify(list).remove(value);
   }
-
-  @Test
-  public void should_return_null_if_object_does_not_belong_to_given_type() {
-    Object o = 4;
-    String casted = Objects.castIfBelongsToType(o, String.class);
-    assertNull(casted);
-  }
-
-  @Test
-  public void should_return_null_if_object_is_null() {
-    assertNull(Objects.castIfBelongsToType(null, String.class));
-  }
+  
 }

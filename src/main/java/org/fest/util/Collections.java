@@ -1,27 +1,35 @@
 /*
  * Created on Apr 29, 2007
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
- *
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- *
+ * 
  * Copyright @2007-2011 the original author or authors.
  */
 package org.fest.util;
 
 import static java.util.Collections.*;
+
 import static org.fest.util.ToString.toStringOf;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Utility methods related to collections.
- *
+ * 
  * @author Yvonne Wang
  * @author Alex Ruiz
  * @author Joel Costigliola
@@ -37,7 +45,8 @@ public final class Collections {
   public static <T> List<T> list(T... elements) {
     if (elements == null) return null;
     List<T> list = new ArrayList<T>();
-    for (T e : elements) list.add(e);
+    for (T e : elements)
+      list.add(e);
     return list;
   }
 
@@ -51,7 +60,8 @@ public final class Collections {
   public static <T> Set<T> set(T... elements) {
     if (elements == null) return null;
     Set<T> set = new LinkedHashSet<T>();
-    for (T e : elements) set.add(e);
+    for (T e : elements)
+      set.add(e);
     return set;
   }
 
@@ -60,20 +70,63 @@ public final class Collections {
    * @param <T> the generic type of the given collection.
    * @param c the given collection that might have duplicate elements.
    * @return a collection containing the duplicate elements of the given one. If no duplicates are found, an empty
-   * collection is returned.
+   *         collection is returned.
    */
   public static <T> Collection<T> duplicatesFrom(Collection<T> c) {
     Set<T> duplicates = new HashSet<T>();
     if (isEmpty(c)) return duplicates;
-    Set<T> onlyOne = new HashSet<T>();
+    Set<T> noDuplicates = new HashSet<T>();
     for (T e : c) {
-      if (onlyOne.contains(e)) {
+      if (noDuplicates.contains(e)) {
         duplicates.add(e);
         continue;
       }
-      onlyOne.add(e);
+      noDuplicates.add(e);
     }
     return duplicates;
+  }
+
+  /**
+   * Returns any duplicate elements from the given collection according to given {@link Comparator}.
+   * @param <T> the generic type of the given collection.
+   * @param c the given collection that might have duplicate elements.
+   * @param comparator the {@link Comparator} to use to check element in given collection.
+   * @return a collection containing the duplicate elements of the given one according to given {@link Comparator}. If
+   *         no duplicates are found, an empty collection is returned.
+   */
+  public static <T> Collection<T> duplicatesFrom(Collection<T> c, Comparator<T> comparator) {
+    Set<T> duplicates = new HashSet<T>();
+    if (isEmpty(c)) return duplicates;
+    Set<T> noDuplicates = new HashSet<T>();
+    for (T e : c) {
+      if (collectionContains(noDuplicates, e, comparator)) {
+        duplicates.add(e);
+        continue;
+      }
+      noDuplicates.add(e);
+    }
+    return duplicates;
+  }
+
+  /**
+   * Returns true if given collection contains given value according to given {@link Comparator}, false
+   * otherwise.
+   * <p>
+   * Returns false if collection is empty whatever given value and comparator are.
+   * @param collection the collection to search value in
+   * @param value the object to search for in given collection
+   * @param comparator the {@link Comparator} to use to check element in given collection against value.
+   * @return true if given collection contains given value according to given {@link Comparator}, false otherwise.
+   */
+  @SuppressWarnings({ "unchecked", "rawtypes" })
+  public static boolean collectionContains(Collection<?> collection, Object value, Comparator comparator) {
+    if (isEmpty(collection)) return false;
+    for (Object element : collection) {
+      // avoid comparison when objects are the same or both null
+      if (element == value) return true;
+      if (comparator.compare(element, value) == 0) return true;
+    }
+    return false;
   }
 
   /**
@@ -116,7 +169,7 @@ public final class Collections {
    * @param <T> the type of elements of the collection.
    * @param c the collection we want to extract non null elements from.
    * @return a new unmodifiable collection containing the non-null elements of the given collection, or {@code null} if
-   * the given collection is {@code null}.
+   *         the given collection is {@code null}.
    * @since 1.1.3
    */
   public static <T> Collection<T> nonNullElements(Collection<T> c) {
@@ -134,7 +187,7 @@ public final class Collections {
    * @param <T> the type of elements of the list.
    * @param l the list we want to extract non null elements from.
    * @return a new unmodifiable list containing the non-null elements of the given list, or {@code null} if the given
-   * list is {@code null}.
+   *         list is {@code null}.
    * @since 1.1.3
    */
   public static <T> List<T> nonNullElements(List<T> l) {

@@ -49,6 +49,7 @@ public class Objects_areEqual_Test {
   @Test public void should_return_true_if_arrays_of_Objects_are_equal() {
     Object[] a1 = { "Luke", "Yoda", "Leia" };
     Object[] a2 = { "Luke", "Yoda", "Leia" };
+    assertTrue(Objects.areEqual(a1, a1));
     assertTrue(Objects.areEqual(a1, a2));
   }
 
@@ -68,5 +69,11 @@ public class Objects_areEqual_Test {
     int[] a1 = { 6, 8, 10 };
     boolean[] a2 = { true };
     assertFalse(Objects.areEqual(a1, a2));
+  }
+  
+  @Test public void should_return_false_if_one_parameter_is_not_an_array() {
+    Object[] a1 = { "Luke", "Yoda", "Leia" };
+    assertFalse(Objects.areEqual(a1, ""));
+    assertFalse(Objects.areEqual("", a1));
   }
 }

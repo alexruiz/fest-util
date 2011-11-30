@@ -16,33 +16,32 @@ package org.fest.util;
 
 import static org.junit.Assert.*;
 
+import java.awt.Rectangle;
+
 import org.junit.Test;
 
 /**
- * Tests for {@link Objects#castIfBelongsToType(Object, Class)}.
+ * Tests for {@link StandardComparisonStrategy#isLessThan(Object, Object)}.
  * 
- * @author Yvonne Wang
- * @author Alex Ruiz
  * @author Joel Costigliola
  */
-public class Objects_castIfBelongsToType_Test {
+public class StandardComparisonStrategy_isLessThan_Test extends AbstractTest_StandardComparisonStrategy {
 
   @Test
-  public void should_return_object_casted_to_given_type() {
-    Object o = "Frodo";
-    String casted = Objects.castIfBelongsToType(o, String.class);
-    assertSame(casted, o);
+  public void should_pass() {
+    Employee boss = new Employee(10000, 35);
+    Employee young = new Employee(10000, 25);
+    assertTrue(standardComparisonStrategy.isLessThan(young, boss));
+    assertFalse(standardComparisonStrategy.isLessThan(boss, young));
+    assertFalse(standardComparisonStrategy.isLessThan(boss, boss));
   }
 
   @Test
-  public void should_return_null_if_object_does_not_belong_to_given_type() {
-    Object o = 4;
-    String casted = Objects.castIfBelongsToType(o, String.class);
-    assertNull(casted);
+  public void should_fail_if_a_parameter_is_not_comparable() {
+    thrown.expect(IllegalArgumentException.class);
+    Rectangle r1 = new Rectangle(10, 20);
+    Rectangle r2 = new Rectangle(20, 10);
+    standardComparisonStrategy.isLessThan(r1, r2);
   }
 
-  @Test
-  public void should_return_null_if_object_is_null() {
-    assertNull(Objects.castIfBelongsToType(null, String.class));
-  }
 }
