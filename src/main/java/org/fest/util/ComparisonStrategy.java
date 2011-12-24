@@ -45,6 +45,16 @@ public interface ComparisonStrategy {
   boolean isGreaterThan(Object actual, Object other);
   
   /**
+   * Returns true if actual is greater than or equal to other, false otherwise.
+   * 
+   * @param actual the object to compare to other
+   * @param other the object to compare to actual
+   * @return true if actual is greater than or equal to other, false otherwise.
+   * @throws UnsupportedOperationException if operation is not supported by a concrete implementation.
+   */
+  boolean isGreaterThanOrEqualTo(Object actual, Object other);
+  
+  /**
    * Returns true if actual is less than other, false otherwise.
    * 
    * @param actual the object to compare to other
@@ -53,6 +63,16 @@ public interface ComparisonStrategy {
    * @throws UnsupportedOperationException if operation is not supported by a concrete implementation.
    */
   boolean isLessThan(Object actual, Object other);
+  
+  /**
+   * Returns true if actual is less than or equal to other, false otherwise.
+   * 
+   * @param actual the object to compare to other
+   * @param other the object to compare to actual
+   * @return true if actual is less than or equal to other, false otherwise.
+   * @throws UnsupportedOperationException if operation is not supported by a concrete implementation.
+   */
+  boolean isLessThanOrEqualTo(Object actual, Object other);
   
   /**
    * Returns true if given collection contains given value according to the implemented comparison strategy, false

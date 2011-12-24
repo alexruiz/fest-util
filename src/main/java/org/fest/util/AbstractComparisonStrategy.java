@@ -1,4 +1,5 @@
 package org.fest.util;
+
 /*
  * Created on Sep 17, 2010
  * 
@@ -14,22 +15,23 @@ package org.fest.util;
  * Copyright @2010-2011 the original author or authors.
  */
 
-
 import static java.lang.reflect.Array.getLength;
 
 import static org.fest.util.Collections.isEmpty;
 
 import java.lang.reflect.Array;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * Base implementation of {@link ComparisonStrategy} contract. 
+ * Base implementation of {@link ComparisonStrategy} contract.
  * 
  * @author Joel Costigliola
  * 
- * TODO FEST-64 unit test 
+ *         TODO FEST-64 unit test
  */
-public abstract class AbstractComparisonStrategy implements ComparisonStrategy { 
+public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
 
   public Collection<?> duplicatesFrom(Collection<?> collection) {
     Set<Object> duplicates = new HashSet<Object>();
@@ -44,8 +46,7 @@ public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
     }
     return duplicates;
   }
-  
-  
+
   public boolean arrayContains(Object array, Object value) {
     for (int i = 0; i < getLength(array); i++) {
       Object element = Array.get(array, i);
@@ -55,10 +56,18 @@ public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
   }
 
   public boolean isLessThan(Object actual, Object other) {
-    if (areEqual(actual, other)) {
-      return false;
-    } 
+    if (areEqual(actual, other)) return false;
     return !isGreaterThan(actual, other);
+  }
+
+  public boolean isLessThanOrEqualTo(Object actual, Object other) {
+    if (areEqual(actual, other)) return true;
+    return isLessThan(actual, other);
+  }
+  
+  public boolean isGreaterThanOrEqualTo(Object actual, Object other) {
+    if (areEqual(actual, other)) return true;
+    return isGreaterThan(actual, other);
   }
 
 }

@@ -212,4 +212,8 @@ public class Dates {
     cal.set(Calendar.MILLISECOND, 0);
     return cal.getTime();
   }
+
+  public static Date today() {
+    return new Date();
+  }
 }
