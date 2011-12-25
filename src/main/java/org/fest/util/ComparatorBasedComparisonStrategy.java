@@ -16,7 +16,9 @@ package org.fest.util;
 
 import static org.fest.util.Strings.quote;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  * Implements {@link ComparisonStrategy} contract with a comparison strategy based on a {@link Comparator}.
@@ -111,7 +113,7 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
   @SuppressWarnings("unchecked")
   public boolean stringEndsWithPrefix(String string, String suffix) {
     if (string.length() < suffix.length()) return false;
-    String stringSuffix = string.substring(suffix.length() - 1);
+    String stringSuffix = string.substring(string.length() - suffix.length());
     return comparator.compare(stringSuffix, suffix) == 0;
   }
 
