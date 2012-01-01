@@ -88,11 +88,11 @@ public class StandardComparisonStrategy extends AbstractComparisonStrategy {
     return super.duplicatesFrom(collection);
   }
 
-  public boolean stringStartsWithPrefix(String s, String prefix) {
+  public boolean stringStartsWith(String s, String prefix) {
     return s.startsWith(prefix);
   }
 
-  public boolean stringEndsWithPrefix(String s, String suffix) {
+  public boolean stringEndsWith(String s, String suffix) {
     return s.endsWith(suffix);
   }
 

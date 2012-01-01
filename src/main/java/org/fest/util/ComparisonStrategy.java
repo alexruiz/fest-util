@@ -15,13 +15,13 @@ package org.fest.util;
 import java.util.Collection;
 
 /**
- * 
  * Describes the contract to implement a <b>consistent</b> comparison strategy that covers :<br>
- * - comparing two objects<br>
+ * - comparing two objects for equality and order<br>
  * - knowing if an object belongs to a group of objects (collection/array)<br>
+ * - determining duplicates in a group of objects (collection/array)<br>
+ * - string specific comparison<br>
  * 
  * @author Joel Costigliola
- * 
  */
 public interface ComparisonStrategy {
 
@@ -124,21 +124,21 @@ public interface ComparisonStrategy {
   boolean stringContains(String string, String sequence);
   
   /**
-   * Returns true if s starts with prefix according to the implemented comparison strategy, false otherwise.
+   * Returns true if string starts with prefix according to the implemented comparison strategy, false otherwise.
    * 
    * @param string the String we want to look starting prefix 
-   * @param prefix the prefix String to look for in s
-   * @return true if s starts with prefix according to the implemented comparison strategy, false otherwise.
+   * @param prefix the prefix String to look for at string's start
+   * @return true if string starts with prefix according to the implemented comparison strategy, false otherwise.
    */
-  boolean stringStartsWithPrefix(String string, String prefix);
+  boolean stringStartsWith(String string, String prefix);
 
   /**
-   * Returns true if s ends with suffix according to the implemented comparison strategy, false otherwise.
+   * Returns true if sstring ends with suffix according to the implemented comparison strategy, false otherwise.
    * 
    * @param string the String we want to look starting suffix 
-   * @param suffix the prefix String to look for in s
-   * @return true if s ends with suffix according to the implemented comparison strategy, false otherwise.
+   * @param suffix the suffix String to look for at string's end
+   * @return true if string ends with suffix according to the implemented comparison strategy, false otherwise.
    */
-  boolean stringEndsWithPrefix(String string, String suffix);
+  boolean stringEndsWith(String string, String suffix);
   
 }

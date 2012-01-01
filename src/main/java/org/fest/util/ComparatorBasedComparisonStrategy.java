@@ -104,14 +104,14 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
   }
 
   @SuppressWarnings("unchecked")
-  public boolean stringStartsWithPrefix(String string, String prefix) {
+  public boolean stringStartsWith(String string, String prefix) {
     if (string.length() < prefix.length()) return false;
     String stringPrefix = string.substring(0, prefix.length());
     return comparator.compare(stringPrefix, prefix) == 0;
   }
 
   @SuppressWarnings("unchecked")
-  public boolean stringEndsWithPrefix(String string, String suffix) {
+  public boolean stringEndsWith(String string, String suffix) {
     if (string.length() < suffix.length()) return false;
     String stringSuffix = string.substring(string.length() - suffix.length());
     return comparator.compare(stringSuffix, suffix) == 0;
@@ -122,7 +122,7 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
     for (int i = 0; i < string.length(); i++) {
       String subString = string.substring(i);
       if (subString.length() < sequenceLength) return false;
-      if (stringStartsWithPrefix(subString, sequence)) return true;
+      if (stringStartsWith(subString, sequence)) return true;
     }
     return false;
   }
