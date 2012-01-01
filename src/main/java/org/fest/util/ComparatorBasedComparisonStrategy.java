@@ -77,6 +77,10 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
    */
   @SuppressWarnings("unchecked")
   public boolean areEqual(Object actual, Object other) {
+    if (actual == null) return other == null;
+    // actual is not null
+    if (other == null) return false;
+    // neither actual nor other are null
     return comparator.compare(actual, other) == 0;
   }
 
