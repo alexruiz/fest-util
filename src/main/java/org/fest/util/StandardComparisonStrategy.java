@@ -24,8 +24,6 @@ import java.util.Collection;
  * method, it is also based on {@link Comparable#compareTo(Object)} when Object are {@link Comparable} method.
  * 
  * @author Joel Costigliola
- * 
- *         TODO FEST-64 unit test
  */
 public class StandardComparisonStrategy extends AbstractComparisonStrategy {
 
@@ -88,12 +86,12 @@ public class StandardComparisonStrategy extends AbstractComparisonStrategy {
     return super.duplicatesFrom(collection);
   }
 
-  public boolean stringStartsWith(String s, String prefix) {
-    return s.startsWith(prefix);
+  public boolean stringStartsWith(String string, String prefix) {
+    return string.startsWith(prefix);
   }
 
-  public boolean stringEndsWith(String s, String suffix) {
-    return s.endsWith(suffix);
+  public boolean stringEndsWith(String string, String suffix) {
+    return string.endsWith(suffix);
   }
 
   public boolean stringContains(String string, String sequence) {
@@ -106,8 +104,8 @@ public class StandardComparisonStrategy extends AbstractComparisonStrategy {
       throw new IllegalArgumentException(format("argument '%s' should be Comparable but is not", actual));
     if (!Comparable.class.isAssignableFrom(other.getClass()))
       throw new IllegalArgumentException(format("argument '%s' should be Comparable but is not", other));
-    Comparable comparableActual =  (Comparable) actual;
-    Comparable comparableOther =  (Comparable) other;
+    Comparable comparableActual = (Comparable) actual;
+    Comparable comparableOther = (Comparable) other;
     return comparableActual.compareTo(comparableOther) > 0;
   }
 

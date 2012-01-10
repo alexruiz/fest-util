@@ -28,8 +28,6 @@ import java.util.Set;
  * Base implementation of {@link ComparisonStrategy} contract.
  * 
  * @author Joel Costigliola
- * 
- *         TODO FEST-64 unit test
  */
 public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
 

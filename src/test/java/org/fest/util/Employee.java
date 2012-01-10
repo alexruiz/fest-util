@@ -20,7 +20,7 @@ package org.fest.util;
  *
  * @author Joel Costigliola
  */
-public class Employee {
+public class Employee implements Comparable<Employee>{
 
   // field public getter => valid property
   private int age;
@@ -47,6 +47,10 @@ public class Employee {
     super();
     this.salary = salary;
     this.age = age;
+  }
+
+  public int compareTo(Employee other) {
+    return age - other.age;
   }
 }
 

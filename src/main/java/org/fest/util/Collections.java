@@ -18,7 +18,14 @@ import static java.util.Collections.*;
 
 import static org.fest.util.ToString.toStringOf;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Utility methods related to collections.
@@ -87,7 +94,7 @@ public final class Collections {
    * @return a collection containing the duplicate elements of the given one according to given {@link Comparator}. If
    *         no duplicates are found, an empty collection is returned.
    */
-  public static <T> Collection<T> duplicatesFrom(Collection<T> c, Comparator<T> comparator) { // TODO test
+  public static <T> Collection<T> duplicatesFrom(Collection<T> c, Comparator<T> comparator) {
     Set<T> duplicates = new HashSet<T>();
     if (isEmpty(c)) return duplicates;
     Set<T> noDuplicates = new HashSet<T>();
@@ -104,16 +111,19 @@ public final class Collections {
   /**
    * Returns true if given collection contains given value according to given {@link Comparator}, false
    * otherwise.
+   * <p>
+   * Returns false if collection is empty whatever given value and comparator are.
    * @param collection the collection to search value in
    * @param value the object to search for in given collection
    * @param comparator the {@link Comparator} to use to check element in given collection against value.
    * @return true if given collection contains given value according to given {@link Comparator}, false otherwise.
    */
   @SuppressWarnings({ "unchecked", "rawtypes" })
-  // TODO test 
   public static boolean collectionContains(Collection<?> collection, Object value, Comparator comparator) {
     if (isEmpty(collection)) return false;
     for (Object element : collection) {
+      // avoid comparison when objects are the same or both null
+      if (element == value) return true;
       if (comparator.compare(element, value) == 0) return true;
     }
     return false;
