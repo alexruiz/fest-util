@@ -15,25 +15,18 @@
 package org.fest.util;
 
 import static org.junit.Assert.*;
-import static org.junit.rules.ExpectedException.none;
 import static org.mockito.Mockito.*;
 
 import java.awt.Rectangle;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 /**
  * Tests for {@link StandardComparisonStrategy#isGreaterThan(Object, Object)}.
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_isGreaterThan_Test {
-
-  private static StandardComparisonStrategy standardComparisonStrategy = StandardComparisonStrategy.instance();
-
-  @Rule public ExpectedException thrown = none();
+public class StandardComparisonStrategy_isGreaterThan_Test extends AbstractTest_StandardComparisonStrategy {
 
   @Test
   public void verify_that_isGreaterThan_delegates_to_compare_method() {

@@ -21,35 +21,37 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Tests for {@link StandardComparisonStrategy#arrayContains(Object, Object)}.
+ * Tests for {@link ComparatorBasedComparisonStrategy#arrayContains(Object, Object)}.
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_arrayContains_Test extends AbstractTest_StandardComparisonStrategy {
+public class ComparatorBasedComparisonStrategy_arrayContains_Test extends AbstractTest_ComparatorBasedComparisonStrategy {
 
   @Test
-  public void should_return_true_if_array_contains_value() {
+  public void should_return_true_if_array_contains_value_according_to_comparison_strategy() {
     String[] hobbits = array("Merry", "Frodo", "Merry", "Sam");
-    assertTrue(standardComparisonStrategy.arrayContains(hobbits, "Sam"));
-    assertTrue(standardComparisonStrategy.arrayContains(hobbits, "Merry"));
+    assertTrue(caseInsensitiveComparisonStrategy.arrayContains(hobbits, "Sam"));
+    assertTrue(caseInsensitiveComparisonStrategy.arrayContains(hobbits, "SAM"));
+    assertTrue(caseInsensitiveComparisonStrategy.arrayContains(hobbits, "Merry"));
+    assertTrue(caseInsensitiveComparisonStrategy.arrayContains(hobbits, "MerRy"));
   }
 
   @Test
-  public void should_return_false_if_array_does_not_contain_value() {
+  public void should_return_false_if_array_does_not_contain_value_according_to_comparison_strategy() {
     String[] hobbits = array("Merry", "Frodo", "Merry", "Sam");
-    assertFalse(standardComparisonStrategy.arrayContains(hobbits, "Pippin"));
-    assertFalse(standardComparisonStrategy.arrayContains(hobbits, "SAM "));
+    assertFalse(caseInsensitiveComparisonStrategy.arrayContains(hobbits, "Pippin"));
+    assertFalse(caseInsensitiveComparisonStrategy.arrayContains(hobbits, "Sam  "));
   }
   
   @Test
   public void should_return_false_if_array_is_empty() {
-    assertFalse(standardComparisonStrategy.arrayContains(new String[] {}, "Pippin"));
+    assertFalse(caseInsensitiveComparisonStrategy.arrayContains(new String[] {}, "Pippin"));
   }
   
   @Test
   public void should_fail_if_first_parameter_is_not_an_array() {
     thrown.expect(IllegalArgumentException.class);
-    standardComparisonStrategy.arrayContains("not an array", "Pippin");
+    caseInsensitiveComparisonStrategy.arrayContains("not an array", "Pippin");
   }
   
 }

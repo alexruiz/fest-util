@@ -24,35 +24,38 @@ import java.util.Collection;
 import org.junit.Test;
 
 /**
- * Tests for {@link StandardComparisonStrategy#standardComparisonStrategy.duplicatesFrom(java.util.Collection)}.<br>
+ * Tests for
+ * {@link ComparatorBasedComparisonStrategy#caseInsensitiveComparisonStrategy.duplicatesFrom(java.util.Collection)}.<br>
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_duplicatesFrom_Test extends AbstractTest_StandardComparisonStrategy {
-  
+public class ComparatorBasedComparisonStrategy_duplicatesFrom_Test extends
+    AbstractTest_ComparatorBasedComparisonStrategy {
+
   @Test
   public void should_return_existing_duplicates() {
-    Collection<?> duplicates = standardComparisonStrategy.duplicatesFrom(list("Merry", "Frodo", "Merry", "Sam", "Frodo"));
+    Collection<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(list("Merry", "Frodo", "Merry", "Sam",
+        "FrODO"));
     assertEquals(2, duplicates.size());
-    assertTrue(duplicates.contains("Frodo"));
-    assertTrue(duplicates.contains("Merry"));
+    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(duplicates, "frodo"));
+    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(duplicates, "MERRY"));
   }
 
   @Test
   public void should_not_return_any_duplicates() {
-    Collection<?> duplicates = standardComparisonStrategy.duplicatesFrom(list("Frodo", "Sam", "Gandalf"));
+    Collection<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(list("Frodo", "Sam", "Gandalf"));
     assertTrue(duplicates.isEmpty());
   }
 
   @Test
   public void should_not_return_any_duplicates_if_collection_is_empty() {
-    Collection<?> duplicates = standardComparisonStrategy.duplicatesFrom(new ArrayList<String>());
+    Collection<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(new ArrayList<String>());
     assertTrue(duplicates.isEmpty());
   }
 
   @Test
   public void should_not_return_any_duplicates_if_collection_is_null() {
-    Collection<?> duplicates = standardComparisonStrategy.duplicatesFrom(null);
+    Collection<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(null);
     assertTrue(duplicates.isEmpty());
   }
 

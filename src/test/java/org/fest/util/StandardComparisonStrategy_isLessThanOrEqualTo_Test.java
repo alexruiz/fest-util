@@ -15,25 +15,17 @@
 package org.fest.util;
 
 import static org.junit.Assert.*;
-import static org.junit.rules.ExpectedException.none;
 
 import java.awt.Rectangle;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 /**
  * Tests for {@link StandardComparisonStrategy#isLessThanOrEqualTo(Object, Object)}.
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_isLessThanOrEqualTo_Test {
-
-  private static StandardComparisonStrategy standardComparisonStrategy = StandardComparisonStrategy.instance();
-
-  @Rule
-  public ExpectedException thrown = none();
+public class StandardComparisonStrategy_isLessThanOrEqualTo_Test extends AbstractTest_StandardComparisonStrategy {
 
   @Test
   public void should_pass() {

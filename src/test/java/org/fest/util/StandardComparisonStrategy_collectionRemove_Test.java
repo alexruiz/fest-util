@@ -25,10 +25,8 @@ import org.junit.Test;
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_collectionRemove_Test {
+public class StandardComparisonStrategy_collectionRemove_Test extends AbstractTest_StandardComparisonStrategy {
   
-  private static StandardComparisonStrategy standardComparisonStrategy = StandardComparisonStrategy.instance(); 
-
   @Test
   public void verify_that_collectionRemoves_delegates_to_collection_parameter_remove_method() {
     List<?> list = mock(List.class);

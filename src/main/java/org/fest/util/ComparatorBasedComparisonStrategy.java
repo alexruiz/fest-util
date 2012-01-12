@@ -14,6 +14,7 @@
  */
 package org.fest.util;
 
+import static org.fest.util.Collections.isEmpty;
 import static org.fest.util.Strings.quote;
 
 import java.util.Collection;
@@ -54,12 +55,14 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
 
   /**
    * Look for given value in given collection according to the {@link Comparator}, if value is found it is removed from
-   * collection.
+   * collection.<br>
+   * Does nothing if collection is null or empty (meaning no exception thrown).
    * @param collection the collection we want remove value from (must not be null)
    * @param value object to remove from actual collection
    */
   @SuppressWarnings("unchecked")
   public void collectionRemoves(Collection<?> collection, Object value) {
+    if (isEmpty(collection)) return ;
     for (Iterator<?> iterator = collection.iterator(); iterator.hasNext();) {
       if (comparator.compare(iterator.next(), value) == 0) {
         iterator.remove();
@@ -69,7 +72,8 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
   }
 
   /**
-   * Returns true if actual and other are equal according to {@link #comparator}, false otherwise.
+   * Returns true if actual and other are equal according to {@link #comparator}, false otherwise.<br>
+   * Handles the cases where one of the parameter is null so that internal {@link #comparator} does not have too.
    * 
    * @param actual the object to compare to other
    * @param other the object to compare to actual

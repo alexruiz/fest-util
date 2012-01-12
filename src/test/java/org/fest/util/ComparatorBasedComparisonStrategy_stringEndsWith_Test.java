@@ -19,16 +19,17 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Tests for {@link StandardComparisonStrategy#stringContains(String, String)}.
+ * Tests for {@link ComparatorBasedComparisonStrategy#stringContains(String, String)}.
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_stringContains_Test extends AbstractTest_StandardComparisonStrategy {
+public class ComparatorBasedComparisonStrategy_stringEndsWith_Test extends AbstractTest_ComparatorBasedComparisonStrategy {
   
   @Test
   public void should_pass() {
-    assertTrue(standardComparisonStrategy.stringContains("Frodo", "ro"));
-    assertFalse(standardComparisonStrategy.stringContains("rodo", "Fr"));
+    assertTrue(caseInsensitiveComparisonStrategy.stringEndsWith("Frodo", "do"));
+    assertTrue(caseInsensitiveComparisonStrategy.stringEndsWith("Frodo", "DO"));
+    assertFalse(caseInsensitiveComparisonStrategy.stringEndsWith("Frodo", "d"));
   }
   
 }

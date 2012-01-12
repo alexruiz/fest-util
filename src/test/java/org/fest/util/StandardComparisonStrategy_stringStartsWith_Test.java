@@ -23,10 +23,8 @@ import org.junit.Test;
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_stringStartsWith_Test {
+public class StandardComparisonStrategy_stringStartsWith_Test extends AbstractTest_StandardComparisonStrategy {
   
-  private static StandardComparisonStrategy standardComparisonStrategy = StandardComparisonStrategy.instance(); 
-
   @Test
   public void should_pass() {
     assertTrue(standardComparisonStrategy.stringStartsWith("Frodo", "Fro"));
