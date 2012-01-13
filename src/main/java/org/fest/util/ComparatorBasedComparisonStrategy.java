@@ -25,8 +25,6 @@ import java.util.Iterator;
  * Implements {@link ComparisonStrategy} contract with a comparison strategy based on a {@link Comparator}.
  * 
  * @author Joel Costigliola
- * 
- *         TODO FEST 64 unit test
  */
 public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrategy {
 

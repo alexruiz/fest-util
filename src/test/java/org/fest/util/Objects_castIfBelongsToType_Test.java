@@ -23,18 +23,26 @@ import org.junit.Test;
  * 
  * @author Yvonne Wang
  * @author Alex Ruiz
+ * @author Joel Costigliola
  */
 public class Objects_castIfBelongsToType_Test {
 
-  @Test public void should_return_Object_casted_to_given_type() {
+  @Test
+  public void should_return_object_casted_to_given_type() {
     Object o = "Frodo";
     String casted = Objects.castIfBelongsToType(o, String.class);
     assertSame(casted, o);
   }
 
-  @Test public void should_return_null_IfObject_does_not_belong_to_given_type() {
+  @Test
+  public void should_return_null_if_object_does_not_belong_to_given_type() {
     Object o = 4;
     String casted = Objects.castIfBelongsToType(o, String.class);
     assertNull(casted);
+  }
+
+  @Test
+  public void should_return_null_if_object_is_null() {
+    assertNull(Objects.castIfBelongsToType(null, String.class));
   }
 }

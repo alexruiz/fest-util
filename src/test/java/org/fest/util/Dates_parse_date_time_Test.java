@@ -17,10 +17,13 @@ package org.fest.util;
 import static org.fest.util.Dates.*;
 
 import static org.junit.Assert.*;
+import static org.junit.rules.ExpectedException.none;
 
 import java.util.Date;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Tests for <code>{@link Dates#parseDatetime(String)}</code>.
@@ -29,6 +32,9 @@ import org.junit.Test;
  */
 public class Dates_parse_date_time_Test {
 
+  @Rule
+  public ExpectedException thrown = none();
+  
   @Test
   public void should_parse_string_with_date_time_format() {
     Date date = parseDatetime("1994-08-26T00:00:00");
@@ -40,4 +46,10 @@ public class Dates_parse_date_time_Test {
     assertNull(parseDatetime(null));
   }
 
+  @Test
+  public void should_fail_if_string_does_not_respect_date_format() {
+    thrown.expect(RuntimeException.class);
+    assertNull(parseDatetime("invalid date format"));
+  }
+  
 }

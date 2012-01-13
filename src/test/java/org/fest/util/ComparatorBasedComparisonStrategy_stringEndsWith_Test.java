@@ -30,6 +30,7 @@ public class ComparatorBasedComparisonStrategy_stringEndsWith_Test extends Abstr
     assertTrue(caseInsensitiveComparisonStrategy.stringEndsWith("Frodo", "do"));
     assertTrue(caseInsensitiveComparisonStrategy.stringEndsWith("Frodo", "DO"));
     assertFalse(caseInsensitiveComparisonStrategy.stringEndsWith("Frodo", "d"));
+    assertFalse(caseInsensitiveComparisonStrategy.stringEndsWith("Frodo", "Mr Frodo"));
   }
   
 }

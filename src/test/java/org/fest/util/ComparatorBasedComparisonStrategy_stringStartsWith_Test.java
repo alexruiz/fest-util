@@ -30,6 +30,7 @@ public class ComparatorBasedComparisonStrategy_stringStartsWith_Test extends Abs
     assertTrue(caseInsensitiveComparisonStrategy.stringStartsWith("Frodo", "Fro"));
     assertTrue(caseInsensitiveComparisonStrategy.stringStartsWith("Frodo", "FRO"));
     assertFalse(caseInsensitiveComparisonStrategy.stringStartsWith("rodo", "Fro"));
+    assertFalse(caseInsensitiveComparisonStrategy.stringStartsWith("rodo", "rodoo"));
   }
   
 }

@@ -14,8 +14,11 @@
  */
 package org.fest.util;
 
-import java.text.*;
-import java.util.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Utility methods related to dates.
@@ -76,7 +79,7 @@ public class Dates {
   }
 
   /**
-   * Utillity method to parse a Date following {@link #ISO_DATE_FORMAT}, returns null if the given String is null.
+   * Utility method to parse a Date following {@link #ISO_DATE_FORMAT}, returns null if the given String is null.
    * @param dateAsString the string to parse as a Date following {@link #ISO_DATE_FORMAT}
    * @return the corrresponding Date or null if the given String is null.
    * @throws RuntimeException encapsulating ParseException if the string can't be parsed as a Date
@@ -90,7 +93,7 @@ public class Dates {
   }
 
   /**
-   * Utillity method to parse a Date following {@link #ISO_DATE_TIME_FORMAT}, returns null if the given String is null.
+   * Utility method to parse a Date following {@link #ISO_DATE_TIME_FORMAT}, returns null if the given String is null.
    * @param dateAsString the string to parse as a Date following {@link #ISO_DATE_TIME_FORMAT}
    * @return the corrresponding Date with time details or null if the given String is null.
    * @throws RuntimeException encapsulating ParseException if the string can't be parsed as a Date
