@@ -219,4 +219,16 @@ public class Dates {
   public static Date today() {
     return new Date();
   }
+  
+  public static Date yesterday() {
+    Calendar cal = Calendar.getInstance();
+    cal.add(Calendar.DAY_OF_MONTH, -1);
+    return cal.getTime();
+  }
+  
+  public static Date tomorrow() {
+    Calendar cal = Calendar.getInstance();
+    cal.add(Calendar.DAY_OF_MONTH, 1);
+    return cal.getTime();
+  }
 }
