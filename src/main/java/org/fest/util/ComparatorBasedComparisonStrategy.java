@@ -17,7 +17,6 @@ package org.fest.util;
 import static org.fest.util.Collections.isEmpty;
 import static org.fest.util.Strings.quote;
 
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -42,29 +41,40 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
   }
 
   /**
-   * Returns true if given collection contains given value according to {@link #comparator}, false otherwise.
-   * @param collection the collection to search value in
-   * @param value the object to look for in given collection
-   * @return true if given collection contains given value according to {@link #comparator}, false otherwise.
+   * Returns true if given {@link Iterable} contains given value according to {@link #comparator}, false otherwise.<br>
+   * If given {@link Iterable} is null or empty, return false.
+   * 
+   * @param iterable the {@link Iterable} to search value in
+   * @param value the object to look for in given {@link Iterable}
+   * @return true if given {@link Iterable} contains given value according to {@link #comparator}, false otherwise.
    */
-  public boolean collectionContains(Collection<?> collection, Object value) {
-    return Collections.collectionContains(collection, value, comparator);
+  @SuppressWarnings("unchecked")
+  public boolean iterableContains(Iterable<?> iterable, Object value) {
+    if (isEmpty(iterable)) return false;
+    for (Object element : iterable) {
+      // avoid comparison when objects are the same or both null
+      if (element == value) return true;
+      // both objects are not null => if one is then the other is not => compare next element with value
+      if (value == null || element == null) continue;
+      if (comparator.compare(element, value) == 0) return true;
+    }
+    return false;
   }
 
   /**
-   * Look for given value in given collection according to the {@link Comparator}, if value is found it is removed from
-   * collection.<br>
-   * Does nothing if collection is null or empty (meaning no exception thrown).
-   * @param collection the collection we want remove value from (must not be null)
-   * @param value object to remove from actual collection
+   * Look for given value in given {@link Iterable} according to the {@link Comparator}, if value is found it is removed
+   * from it.<br>
+   * Does nothing if given {@link Iterable} is null (meaning no exception thrown).
+   * @param iterable the {@link Iterable} we want remove value from
+   * @param value object to remove from given {@link Iterable}
    */
   @SuppressWarnings("unchecked")
-  public void collectionRemoves(Collection<?> collection, Object value) {
-    if (isEmpty(collection)) return ;
-    for (Iterator<?> iterator = collection.iterator(); iterator.hasNext();) {
+  public void iterableRemoves(Iterable<?> iterable, Object value) {
+    if (iterable == null) return;
+    Iterator<?> iterator = iterable.iterator();
+    while (iterator.hasNext()) {
       if (comparator.compare(iterator.next(), value) == 0) {
         iterator.remove();
-        return;
       }
     }
   }
@@ -87,16 +97,16 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
   }
 
   /**
-   * Returns any duplicate elements from the given collection according to {@link #comparator}.
+   * Returns any duplicate elements from the given {@link Iterable} according to {@link #comparator}.
    * 
-   * @param collection the given collection we want to extract duplicate elements.
-   * @return a collection containing the duplicate elements of the given one. If no duplicates are found, an empty
-   *         collection is returned.
+   * @param iterable the given {@link Iterable} we want to extract duplicate elements.
+   * @return an {@link Iterable} containing the duplicate elements of the given one. If no duplicates are found, an
+   *         empty {@link Iterable} is returned.
    */
-  // overidden to write javadoc.
+  // overridden to write javadoc.
   @Override
-  public Collection<?> duplicatesFrom(Collection<?> collection) {
-    return super.duplicatesFrom(collection);
+  public Iterable<?> duplicatesFrom(Iterable<?> iterable) {
+    return super.duplicatesFrom(iterable);
   }
 
   @Override

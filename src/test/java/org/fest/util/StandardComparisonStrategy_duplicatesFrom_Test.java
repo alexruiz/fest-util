@@ -14,12 +14,11 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Collections.list;
+import static org.fest.util.Collections.*;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.junit.Test;
 
@@ -32,28 +31,28 @@ public class StandardComparisonStrategy_duplicatesFrom_Test extends AbstractTest
   
   @Test
   public void should_return_existing_duplicates() {
-    Collection<?> duplicates = standardComparisonStrategy.duplicatesFrom(list("Merry", "Frodo", "Merry", "Sam", "Frodo"));
-    assertEquals(2, duplicates.size());
-    assertTrue(duplicates.contains("Frodo"));
-    assertTrue(duplicates.contains("Merry"));
+    Iterable<?> duplicates = standardComparisonStrategy.duplicatesFrom(list("Merry", "Frodo", "Merry", "Sam", "Frodo"));
+    assertEquals(2, sizeOf(duplicates));
+    assertTrue(standardComparisonStrategy.iterableContains(duplicates,"Frodo"));
+    assertTrue(standardComparisonStrategy.iterableContains(duplicates,"Merry"));
   }
 
   @Test
   public void should_not_return_any_duplicates() {
-    Collection<?> duplicates = standardComparisonStrategy.duplicatesFrom(list("Frodo", "Sam", "Gandalf"));
-    assertTrue(duplicates.isEmpty());
+    Iterable<?> duplicates = standardComparisonStrategy.duplicatesFrom(list("Frodo", "Sam", "Gandalf"));
+    assertTrue(isEmpty(duplicates));
   }
 
   @Test
   public void should_not_return_any_duplicates_if_collection_is_empty() {
-    Collection<?> duplicates = standardComparisonStrategy.duplicatesFrom(new ArrayList<String>());
-    assertTrue(duplicates.isEmpty());
+    Iterable<?> duplicates = standardComparisonStrategy.duplicatesFrom(new ArrayList<String>());
+    assertTrue(isEmpty(duplicates));
   }
 
   @Test
   public void should_not_return_any_duplicates_if_collection_is_null() {
-    Collection<?> duplicates = standardComparisonStrategy.duplicatesFrom(null);
-    assertTrue(duplicates.isEmpty());
+    Iterable<?> duplicates = standardComparisonStrategy.duplicatesFrom(null);
+    assertTrue(isEmpty(duplicates));
   }
 
 }

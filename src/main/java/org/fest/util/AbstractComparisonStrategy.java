@@ -20,7 +20,6 @@ import static java.lang.reflect.Array.getLength;
 import static org.fest.util.Collections.isEmpty;
 
 import java.lang.reflect.Array;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,12 +30,12 @@ import java.util.Set;
  */
 public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
 
-  public Collection<?> duplicatesFrom(Collection<?> collection) {
+  public Iterable<?> duplicatesFrom(Iterable<?> iterable) {
     Set<Object> duplicates = new HashSet<Object>();
-    if (isEmpty(collection)) return duplicates;
+    if (isEmpty(iterable)) return duplicates;
     Set<Object> noDuplicates = new HashSet<Object>();
-    for (Object element : collection) {
-      if (collectionContains(noDuplicates, element)) {
+    for (Object element : iterable) {
+      if (iterableContains(noDuplicates, element)) {
         duplicates.add(element);
         continue;
       }

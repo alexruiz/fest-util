@@ -14,25 +14,31 @@
  */
 package org.fest.util;
 
-import static org.mockito.Mockito.*;
+import static org.fest.util.Collections.list;
+
+import static org.junit.Assert.*;
 
 import java.util.List;
 
 import org.junit.Test;
 
 /**
- * Tests for {@link StandardComparisonStrategy#collectionContains(java.util.Collection, Object)}.
+ * Tests for {@link StandardComparisonStrategy#iterableContains(java.util.Collection, Object)}.
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_collectionContains_Test extends AbstractTest_StandardComparisonStrategy {
+public class StandardComparisonStrategy_iterableContains_Test extends AbstractTest_StandardComparisonStrategy {
   
   @Test
-  public void verify_that_collectionContains_delegates_to_collection_parameter_contains_method() {
-    List<?> list = mock(List.class);
-    String value = "Frodo";
-    standardComparisonStrategy.collectionContains(list, value);
-    verify(list).contains(value);
+  public void should_pass() {
+    List<?> list = list("Sam", "Merry", "Frodo");
+    assertTrue(standardComparisonStrategy.iterableContains(list, "Frodo"));
+    assertFalse(standardComparisonStrategy.iterableContains(list, "Sauron"));
+  }
+  
+  @Test
+  public void should_return_false_if_iterable_is_null() {
+    assertFalse(standardComparisonStrategy.iterableContains(null, "Sauron"));
   }
   
 }

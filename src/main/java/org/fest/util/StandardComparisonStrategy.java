@@ -17,7 +17,7 @@ package org.fest.util;
 
 import static java.lang.String.format;
 
-import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * Implements {@link ComparisonStrategy} contract with a comparison strategy based on {@link Object#equals(Object)}
@@ -55,35 +55,52 @@ public class StandardComparisonStrategy extends AbstractComparisonStrategy {
   }
 
   /**
-   * Returns true if given collection contains given value based on {@link Object#equals(Object)}, false otherwise.
+   * Returns true if given {@link Iterable} contains given value based on {@link Object#equals(Object)}, false
+   * otherwise.<br>
+   * If given {@link Iterable} is null, return false.
    * 
-   * @param collection the collection to search value in
-   * @param value the object to look for in given collection
-   * @return true if given collection contains given value based on {@link Object#equals(Object)}, false otherwise.
+   * @param iterable the {@link Iterable} to search value in
+   * @param value the object to look for in given {@link Iterable}
+   * @return true if given {@link Iterable} contains given value based on {@link Object#equals(Object)}, false
+   *         otherwise.
    */
-  public boolean collectionContains(Collection<?> collection, Object value) {
-    return collection.contains(value);
+  public boolean iterableContains(Iterable<?> iterable, Object value) {
+    if (iterable == null) return false;
+    for (Object next : iterable) {
+      // handle same or null element/value
+      if (next == value) return true;
+      // both objects are not null => if one is then the other is not => compare next element with value
+      if (value == null || next == null) continue;
+      if (next.equals(value)) return true;
+    }
+    return false;
   }
 
   /**
    * {@inheritDoc}
    */
-  public void collectionRemoves(Collection<?> collection, Object value) {
-    collection.remove(value);
+  public void iterableRemoves(Iterable<?> iterable, Object value) {
+    if (iterable == null) return;
+    Iterator<?> iterator = iterable.iterator();
+    while (iterator.hasNext()) {
+      if (iterator.next().equals(value)) {
+        iterator.remove();
+      }
+    }
   }
 
   /**
    * Returns any duplicate elements from the given collection according to {@link Object#equals(Object)} comparison
    * strategy.
    * 
-   * @param collection the given collection we want to extract duplicate elements.
-   * @return a collection containing the duplicate elements of the given one. If no duplicates are found, an empty
-   *         collection is returned.
+   * @param iterable the given {@link Iterable} we want to extract duplicate elements.
+   * @return an {@link Iterable} containing the duplicate elements of the given one. If no duplicates are found, an
+   *         empty {@link Iterable} is returned.
    */
-  // overidden to write javadoc.
+  // overridden to write javadoc.
   @Override
-  public Collection<?> duplicatesFrom(Collection<?> collection) {
-    return super.duplicatesFrom(collection);
+  public Iterable<?> duplicatesFrom(Iterable<?> iterable) {
+    return super.duplicatesFrom(iterable);
   }
 
   public boolean stringStartsWith(String string, String prefix) {

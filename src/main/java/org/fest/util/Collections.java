@@ -20,7 +20,6 @@ import static org.fest.util.ToString.toStringOf;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -87,57 +86,27 @@ public final class Collections {
   }
 
   /**
-   * Returns any duplicate elements from the given collection according to given {@link Comparator}.
-   * @param <T> the generic type of the given collection.
-   * @param c the given collection that might have duplicate elements.
-   * @param comparator the {@link Comparator} to use to check element in given collection.
-   * @return a collection containing the duplicate elements of the given one according to given {@link Comparator}. If
-   *         no duplicates are found, an empty collection is returned.
+   * Returns {@code true} if the given {@link Iterable} is {@code null} or empty.
+   * @param iterable the {@link Iterable} to check.
+   * @return {@code true} if the given {@link Iterable} is {@code null} or empty, otherwise {@code false}.
    */
-  public static <T> Collection<T> duplicatesFrom(Collection<T> c, Comparator<T> comparator) {
-    Set<T> duplicates = new HashSet<T>();
-    if (isEmpty(c)) return duplicates;
-    Set<T> noDuplicates = new HashSet<T>();
-    for (T e : c) {
-      if (collectionContains(noDuplicates, e, comparator)) {
-        duplicates.add(e);
-        continue;
-      }
-      noDuplicates.add(e);
-    }
-    return duplicates;
+  public static boolean isEmpty(Iterable<?> iterable) {
+    return iterable == null || !iterable.iterator().hasNext();
   }
 
   /**
-   * Returns true if given collection contains given value according to given {@link Comparator}, false
-   * otherwise.
-   * <p>
-   * Returns false if collection is empty whatever given value and comparator are.
-   * @param collection the collection to search value in
-   * @param value the object to search for in given collection
-   * @param comparator the {@link Comparator} to use to check element in given collection against value.
-   * @return true if given collection contains given value according to given {@link Comparator}, false otherwise.
+   * Returns {@code true} if the given {@link Iterable} is {@code null} or empty.
+   * @param iterable the {@link Iterable} to check.
+   * @return {@code true} if the given {@link Iterable} is {@code null} or empty, otherwise {@code false}.
    */
-  @SuppressWarnings({ "unchecked", "rawtypes" })
-  public static boolean collectionContains(Collection<?> collection, Object value, Comparator comparator) {
-    if (isEmpty(collection)) return false;
-    for (Object element : collection) {
-      // avoid comparison when objects are the same or both null
-      if (element == value) return true;
-      if (comparator.compare(element, value) == 0) return true;
+  public static int sizeOf(Iterable<?> iterable) {
+    int size = 0;
+    for (@SuppressWarnings("unused") Object object : iterable) {
+      size++;
     }
-    return false;
+    return size;
   }
-
-  /**
-   * Returns {@code true} if the given collection is {@code null} or empty.
-   * @param c the collection to check.
-   * @return {@code true} if the given collection is {@code null} or empty, otherwise {@code false}.
-   */
-  public static boolean isEmpty(Collection<?> c) {
-    return c == null || c.isEmpty();
-  }
-
+  
   public static <T> List<T> filter(Collection<?> target, CollectionFilter<T> filter) {
     return filter.filter(target);
   }
@@ -197,17 +166,17 @@ public final class Collections {
   }
 
   /**
-   * Returns {@code true} if the given collection has only {@code null} elements, {@code false} otherwise. If given
-   * collection is empty, this method returns {@code true}.
-   * @param c the given collection. <b>It must not be null</b>.
-   * @return {@code true} if the given collection has only {@code null} elements or is empty, {@code false} otherwise.
-   * @throws NullPointerException if the given collection is {@code null}.
+   * Returns {@code true} if the given {@link Iterable} has only {@code null} elements, {@code false} otherwise. If given
+   * {@link Iterable} is empty, this method returns {@code true}.
+   * @param iterable the given iterable. <b>It must not be null</b>.
+   * @return {@code true} if the given iterable has only {@code null} elements or is empty, {@code false} otherwise.
+   * @throws NullPointerException if the given iterable is {@code null}.
    * @since 1.1.3
    */
-  public static boolean hasOnlyNullElements(Collection<?> c) {
-    if (c == null) throw new NullPointerException("The collection to check should not be null");
-    if (c.isEmpty()) return false;
-    for (Object element : c)
+  public static boolean hasOnlyNullElements(Iterable<?> iterable) {
+    if (iterable == null) throw new NullPointerException("The iterable to check should not be null");
+    if (isEmpty(iterable)) return false;
+    for (Object element : iterable)
       if (element != null) return false;
     return true;
   }

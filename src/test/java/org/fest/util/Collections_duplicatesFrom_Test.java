@@ -20,7 +20,6 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -59,37 +58,4 @@ public class Collections_duplicatesFrom_Test {
     assertTrue(duplicates.isEmpty());
   }
 
-  @Test
-  public void should_return_existing_duplicates_according_to_given_comparator() {
-    Collection<String> duplicates = duplicatesFrom(list("Merry", "Frodo", "MERrY", "Sam", "FroDo"),
-        String.CASE_INSENSITIVE_ORDER);
-    assertEquals(2, duplicates.size());
-    // we can't use : assertTrue(duplicates.contains("Frodo")); because we don't know wether duplicates will contain
-    // Frodo or FroDo, anyway the point here is to have the duplicate values according to given comparator
-    // => make a collection of UPPER case duplicates and assert that it contains "FRODO" and "MERRY"  
-    List<String> upperCaseDuplicates = list();
-    for (String duplicate : duplicates) {
-      upperCaseDuplicates.add(duplicate.toUpperCase());
-    }
-    assertTrue(upperCaseDuplicates.contains("FRODO"));
-    assertTrue(upperCaseDuplicates.contains("MERRY"));
-  }
-
-  @Test
-  public void should_not_return_any_duplicates_according_to_given_comparator() {
-    Collection<String> duplicates = duplicatesFrom(list("Frodo", "Sam", "Sam "), String.CASE_INSENSITIVE_ORDER);
-    assertTrue(duplicates.isEmpty());
-  }
-
-  @Test
-  public void should_not_return_any_duplicates_if_collection_is_empty_whatever_comparator_is() {
-    Collection<String> duplicates = duplicatesFrom(new ArrayList<String>(), String.CASE_INSENSITIVE_ORDER);
-    assertTrue(duplicates.isEmpty());
-  }
-
-  @Test
-  public void should_not_return_any_duplicates_if_collection_is_null_whatever_comparator_is() {
-    Collection<String> duplicates = duplicatesFrom(null, String.CASE_INSENSITIVE_ORDER);
-    assertTrue(duplicates.isEmpty());
-  }
 }

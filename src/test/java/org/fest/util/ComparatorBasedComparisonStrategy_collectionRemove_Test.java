@@ -23,7 +23,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * Tests for {@link ComparatorBasedComparisonStrategy#collectionRemoves(java.util.Collection, Object)}.
+ * Tests for {@link ComparatorBasedComparisonStrategy#iterableRemoves(Iterable, Object)}.
  * 
  * @author Joel Costigliola
  */
@@ -33,24 +33,24 @@ public class ComparatorBasedComparisonStrategy_collectionRemove_Test extends
   @Test
   public void should_remove_value_from_collections_since_it_matches_one_collections_element_according_to_given_comparator() {
     List<String> hobbits = list("Merry", "Frodo", "Merry", "Sam");
-    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "SAM"));
-    caseInsensitiveComparisonStrategy.collectionRemoves(hobbits, "Sam");
-    assertFalse(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "SAM"));
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
+    caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, "Sam");
+    assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
   }
 
   @Test
   public void should_not_remove_value_from_collections_since_it_does_not_match_any_collections_elements_according_to_given_comparator() {
     List<String> hobbits = list("Merry", "Frodo", "Merry", "Sam");
-    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "SAM"));
-    caseInsensitiveComparisonStrategy.collectionRemoves(hobbits, "SAM ");
-    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "SAM"));
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
+    caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, "SAM ");
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
   }
 
   @Test
   public void should_not_fail_if_collections_is_empty_or_null() {
     List<String> hobbits = list();
-    caseInsensitiveComparisonStrategy.collectionRemoves(hobbits, "SAM");
-    caseInsensitiveComparisonStrategy.collectionRemoves(null, "SAM ");
+    caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, "SAM");
+    caseInsensitiveComparisonStrategy.iterableRemoves(null, "SAM ");
   }
   
 }

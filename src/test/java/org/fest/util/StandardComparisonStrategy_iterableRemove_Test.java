@@ -14,25 +14,32 @@
  */
 package org.fest.util;
 
-import static org.mockito.Mockito.*;
+import static org.fest.util.Collections.list;
+
+import static org.junit.Assert.*;
 
 import java.util.List;
 
 import org.junit.Test;
 
 /**
- * Tests for {@link StandardComparisonStrategy#collectionRemoves(java.util.Collection, Object)}.
+ * Tests for {@link StandardComparisonStrategy#iterableRemoves(Iterable, Object)}.
  * 
  * @author Joel Costigliola
  */
-public class StandardComparisonStrategy_collectionRemove_Test extends AbstractTest_StandardComparisonStrategy {
+public class StandardComparisonStrategy_iterableRemove_Test extends AbstractTest_StandardComparisonStrategy {
   
   @Test
-  public void verify_that_collectionRemoves_delegates_to_collection_parameter_remove_method() {
-    List<?> list = mock(List.class);
-    String value = "Frodo";
-    standardComparisonStrategy.collectionRemoves(list, value);
-    verify(list).remove(value);
+  public void should_pass() {
+    List<?> list = list("Sam", "Merry", "Frodo");
+    assertTrue(list.contains("Frodo"));
+    standardComparisonStrategy.iterableRemoves(list, "Frodo");
+    assertFalse(list.contains("Frodo"));
+  }
+  
+  @Test
+  public void should_do_nothing_if_iterable_is_null() {
+    standardComparisonStrategy.iterableRemoves(null, "Sauron");
   }
   
 }

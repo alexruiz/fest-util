@@ -23,7 +23,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * Tests for {@link ComparatorBasedComparisonStrategy#collectionContains(java.util.Collection, Object)}.
+ * Tests for {@link ComparatorBasedComparisonStrategy#iterableContains(java.util.Collection, Object)}.
  * 
  * @author Joel Costigliola
  */
@@ -32,23 +32,23 @@ public class ComparatorBasedComparisonStrategy_collectionContains_Test extends A
   @Test
   public void should_return_true_if_collections_contains_value_according_to_given_comparator() {
     List<String> hobbits = list("Merry", "Frodo", "Merry", "Sam");
-    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "Sam"));
-    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "SAM"));
-    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "sAm"));
-    assertTrue(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "sam"));
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "Sam"));
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "sAm"));
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "sam"));
   }
 
   @Test
   public void should_return_false_if_collections_does_not_contain_value_according_to_given_comparator() {
     List<String> hobbits = list("Merry", "Frodo", "Merry", "Sam");
-    assertFalse(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "Pippin"));
-    assertFalse(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "SAM "));
-    assertFalse(caseInsensitiveComparisonStrategy.collectionContains(hobbits, "Sam "));
+    assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "Pippin"));
+    assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM "));
+    assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "Sam "));
   }
   
   @Test
   public void should_return_false_if_collections_is_empty_whatever_given_comparator_is() {
-    assertFalse(caseInsensitiveComparisonStrategy.collectionContains(list(), "anyone"));
+    assertFalse(caseInsensitiveComparisonStrategy.iterableContains(list(), "anyone"));
   }
   
 }
