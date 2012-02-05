@@ -95,11 +95,13 @@ public final class Collections {
   }
 
   /**
-   * Returns {@code true} if the given {@link Iterable} is {@code null} or empty.
-   * @param iterable the {@link Iterable} to check.
-   * @return {@code true} if the given {@link Iterable} is {@code null} or empty, otherwise {@code false}.
+   * Returns the size of the given {@link Iterable}.
+   * @param iterable the {@link Iterable} to get size.
+   * @return the size of the given {@link Iterable}..
+   * @throws IllegalArgumentException if given {@link Iterable} is null.
    */
   public static int sizeOf(Iterable<?> iterable) {
+    if (iterable == null) throw new IllegalArgumentException("iterable parameter must not be null");
     int size = 0;
     for (@SuppressWarnings("unused") Object object : iterable) {
       size++;
@@ -179,6 +181,20 @@ public final class Collections {
     for (Object element : iterable)
       if (element != null) return false;
     return true;
+  }
+
+  /**
+   * Creates a list containing the given {@link Iterable} elements.
+   * @param <T> the type of elements of the list to create.
+   * @param iterable the {@link Iterable} to get elements from to store in the list.
+   * @return the created list.
+   */
+  public static <T> List<T> list(Iterable<T> iterable) {
+    if (iterable == null) return null;
+    List<T> list = new ArrayList<T>();
+    for (T e : iterable)
+      list.add(e);
+    return list;
   }
 
   private Collections() {}

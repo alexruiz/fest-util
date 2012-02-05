@@ -14,29 +14,38 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.*;
+import static junit.framework.Assert.assertEquals;
+
+import static org.fest.util.Collections.*;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
 
 /**
- * Tests for <code>{@link Collections#isEmpty(Iterable)}</code>.
+ * Tests for <code>{@link Collections#sizeOf(Iterable)}</code>.
  * 
- * @author Yvonne Wang
- * @author Alex Ruiz
+ * @author Joel Costigliola
  */
-public class Collections_isEmpty_Test {
+public class Collections_sizeOf_Test {
 
-  @Test public void should_return_true_if_Collection_is_empty() {
-    assertTrue(Collections.isEmpty(new ArrayList<String>()));
+  @Test
+  public void should_return_zero_if_iterable_is_empty() {
+    assertEquals(0, sizeOf(new ArrayList<String>()));
   }
 
-  @Test public void should_return_true_if_Collection_is_null() {
-    assertTrue(Collections.isEmpty(null));
+  @Test
+  public void should_throws_exception_if_iterable_is_null() {
+    try {
+      sizeOf(null);
+      throw new AssertionError("IllegalArgumentException expected");
+    } catch (IllegalArgumentException e) {
+      assertEquals("iterable parameter must not be null", e.getMessage());
+    }
   }
 
-  @Test public void should_return_false_ifCollection_has_elements() {
-    assertFalse(Collections.isEmpty(Collections.list("Frodo")));
+  @Test
+  public void should_return_iterable_size() {
+    assertEquals(2, sizeOf(list("Frodo", "Sam")));
   }
 }
