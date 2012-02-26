@@ -14,8 +14,11 @@
  */
 package org.fest.util;
 
+import static junit.framework.Assert.assertFalse;
+
 import static org.fest.util.Arrays.array;
 import static org.fest.util.Collections.list;
+import static org.fest.util.ToString.toStringOf;
 
 import static org.junit.Assert.*;
 
@@ -152,4 +155,19 @@ public class ToString_toStringOf_Test {
     assertEquals("'CaseInsensitiveStringComparator'", ToString.toStringOf(new CaseInsensitiveStringComparator()));
   }
 
+
+  @Test
+  public void toStringOf_Long_should_be_different_than_toStringOf_Integer() {
+    assertFalse(toStringOf(20L).equals(toStringOf(20)));
+    assertEquals("20", toStringOf(20));
+    assertEquals("20L", toStringOf(20L));
+  }
+
+  @Test
+  public void toStringOf_Double_should_be_different_than_toStringOf_Float() {
+    assertFalse(toStringOf(20.0f).equals(toStringOf(20.0)));
+    assertEquals("20.0", toStringOf(20.0));
+    assertEquals("20.0f", toStringOf(20.0f));
+  }
+  
 }

@@ -19,7 +19,11 @@ import static org.fest.util.Strings.quote;
 
 import java.awt.Dimension;
 import java.io.File;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * Obtains the {@code toString} representation of an object.
@@ -42,6 +46,8 @@ public final class ToString {
     if (o instanceof Class<?>) return toStringOf((Class<?>) o);
     if (o instanceof Collection<?>) return toStringOf((Collection<?>) o);
     if (o instanceof Date) return toStringOf((Date) o);
+    if (o instanceof Float) return toStringOf((Float) o);
+    if (o instanceof Long) return toStringOf((Long) o);
     if (o instanceof Dimension) return toStringOf((Dimension) o);
     if (o instanceof File) return toStringOf((File) o);
     if (o instanceof Map<?, ?>) return toStringOf((Map<?, ?>) o);
@@ -71,6 +77,14 @@ public final class ToString {
 	  return Dates.formatAsDatetime(d);
   }
 
+  private static String toStringOf(Float f) {
+    return String.format("%sf", f);
+  }
+  
+  private static String toStringOf(Long l) {
+    return String.format("%sL", l);
+  }
+  
   private static String toStringOf(Dimension d) {
     return String.format("(w=%s, h=%s)", d.width, d.height);
   }
