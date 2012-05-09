@@ -50,6 +50,35 @@ public final class Collections {
   }
 
   /**
+   * Creates a list containing the given element.
+   * @param <T> the type of elements of the list to create.
+   * @param element the element to store in the list.
+   * @return the created list.
+   * @since 1.2.2
+   */
+  public static <T> List<T> list(T element) {
+    if (element == null) return null;
+    List<T> list = new ArrayList<T>();
+    list.add(element);
+    return list;
+  }
+
+  /**
+   * Creates a list containing the given elements.
+   * @param <T> the type of elements of the list to create.
+   * @param first the first element to store in the list.
+   * @param second the second element to store in the list.
+   * @return the created list.
+   * @since 1.2.2
+   */
+  public static <T> List<T> list(T first, T second) {
+    List<T> list = new ArrayList<T>();
+    list.add(first);
+    list.add(second);
+    return list;
+  }
+
+  /**
    * Creates a set containing the given elements.
    * @param <T> the type of elements of the set to create.
    * @param elements the elements to store in the set.
@@ -61,6 +90,35 @@ public final class Collections {
     Set<T> set = new LinkedHashSet<T>();
     for (T e : elements)
       set.add(e);
+    return set;
+  }
+
+  /**
+   * Creates a set containing the given element.
+   * @param <T> the type of elements of the set to create.
+   * @param element the element to store in the set.
+   * @return the created set.
+   * @since 1.2.2
+   */
+  public static <T> Set<T> set(T element) {
+    if (element == null) return null;
+    Set<T> set = new LinkedHashSet<T>();
+    set.add(element);
+    return set;
+  }
+
+  /**
+   * Creates a set containing the given elements.
+   * @param <T> the type of elements of the set to create.
+   * @param first the first element to store in the set.
+   * @param second the second element to store in the set.
+   * @return the created set.
+   * @since 1.2.2
+   */
+  public static <T> Set<T> set(T first, T second) {
+    Set<T> set = new LinkedHashSet<T>();
+    set.add(first);
+    set.add(second);
     return set;
   }
 
