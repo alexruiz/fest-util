@@ -56,12 +56,4 @@ public class Collections_set_Test {
 	String nullString = null;
 	assertNull(Collections.set(nullString));
   }
-
-  @Test public void should_return_null_if_second_element_is_null() {
-	assertNull(Collections.set("one", null));
-  }
-
-  @Test public void should_return_null_if_first_element_is_null() {
-	assertNull(Collections.set(null, "two"));
-  }
 }

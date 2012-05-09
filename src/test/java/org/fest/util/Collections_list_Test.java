@@ -44,14 +44,6 @@ public class Collections_list_Test {
 	assertNull(Collections.list(nullString));
   }
 
-  @Test public void should_return_null_if_first_element_is_null() {
-	assertNull(Collections.list(null, "Two"));
-  }
-
-  @Test public void should_return_null_if_second_element_is_null() {
-	assertNull(Collections.list("One", null));
-  }
-
   @Test public void should_return_empty_List_if_array_is_empty() {
     assertTrue(Collections.list(new Object[0]).isEmpty());
   }

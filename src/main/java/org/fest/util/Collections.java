@@ -72,7 +72,6 @@ public final class Collections {
    * @since 1.2.2
    */
   public static <T> List<T> list(T first, T second) {
-    if (first == null || second == null) return null;
     List<T> list = new ArrayList<T>();
     list.add(first);
     list.add(second);
@@ -117,7 +116,6 @@ public final class Collections {
    * @since 1.2.2
    */
   public static <T> Set<T> set(T first, T second) {
-    if (first == null || second == null) return null;
     Set<T> set = new LinkedHashSet<T>();
     set.add(first);
     set.add(second);
