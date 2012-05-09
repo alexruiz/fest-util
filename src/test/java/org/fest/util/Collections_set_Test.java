@@ -34,11 +34,34 @@ public class Collections_set_Test {
     assertTrue(set.containsAll(asList("One", "Two")));
   }
 
+  @Test public void should_return_Set_containing_all_three_elements_in_array() {
+	Set<String> set = Collections.set("One", "Two", "Three");
+	assertTrue(set.containsAll(asList("Three", "One", "Two")));
+  }
+
   @Test public void should_return_null_if_array_is_null() {
     assertNull(Collections.set((Object[]) null));
   }
 
   @Test public void should_return_empty_Set_if_array_is_empty() {
     assertTrue(Collections.set(new Object[0]).isEmpty());
+  }
+
+  @Test public void should_return_Set_containing_one_element() {
+	Set<String> set = Collections.set("One");
+	assertTrue(set.containsAll(asList("One")));
+  }
+
+  @Test public void should_return_null_if_element_is_null() {
+	String nullString = null;
+	assertNull(Collections.set(nullString));
+  }
+
+  @Test public void should_return_null_if_second_element_is_null() {
+	assertNull(Collections.set("one", null));
+  }
+
+  @Test public void should_return_null_if_first_element_is_null() {
+	assertNull(Collections.set(null, "two"));
   }
 }
