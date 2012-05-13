@@ -32,6 +32,7 @@ import java.util.Set;
  * @author Yvonne Wang
  * @author Alex Ruiz
  * @author Joel Costigliola
+ * @author Jonatan Jönsson
  */
 public final class Collections {
 
@@ -51,10 +52,15 @@ public final class Collections {
 
   /**
    * Creates a list containing the given element.
+   * <p>
+   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
+   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
+   * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
+   * 
    * @param <T> the type of elements of the list to create.
    * @param element the element to store in the list.
    * @return the created list.
-   * @since 1.2.2
+   * @since 1.2.1
    */
   public static <T> List<T> list(T element) {
     if (element == null) return null;
@@ -65,11 +71,16 @@ public final class Collections {
 
   /**
    * Creates a list containing the given elements.
+   * <p>
+   * This method is an alternative to {@link #list(Object...) list(Object...)} (with two elements!) which leads to a
+   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
+   * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
+   * 
    * @param <T> the type of elements of the list to create.
    * @param first the first element to store in the list.
    * @param second the second element to store in the list.
    * @return the created list.
-   * @since 1.2.2
+   * @since 1.2.1
    */
   public static <T> List<T> list(T first, T second) {
     List<T> list = new ArrayList<T>();
@@ -95,10 +106,15 @@ public final class Collections {
 
   /**
    * Creates a set containing the given element.
+   * <p>
+   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
+   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
+   * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
+   * 
    * @param <T> the type of elements of the set to create.
    * @param element the element to store in the set.
    * @return the created set.
-   * @since 1.2.2
+   * @since 1.2.1
    */
   public static <T> Set<T> set(T element) {
     if (element == null) return null;
@@ -109,11 +125,16 @@ public final class Collections {
 
   /**
    * Creates a set containing the given elements.
+   * <p>
+   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
+   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
+   * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
+   * 
    * @param <T> the type of elements of the set to create.
    * @param first the first element to store in the set.
    * @param second the second element to store in the set.
    * @return the created set.
-   * @since 1.2.2
+   * @since 1.2.1
    */
   public static <T> Set<T> set(T first, T second) {
     Set<T> set = new LinkedHashSet<T>();
@@ -161,12 +182,13 @@ public final class Collections {
   public static int sizeOf(Iterable<?> iterable) {
     if (iterable == null) throw new IllegalArgumentException("iterable parameter must not be null");
     int size = 0;
-    for (@SuppressWarnings("unused") Object object : iterable) {
+    for (@SuppressWarnings("unused")
+    Object object : iterable) {
       size++;
     }
     return size;
   }
-  
+
   public static <T> List<T> filter(Collection<?> target, CollectionFilter<T> filter) {
     return filter.filter(target);
   }
@@ -226,8 +248,8 @@ public final class Collections {
   }
 
   /**
-   * Returns {@code true} if the given {@link Iterable} has only {@code null} elements, {@code false} otherwise. If given
-   * {@link Iterable} is empty, this method returns {@code true}.
+   * Returns {@code true} if the given {@link Iterable} has only {@code null} elements, {@code false} otherwise. If
+   * given {@link Iterable} is empty, this method returns {@code true}.
    * @param iterable the given iterable. <b>It must not be null</b>.
    * @return {@code true} if the given iterable has only {@code null} elements or is empty, {@code false} otherwise.
    * @throws NullPointerException if the given iterable is {@code null}.
