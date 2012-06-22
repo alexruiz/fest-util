@@ -27,20 +27,21 @@ import org.junit.Test;
  * 
  * @author Joel Costigliola
  */
-public class ComparatorBasedComparisonStrategy_collectionContains_Test extends AbstractTest_ComparatorBasedComparisonStrategy {
+public class ComparatorBasedComparisonStrategy_iterableContains_Test extends AbstractTest_ComparatorBasedComparisonStrategy {
   
   @Test
   public void should_return_true_if_collections_contains_value_according_to_given_comparator() {
-    List<String> hobbits = list("Merry", "Frodo", "Merry", "Sam");
+    List<String> hobbits = list("Merry", "Frodo", null, "Merry", "Sam");
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "Sam"));
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "sAm"));
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "sam"));
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, null));
   }
 
   @Test
   public void should_return_false_if_collections_does_not_contain_value_according_to_given_comparator() {
-    List<String> hobbits = list("Merry", "Frodo", "Merry", "Sam");
+    List<String> hobbits = list("Merry", "Frodo", "Merry", null, "Sam");
     assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "Pippin"));
     assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM "));
     assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "Sam "));

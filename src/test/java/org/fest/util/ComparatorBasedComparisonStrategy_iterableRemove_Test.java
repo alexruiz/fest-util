@@ -27,20 +27,22 @@ import org.junit.Test;
  * 
  * @author Joel Costigliola
  */
-public class ComparatorBasedComparisonStrategy_collectionRemove_Test extends
+public class ComparatorBasedComparisonStrategy_iterableRemove_Test extends
     AbstractTest_ComparatorBasedComparisonStrategy {
 
   @Test
   public void should_remove_value_from_collections_since_it_matches_one_collections_element_according_to_given_comparator() {
-    List<String> hobbits = list("Merry", "Frodo", "Merry", "Sam");
+    List<String> hobbits = list("Merry", "Frodo", null, "Merry", "Sam");
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
     caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, "Sam");
     assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
+    caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, null);
+    assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, null));
   }
 
   @Test
   public void should_not_remove_value_from_collections_since_it_does_not_match_any_collections_elements_according_to_given_comparator() {
-    List<String> hobbits = list("Merry", "Frodo", "Merry", "Sam");
+    List<String> hobbits = list("Merry", "Frodo", null, "Merry", "Sam");
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
     caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, "SAM ");
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));

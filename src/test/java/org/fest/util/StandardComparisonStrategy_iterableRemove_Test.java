@@ -31,10 +31,12 @@ public class StandardComparisonStrategy_iterableRemove_Test extends AbstractTest
   
   @Test
   public void should_pass() {
-    List<?> list = list("Sam", "Merry", "Frodo");
+    List<?> list = list("Sam", "Merry", null, "Frodo");
     assertTrue(list.contains("Frodo"));
     standardComparisonStrategy.iterableRemoves(list, "Frodo");
     assertFalse(list.contains("Frodo"));
+    standardComparisonStrategy.iterableRemoves(list, null);
+    assertFalse(list.contains(null));
   }
   
   @Test

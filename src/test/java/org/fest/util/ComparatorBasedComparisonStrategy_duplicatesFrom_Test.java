@@ -34,10 +34,11 @@ public class ComparatorBasedComparisonStrategy_duplicatesFrom_Test extends
   @Test
   public void should_return_existing_duplicates() {
     Iterable<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(list("Merry", "Frodo", "Merry", "Sam",
-        "FrODO"));
-    assertEquals(2, sizeOf(duplicates));
+        "FrODO", null, null));
+    assertEquals(3, sizeOf(duplicates));
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(duplicates, "frodo"));
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(duplicates, "MERRY"));
+    assertTrue(caseInsensitiveComparisonStrategy.iterableContains(duplicates, null));
   }
 
   @Test

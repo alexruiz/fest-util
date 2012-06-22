@@ -31,8 +31,9 @@ public class StandardComparisonStrategy_iterableContains_Test extends AbstractTe
   
   @Test
   public void should_pass() {
-    List<?> list = list("Sam", "Merry", "Frodo");
+    List<?> list = list("Sam", "Merry", null, "Frodo");
     assertTrue(standardComparisonStrategy.iterableContains(list, "Frodo"));
+    assertTrue(standardComparisonStrategy.iterableContains(list, null));
     assertFalse(standardComparisonStrategy.iterableContains(list, "Sauron"));
   }
   

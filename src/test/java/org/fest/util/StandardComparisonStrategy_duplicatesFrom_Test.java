@@ -28,13 +28,15 @@ import org.junit.Test;
  * @author Joel Costigliola
  */
 public class StandardComparisonStrategy_duplicatesFrom_Test extends AbstractTest_StandardComparisonStrategy {
-  
+
   @Test
   public void should_return_existing_duplicates() {
-    Iterable<?> duplicates = standardComparisonStrategy.duplicatesFrom(list("Merry", "Frodo", "Merry", "Sam", "Frodo"));
-    assertEquals(2, sizeOf(duplicates));
-    assertTrue(standardComparisonStrategy.iterableContains(duplicates,"Frodo"));
-    assertTrue(standardComparisonStrategy.iterableContains(duplicates,"Merry"));
+    Iterable<?> duplicates = standardComparisonStrategy
+        .duplicatesFrom(list("Merry", "Frodo", null, null, "Merry", "Sam", "Frodo"));
+    assertEquals(3, sizeOf(duplicates));
+    assertTrue(standardComparisonStrategy.iterableContains(duplicates, "Frodo"));
+    assertTrue(standardComparisonStrategy.iterableContains(duplicates, "Merry"));
+    assertTrue(standardComparisonStrategy.iterableContains(duplicates, null));
   }
 
   @Test

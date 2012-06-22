@@ -67,11 +67,7 @@ public class StandardComparisonStrategy extends AbstractComparisonStrategy {
   public boolean iterableContains(Iterable<?> iterable, Object value) {
     if (iterable == null) return false;
     for (Object next : iterable) {
-      // handle same or null element/value
-      if (next == value) return true;
-      // both objects are not null => if one is then the other is not => compare next element with value
-      if (value == null || next == null) continue;
-      if (next.equals(value)) return true;
+      if (Objects.areEqual(next, value)) return true;
     }
     return false;
   }
@@ -83,7 +79,7 @@ public class StandardComparisonStrategy extends AbstractComparisonStrategy {
     if (iterable == null) return;
     Iterator<?> iterator = iterable.iterator();
     while (iterator.hasNext()) {
-      if (iterator.next().equals(value)) {
+      if (Objects.areEqual(iterator.next(), value)) {
         iterator.remove();
       }
     }

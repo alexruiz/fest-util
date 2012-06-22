@@ -29,9 +29,10 @@ public class StandardComparisonStrategy_arrayContains_Test extends AbstractTest_
 
   @Test
   public void should_return_true_if_array_contains_value() {
-    String[] hobbits = array("Merry", "Frodo", "Merry", "Sam");
+    String[] hobbits = array("Merry", "Frodo",null, "Merry", "Sam");
     assertTrue(standardComparisonStrategy.arrayContains(hobbits, "Sam"));
     assertTrue(standardComparisonStrategy.arrayContains(hobbits, "Merry"));
+    assertTrue(standardComparisonStrategy.arrayContains(hobbits, null));
   }
 
   @Test
@@ -39,6 +40,7 @@ public class StandardComparisonStrategy_arrayContains_Test extends AbstractTest_
     String[] hobbits = array("Merry", "Frodo", "Merry", "Sam");
     assertFalse(standardComparisonStrategy.arrayContains(hobbits, "Pippin"));
     assertFalse(standardComparisonStrategy.arrayContains(hobbits, "SAM "));
+    assertFalse(standardComparisonStrategy.arrayContains(hobbits, null));
   }
   
   @Test
