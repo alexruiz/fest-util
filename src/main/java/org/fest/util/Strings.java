@@ -1,22 +1,22 @@
 /*
  * Created on Jun 2, 2006
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
- *
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ * 
  * Copyright @2006-2011 the original author or authors.
  */
 package org.fest.util;
 
 /**
  * Utility methods related to {@code String}s.
- *
+ * 
  * @author Alex Ruiz
  */
 public final class Strings {
@@ -31,11 +31,9 @@ public final class Strings {
   }
 
   /**
-   * Returns the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is
-   * {@code null}.
+   * Returns the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is {@code null}.
    * @param s the given {@code String}.
-   * @return the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is
-   * {@code null}.
+   * @return the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is {@code null}.
    */
   public static String quote(String s) {
     return s != null ? concat("'", s, "'") : null;
@@ -52,8 +50,8 @@ public final class Strings {
   }
 
   /**
-   * Concatenates the given objects into a single {@code String}. This method is more efficient than concatenating using
-   * "+", since only one <code>{@link StringBuilder}</code> is created.
+   * Concatenates the given objects into a single {@code String}. This method is more efficient than concatenating using "+",
+   * since only one <code>{@link StringBuilder}</code> is created.
    * @param objects the objects to concatenate.
    * @return a {@code String} containing the given objects.
    */
@@ -66,13 +64,12 @@ public final class Strings {
   }
 
   /**
-   * Joins the given {@code String}s using a given delimiter. The following example illustrates proper usage of this
-   * method:
-   *
+   * Joins the given {@code String}s using a given delimiter. The following example illustrates proper usage of this method:
+   * 
    * <pre>
    * Strings.join("a", "b", "c").with("|")
    * </pre>
-   *
+   * 
    * which will result in the {@code String} <code>"a|b|c"</code>.
    * @param strings the {@code String}s to join.
    * @return an intermediate object that takes a given delimiter and knows how to join the given {@code String}s.
@@ -119,12 +116,14 @@ public final class Strings {
   }
 
   /**
-   * Appends a given {@code String} to the given target, only if the target does not end with the given {@code String}
-   * to append. The following example illustrates proper usage of this method:
+   * Appends a given {@code String} to the given target, only if the target does not end with the given {@code String} to append.
+   * The following example illustrates proper usage of this method:
+   * 
    * <pre>
    * Strings.append("c").to("ab");
    * Strings.append("c").to("abc");
    * </pre>
+   * 
    * resulting in the {@code String} <code>"abc"</code> for both cases.
    * @param toAppend the {@code String} to append.
    * @return an intermediate object that takes the target {@code String} and knows to append the given {@code String}.
@@ -135,8 +134,8 @@ public final class Strings {
   }
 
   /**
-   * Knows how to append a given {@code String} to the given target, only if the target does not end with the
-   * given {@code String} to append.
+   * Knows how to append a given {@code String} to the given target, only if the target does not end with the given {@code String}
+   * to append.
    */
   public static class StringToAppend {
 
@@ -154,8 +153,7 @@ public final class Strings {
     /**
      * Appends the {@code String} specified in the constructor to the {@code String} passed as argument.
      * @param s the target {@code String}.
-     * @return a {@code String} containing the target {@code String} with the given {@code String} to append added to
-     * the end.
+     * @return a {@code String} containing the target {@code String} with the given {@code String} to append added to the end.
      */
     public String to(String s) {
       if (!s.endsWith(toAppend)) return concat(s, toAppend);

@@ -1,14 +1,14 @@
 /*
  * Created on Jan 22, 2011
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  * 
  * Copyright @2011 the original author or authors.
  */
@@ -41,7 +41,7 @@ public class Dates {
    * ISO 8601 date-time format with millisecond (yyyy-MM-dd'T'HH:mm:ss.SSS), example : <code>2003-04-26T03:01:02.999</code>
    */
   public static final DateFormat ISO_DATE_TIME_FORMAT_WITH_MS = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-  
+
   /**
    * Formats the given date using the ISO 8601 date-time format (yyyy-MM-dd'T'HH:mm:ss).<br>
    * Method in synchronized because SimpleDateFormat is not thread safe (sigh).
@@ -105,7 +105,7 @@ public class Dates {
       throw new RuntimeException(e);
     }
   }
-  
+
   /**
    * Converts the given Date to Calendar, returns null if the given Date is null.
    * @param date the date to convert to a Calendar.
@@ -219,13 +219,13 @@ public class Dates {
   public static Date today() {
     return new Date();
   }
-  
+
   public static Date yesterday() {
     Calendar cal = Calendar.getInstance();
     cal.add(Calendar.DAY_OF_MONTH, -1);
     return cal.getTime();
   }
-  
+
   public static Date tomorrow() {
     Calendar cal = Calendar.getInstance();
     cal.add(Calendar.DAY_OF_MONTH, 1);

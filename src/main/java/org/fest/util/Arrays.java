@@ -1,15 +1,15 @@
 /*
  * Created on May 13, 2007
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
- *
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ * 
  * Copyright @2007-2011 the original author or authors.
  */
 package org.fest.util;
@@ -21,7 +21,7 @@ import java.util.*;
 
 /**
  * Utility methods related to arrays.
- *
+ * 
  * @author Alex Ruiz
  * @author Joel Costigliola
  */
@@ -59,8 +59,8 @@ public class Arrays {
   }
 
   /**
-   * Returns the {@code String} representation of the given array, or {@code null} if the given object is either
-   * {@code null} or not an array. This method supports arrays having other arrays as elements.
+   * Returns the {@code String} representation of the given array, or {@code null} if the given object is either {@code null} or
+   * not an array. This method supports arrays having other arrays as elements.
    * @param array the object that is expected to be an array.
    * @return the {@code String} representation of the given array.
    */
@@ -69,13 +69,11 @@ public class Arrays {
   }
 
   /**
-   * Returns a new array containing the non-null elements of the given array. This method returns an empty array if the
-   * given array has only {@code null} elements or if it is empty. This method returns {@code null} if the given array
-   * is {@code null}.
+   * Returns a new array containing the non-null elements of the given array. This method returns an empty array if the given
+   * array has only {@code null} elements or if it is empty. This method returns {@code null} if the given array is {@code null}.
    * @param <T> the type of elements of the array.
    * @param array the array we want to extract the non-null elements from.
-   * @return a new array containing the non-null elements of the given array, or {@code null} if the given array is
-   * {@code null}.
+   * @return a new array containing the non-null elements of the given array, or {@code null} if the given array is {@code null}.
    * @since 1.1.3
    */
   @SuppressWarnings("unchecked")
@@ -91,8 +89,8 @@ public class Arrays {
   }
 
   /**
-   * Returns {@code true} if the given array has only {@code null} elements, {@code false} otherwise. If given array is
-   * empty, this method returns {@code true}.
+   * Returns {@code true} if the given array has only {@code null} elements, {@code false} otherwise. If given array is empty,
+   * this method returns {@code true}.
    * @param <T> the type of elements of the array.
    * @param array the given array. <b>It must not be null</b>.
    * @return {@code true} if the given array has only {@code null} elements or is empty, {@code false} otherwise.
@@ -112,10 +110,10 @@ public class Arrays {
   }
 
   /**
-   * Copies the specified array, truncating or padding with nulls (if necessary) so the copy has the specified length.
-   * For all indices that are valid in both the original array and the copy, the two arrays will contain identical
-   * values. For any indices that are valid in the copy but not the original, the copy will contain {@code null}. Such
-   * indices will exist if and only if the specified length is greater than that of the original array.
+   * Copies the specified array, truncating or padding with nulls (if necessary) so the copy has the specified length. For all
+   * indices that are valid in both the original array and the copy, the two arrays will contain identical values. For any indices
+   * that are valid in the copy but not the original, the copy will contain {@code null}. Such indices will exist if and only if
+   * the specified length is greater than that of the original array.
    * @param <T> the component type of the array.
    * @param original the array to be copied.
    * @param newLength the length of the copy to be returned.

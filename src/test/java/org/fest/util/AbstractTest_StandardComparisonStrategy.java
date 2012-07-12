@@ -9,6 +9,6 @@ public class AbstractTest_StandardComparisonStrategy {
 
   @Rule
   public ExpectedException thrown = none();
-  protected static StandardComparisonStrategy standardComparisonStrategy = StandardComparisonStrategy.instance(); 
+  protected static StandardComparisonStrategy standardComparisonStrategy = StandardComparisonStrategy.instance();
 
 }

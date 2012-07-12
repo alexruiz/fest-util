@@ -1,15 +1,15 @@
 /*
  * Created on Oct 7, 2009
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
- *
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ * 
  * Copyright @2009-2011-2010 the original author or authors.
  */
 package org.fest.util;
@@ -27,7 +27,7 @@ import java.util.Map;
 
 /**
  * Obtains the {@code toString} representation of an object.
- *
+ * 
  * @author Alex Ruiz
  * @author Joel Costigliola
  * @author Yvonne Wang
@@ -60,9 +60,9 @@ public final class ToString {
     String comparatorSimpleClassName = comparator.getClass().getSimpleName();
     return quote(comparatorSimpleClassName.length() > 0 ? comparatorSimpleClassName : "anonymous comparator class");
   }
-  
+
   private static String toStringOf(Calendar c) {
-	  return Dates.formatAsDatetime(c);
+    return Dates.formatAsDatetime(c);
   }
 
   private static String toStringOf(Class<?> c) {
@@ -74,17 +74,17 @@ public final class ToString {
   }
 
   private static String toStringOf(Date d) {
-	  return Dates.formatAsDatetime(d);
+    return Dates.formatAsDatetime(d);
   }
 
   private static String toStringOf(Float f) {
     return String.format("%sf", f);
   }
-  
+
   private static String toStringOf(Long l) {
     return String.format("%sL", l);
   }
-  
+
   private static String toStringOf(Dimension d) {
     return String.format("(w=%s, h=%s)", d.width, d.height);
   }

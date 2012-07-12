@@ -1,14 +1,14 @@
 /*
  * Created on Apr 29, 2007
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  * 
  * Copyright @2007-2011 the original author or authors.
  */
@@ -53,8 +53,8 @@ public final class Collections {
   /**
    * Creates a list containing the given element.
    * <p>
-   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
-   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
+   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a spurious
+   * warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
    * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
    * 
    * @param <T> the type of elements of the list to create.
@@ -72,8 +72,8 @@ public final class Collections {
   /**
    * Creates a list containing the given elements.
    * <p>
-   * This method is an alternative to {@link #list(Object...) list(Object...)} (with two elements!) which leads to a
-   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
+   * This method is an alternative to {@link #list(Object...) list(Object...)} (with two elements!) which leads to a spurious
+   * warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
    * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
    * 
    * @param <T> the type of elements of the list to create.
@@ -107,8 +107,8 @@ public final class Collections {
   /**
    * Creates a set containing the given element.
    * <p>
-   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
-   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
+   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a spurious
+   * warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
    * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
    * 
    * @param <T> the type of elements of the set to create.
@@ -126,8 +126,8 @@ public final class Collections {
   /**
    * Creates a set containing the given elements.
    * <p>
-   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
-   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
+   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a spurious
+   * warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
    * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
    * 
    * @param <T> the type of elements of the set to create.
@@ -147,8 +147,8 @@ public final class Collections {
    * Returns any duplicate elements from the given collection.
    * @param <T> the generic type of the given collection.
    * @param c the given collection that might have duplicate elements.
-   * @return a collection containing the duplicate elements of the given one. If no duplicates are found, an empty
-   *         collection is returned.
+   * @return a collection containing the duplicate elements of the given one. If no duplicates are found, an empty collection is
+   *         returned.
    */
   public static <T> Collection<T> duplicatesFrom(Collection<T> c) {
     Set<T> duplicates = new HashSet<T>();
@@ -194,8 +194,7 @@ public final class Collections {
   }
 
   /**
-   * Returns the {@code String} representation of the given collection, or {@code null} if the given collection is
-   * {@code null}.
+   * Returns the {@code String} representation of the given collection, or {@code null} if the given collection is {@code null}.
    * @param c the collection to format.
    * @return the {@code String} representation of the given collection.
    */
@@ -214,13 +213,13 @@ public final class Collections {
   }
 
   /**
-   * Returns a new unmodifiable collection containing the non-null elements of the given collection. This method returns
-   * an empty unmodifiable collection if the given collection has only {@code null} elements or if it is empty. This
-   * method returns {@code null} if the given collection is {@code null}.
+   * Returns a new unmodifiable collection containing the non-null elements of the given collection. This method returns an empty
+   * unmodifiable collection if the given collection has only {@code null} elements or if it is empty. This method returns
+   * {@code null} if the given collection is {@code null}.
    * @param <T> the type of elements of the collection.
    * @param c the collection we want to extract non null elements from.
-   * @return a new unmodifiable collection containing the non-null elements of the given collection, or {@code null} if
-   *         the given collection is {@code null}.
+   * @return a new unmodifiable collection containing the non-null elements of the given collection, or {@code null} if the given
+   *         collection is {@code null}.
    * @since 1.1.3
    */
   public static <T> Collection<T> nonNullElements(Collection<T> c) {
@@ -232,13 +231,13 @@ public final class Collections {
   }
 
   /**
-   * Returns a new unmodifiable list containing the non-null elements of the given list. This method returns an empty
-   * unmodifiable list if the given list has only {@code null} elements or if it is empty. This method returns
-   * {@code null} if the given list is {@code null}.
+   * Returns a new unmodifiable list containing the non-null elements of the given list. This method returns an empty unmodifiable
+   * list if the given list has only {@code null} elements or if it is empty. This method returns {@code null} if the given list
+   * is {@code null}.
    * @param <T> the type of elements of the list.
    * @param l the list we want to extract non null elements from.
-   * @return a new unmodifiable list containing the non-null elements of the given list, or {@code null} if the given
-   *         list is {@code null}.
+   * @return a new unmodifiable list containing the non-null elements of the given list, or {@code null} if the given list is
+   *         {@code null}.
    * @since 1.1.3
    */
   public static <T> List<T> nonNullElements(List<T> l) {
@@ -248,8 +247,8 @@ public final class Collections {
   }
 
   /**
-   * Returns {@code true} if the given {@link Iterable} has only {@code null} elements, {@code false} otherwise. If
-   * given {@link Iterable} is empty, this method returns {@code true}.
+   * Returns {@code true} if the given {@link Iterable} has only {@code null} elements, {@code false} otherwise. If given
+   * {@link Iterable} is empty, this method returns {@code true}.
    * @param iterable the given iterable. <b>It must not be null</b>.
    * @return {@code true} if the given iterable has only {@code null} elements or is empty, {@code false} otherwise.
    * @throws NullPointerException if the given iterable is {@code null}.

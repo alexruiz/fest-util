@@ -1,15 +1,15 @@
 /*
  * Created on Sep 23, 2006
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ * 
  * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
- *
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ * 
  * Copyright @2006-2011 the original author or authors.
  */
 package org.fest.util;
@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * Utility methods related to files.
- *
+ * 
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
@@ -79,8 +79,7 @@ public class Files {
   }
 
   /**
-   * Returns the path of the system's temporary directory. This method appends the system's file separator at the end of
-   * the path.
+   * Returns the path of the system's temporary directory. This method appends the system's file separator at the end of the path.
    * @return the path of the system's temporary directory.
    */
   public static String temporaryFolderPath() {
@@ -89,6 +88,7 @@ public class Files {
 
   /**
    * Creates a new file in the system's temporary directory. The name of the file will be the result of:
+   * 
    * <pre>
    * concat(String.valueOf(System.currentTimeMillis()), ".txt");
    * </pre>
@@ -101,6 +101,7 @@ public class Files {
 
   /**
    * Creates a new directory in the system's temporary directory. The name of the directory will be the result of:
+   * 
    * <pre>
    * System.currentTimeMillis();
    * </pre>
@@ -167,8 +168,7 @@ public class Files {
   }
 
   /**
-   * Flushes and closes the given <code>{@link Writer}</code>. Any I/O errors catched by this method are ignored and not
-   * rethrown.
+   * Flushes and closes the given <code>{@link Writer}</code>. Any I/O errors catched by this method are ignored and not rethrown.
    * @param writer the writer to flush and close.
    */
   public static void flushAndClose(Writer writer) {
@@ -178,8 +178,8 @@ public class Files {
   }
 
   /**
-   * Flushes and closes the given <code>{@link OutputStream}</code>. Any I/O errors catched by this method are ignored
-   * and not rethrown.
+   * Flushes and closes the given <code>{@link OutputStream}</code>. Any I/O errors catched by this method are ignored and not
+   * rethrown.
    * @param out the output stream to flush and close.
    */
   public static void flushAndClose(OutputStream out) {

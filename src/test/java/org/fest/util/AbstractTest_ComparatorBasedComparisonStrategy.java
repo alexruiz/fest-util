@@ -15,5 +15,4 @@ public class AbstractTest_ComparatorBasedComparisonStrategy {
   protected ComparatorBasedComparisonStrategy caseInsensitiveComparisonStrategy = new ComparatorBasedComparisonStrategy(
       caseInsensitiveStringComparator);
 
-
 }

@@ -1,14 +1,14 @@
 /*
  * Created on Oct 8, 2007
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  * 
  * Copyright @2007-2011 the original author or authors.
  */
@@ -29,31 +29,37 @@ import org.junit.Test;
  */
 public class Collections_set_Test {
 
-  @Test public void should_return_Set_containing_all_elements_in_array() {
+  @Test
+  public void should_return_Set_containing_all_elements_in_array() {
     Set<String> set = Collections.set("One", "Two");
     assertTrue(set.containsAll(asList("One", "Two")));
   }
 
-  @Test public void should_return_Set_containing_all_three_elements_in_array() {
-	Set<String> set = Collections.set("One", "Two", "Three");
-	assertTrue(set.containsAll(asList("Three", "One", "Two")));
+  @Test
+  public void should_return_Set_containing_all_three_elements_in_array() {
+    Set<String> set = Collections.set("One", "Two", "Three");
+    assertTrue(set.containsAll(asList("Three", "One", "Two")));
   }
 
-  @Test public void should_return_null_if_array_is_null() {
+  @Test
+  public void should_return_null_if_array_is_null() {
     assertNull(Collections.set((Object[]) null));
   }
 
-  @Test public void should_return_empty_Set_if_array_is_empty() {
+  @Test
+  public void should_return_empty_Set_if_array_is_empty() {
     assertTrue(Collections.set(new Object[0]).isEmpty());
   }
 
-  @Test public void should_return_Set_containing_one_element() {
-	Set<String> set = Collections.set("One");
-	assertTrue(set.containsAll(asList("One")));
+  @Test
+  public void should_return_Set_containing_one_element() {
+    Set<String> set = Collections.set("One");
+    assertTrue(set.containsAll(asList("One")));
   }
 
-  @Test public void should_return_null_if_element_is_null() {
-	String nullString = null;
-	assertNull(Collections.set(nullString));
+  @Test
+  public void should_return_null_if_element_is_null() {
+    String nullString = null;
+    assertNull(Collections.set(nullString));
   }
 }

@@ -3,14 +3,14 @@ package org.fest.util;
 /*
  * Created on Sep 17, 2010
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
- * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
- * specific language governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
  * 
  * Copyright @2010-2011 the original author or authors.
  */
@@ -20,8 +20,8 @@ import static java.lang.String.format;
 import java.util.Iterator;
 
 /**
- * Implements {@link ComparisonStrategy} contract with a comparison strategy based on {@link Object#equals(Object)}
- * method, it is also based on {@link Comparable#compareTo(Object)} when Object are {@link Comparable} method.
+ * Implements {@link ComparisonStrategy} contract with a comparison strategy based on {@link Object#equals(Object)} method, it is
+ * also based on {@link Comparable#compareTo(Object)} when Object are {@link Comparable} method.
  * 
  * @author Joel Costigliola
  */
@@ -55,14 +55,12 @@ public class StandardComparisonStrategy extends AbstractComparisonStrategy {
   }
 
   /**
-   * Returns true if given {@link Iterable} contains given value based on {@link Object#equals(Object)}, false
-   * otherwise.<br>
+   * Returns true if given {@link Iterable} contains given value based on {@link Object#equals(Object)}, false otherwise.<br>
    * If given {@link Iterable} is null, return false.
    * 
    * @param iterable the {@link Iterable} to search value in
    * @param value the object to look for in given {@link Iterable}
-   * @return true if given {@link Iterable} contains given value based on {@link Object#equals(Object)}, false
-   *         otherwise.
+   * @return true if given {@link Iterable} contains given value based on {@link Object#equals(Object)}, false otherwise.
    */
   public boolean iterableContains(Iterable<?> iterable, Object value) {
     if (iterable == null) return false;
@@ -86,12 +84,11 @@ public class StandardComparisonStrategy extends AbstractComparisonStrategy {
   }
 
   /**
-   * Returns any duplicate elements from the given collection according to {@link Object#equals(Object)} comparison
-   * strategy.
+   * Returns any duplicate elements from the given collection according to {@link Object#equals(Object)} comparison strategy.
    * 
    * @param iterable the given {@link Iterable} we want to extract duplicate elements.
-   * @return an {@link Iterable} containing the duplicate elements of the given one. If no duplicates are found, an
-   *         empty {@link Iterable} is returned.
+   * @return an {@link Iterable} containing the duplicate elements of the given one. If no duplicates are found, an empty
+   *         {@link Iterable} is returned.
    */
   // overridden to write javadoc.
   @Override
