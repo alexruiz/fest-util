@@ -16,11 +16,15 @@ package org.fest.util;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
+import static org.fest.util.Collections.isEmpty;
+import static org.fest.util.Collections.list;
 import static org.fest.util.Collections.nonNullElements;
+import static org.fest.util.Collections.sizeOf;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -29,34 +33,37 @@ import org.junit.Test;
  * 
  * @author Joel Costigliola
  * @author Alex Ruiz
+ * @author Florent Biville
  */
-public class Collections_nonNullElements_Collection_Test {
+public class Collections_nonNullElements_Iterable_Test {
 
   @Test
-  public void should_return_null_if_given_collection_is_null() {
-    Collection<?> c = null;
-    assertNull(nonNullElements(c));
+  public void should_return_null_if_given_iterable_is_null() {
+    Iterable<?> iterable = null;
+    assertNull(nonNullElements(iterable));
   }
 
   @Test
-  public void should_return_an_empty_collection_if_given_collection_has_only_null_elements() {
+  public void should_return_an_empty_iterable_if_given_iterable_has_only_null_elements() {
     Collection<String> c = new ArrayList<String>();
     c.add(null);
-    assertTrue(nonNullElements(c).isEmpty());
+    Iterable<String> iterable = c;
+    assertTrue(isEmpty(nonNullElements(iterable)));
   }
 
   @Test
-  public void should_return_an_empty_collection_if_given_collection_is_empty() {
-    Collection<String> c = new ArrayList<String>();
-    assertEquals(0, nonNullElements(c).size());
+  public void should_return_an_empty_iterable_if_given_iterable_is_empty() {
+    Iterable<String> iterable = new ArrayList<String>();
+    assertEquals(0, sizeOf(nonNullElements(iterable)));
   }
 
   @Test
-  public void should_return_a_collection_without_null_elements() {
-    Collection<String> c = asList("Frodo", null, "Sam", null);
-    Collection<String> actual = nonNullElements(c);
-    assertEquals(2, actual.size());
-    assertTrue(actual.contains("Frodo"));
-    assertTrue(actual.contains("Sam"));
+  public void should_return_an_iterable_without_null_elements() {
+    Iterable<String> iterable = asList("Frodo", null, "Sam", null);
+    Iterable<String> actual = nonNullElements(iterable);
+    assertEquals(2, sizeOf(actual));
+    List<String> actualAsList = list(actual);
+    assertTrue(actualAsList.contains("Frodo"));
+    assertTrue(actualAsList.contains("Sam"));
   }
 }

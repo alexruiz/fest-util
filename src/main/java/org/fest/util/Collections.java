@@ -33,6 +33,7 @@ import java.util.Set;
  * @author Alex Ruiz
  * @author Joel Costigliola
  * @author Jonatan Jönsson
+ * @author Florent Biville
  */
 public final class Collections {
 
@@ -211,7 +212,7 @@ public final class Collections {
       b.append(", ");
     }
   }
-
+  
   /**
    * Returns a new unmodifiable collection containing the non-null elements of the given collection. This method returns an empty
    * unmodifiable collection if the given collection has only {@code null} elements or if it is empty. This method returns
@@ -222,7 +223,7 @@ public final class Collections {
    *         collection is {@code null}.
    * @since 1.1.3
    */
-  public static <T> Collection<T> nonNullElements(Collection<T> c) {
+  public static <T> Iterable<T> nonNullElements(Iterable<T> c) {
     if (c == null) return null;
     Collection<T> nonNullElements = new ArrayList<T>();
     for (T o : c)
@@ -241,7 +242,7 @@ public final class Collections {
    * @since 1.1.3
    */
   public static <T> List<T> nonNullElements(List<T> l) {
-    Collection<T> nonNullElements = nonNullElements((Collection<T>) l);
+    Collection<T> nonNullElements = (Collection<T>) nonNullElements((Collection<T>) l);
     if (nonNullElements == null) return null;
     return unmodifiableList(new ArrayList<T>(nonNullElements));
   }
