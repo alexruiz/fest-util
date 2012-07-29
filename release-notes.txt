@@ -1,0 +1,9 @@
+For the next release
+--------------------
+
+1.2.2 release notes 
+-------------------
+
+- nonNullElements now accepts Iterable instead of Collection (Florent Biville)
+- use 1.0.14 parent pom that enables java 5 compatibility check 
+
