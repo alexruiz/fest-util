@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.easytesting</groupId>
   <artifactId>fest-util</artifactId>
-  <version>1.2.3-SNAPSHOT</version>
+  <version>1.2.3-MODULARIZATION-SNAPSHOT</version>
   <name>FEST Util</name>
   <description>Utility methods used by FEST modules</description>
   <inceptionYear>2007</inceptionYear>
@@ -12,7 +12,7 @@
   <parent>
     <groupId>org.easytesting</groupId>
     <artifactId>fest</artifactId>
-    <version>1.0.14</version>
+    <version>1.0.15-MODULARIZATION-SNAPSHOT</version>
   </parent>
   <mailingLists>
     <mailingList>
@@ -35,13 +35,10 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8.2</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
-      <version>1.9.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
