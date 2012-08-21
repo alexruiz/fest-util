@@ -1,5 +1,5 @@
 /*
- * Created on Nov 1, 2007
+ * Created on Apr 29, 2007
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -14,27 +14,34 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 
 /**
- * Tests for {@link TypeFilter#filter(java.util.Collection)}.
+ * Tests for <code>{@link Maps#isNullOrEmpty(Map)}</code>.
  * 
  * @author Yvonne Wang
+ * @author Alex Ruiz
  */
-public class TypeFilter_filter_Test {
+public class Maps_isNullOrEmpty_Test {
   @Test
-  public void should_filter_Collection() {
-    List<Object> original = new ArrayList<Object>();
-    original.add(1);
-    original.add("Frodo");
-    original.add(5);
-    List<String> filtered = new TypeFilter<String>(String.class).filter(original);
-    assertEquals(1, filtered.size());
-    assertEquals("Frodo", filtered.get(0));
+  public void should_return_true_if_Map_is_empty() {
+    assertTrue(Maps.isNullOrEmpty(new HashMap<String, String>()));
+  }
+
+  @Test
+  public void should_return_true_if_Map_is_null() {
+    assertTrue(Maps.isNullOrEmpty(null));
+  }
+
+  @Test
+  public void should_return_false_if_Map_has_elements() {
+    Map<String, Integer> map = new HashMap<String, Integer>();
+    map.put("First", 1);
+    assertFalse(Maps.isNullOrEmpty(map));
   }
 }

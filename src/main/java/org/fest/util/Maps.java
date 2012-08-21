@@ -1,22 +1,23 @@
 /*
  * Created on Jan 25, 2008
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
- * License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2008-2011 the original author or authors.
+ * Copyright @2008-2012 the original author or authors.
  */
 package org.fest.util;
 
 import static org.fest.util.ToString.toStringOf;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 
 /**
@@ -26,34 +27,41 @@ import java.util.Map.Entry;
  * @author Alex Ruiz
  */
 public class Maps {
-
   /**
-   * Returns {@code true} if the given map is {@code null} or empty.
+   * Indicates whether the given {@code Map} is {@code null} or empty.
+   * 
    * @param map the map to check.
-   * @return {@code true} if the given map is {@code null} or empty, otherwise {@code false}.
+   * @return {@code true} if the given {@code Map} is {@code null} or empty, otherwise {@code false}.
    */
-  public static boolean isEmpty(Map<?, ?> map) {
+  public static boolean isNullOrEmpty(Map<?, ?> map) {
     return map == null || map.isEmpty();
   }
 
   /**
    * Returns the {@code String} representation of the given map, or {@code null} if the given map is {@code null}.
+   * 
    * @param map the map to format.
    * @return the {@code String} representation of the given map.
    */
   public static String format(Map<?, ?> map) {
-    if (map == null) return null;
+    if (map == null) {
+      return null;
+    }
     Iterator<?> i = map.entrySet().iterator();
-    if (!i.hasNext()) return "{}";
-    StringBuilder b = new StringBuilder();
-    b.append("{");
+    if (!i.hasNext()) {
+      return "{}";
+    }
+    StringBuilder buffer = new StringBuilder();
+    buffer.append("{");
     for (;;) {
       Entry<?, ?> e = (Entry<?, ?>) i.next();
-      b.append(format(map, e.getKey()));
-      b.append('=');
-      b.append(format(map, e.getValue()));
-      if (!i.hasNext()) return b.append("}").toString();
-      b.append(", ");
+      buffer.append(format(map, e.getKey()));
+      buffer.append('=');
+      buffer.append(format(map, e.getValue()));
+      if (!i.hasNext()) {
+        return buffer.append("}").toString();
+      }
+      buffer.append(", ");
     }
   }
 
