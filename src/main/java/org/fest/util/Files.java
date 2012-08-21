@@ -22,6 +22,7 @@ import static org.fest.util.Flushables.flush;
 import static org.fest.util.Strings.*;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -214,6 +215,61 @@ public class Files {
     for (File f : file.listFiles())
       delete(f);
     file.delete();
+  }
+
+  /**
+   * Loads the text content of a file into a character string.
+   * 
+   * @param file the file.
+   * @param charsetName the name of the character set to use.
+   * @return the content of the file.
+   * @throws IllegalArgumentException if the given character set is not supported on this platform.
+   * @throws FilesException if an I/O exception occurs.
+   */
+  public static String contentOf(File file, String charsetName) {
+    if (!Charset.isSupported(charsetName))
+      throw new IllegalArgumentException(String.format("Charset:<'%s'> is not supported on this system", charsetName));
+    return contentOf(file, Charset.forName(charsetName));
+  }
+
+  /**
+   * Loads the text content of a file into a character string.
+   * 
+   * @param file the file.
+   * @param charset the character set to use.
+   * @return the content of the file.
+   * @throws NullPointerException if the given charset is {@code null}.
+   * @throws FilesException if an I/O exception occurs.
+   */
+  public static String contentOf(File file, Charset charset) {
+    if (charset == null) throw new NullPointerException("The charset should not be null");
+    try {
+      return loadContents(file, charset);
+    } catch (IOException e) {
+      throw new FilesException("Unable to read " + file.getAbsolutePath(), e);
+    }
+  }
+
+  private static String loadContents(File file, Charset charset) throws IOException {
+    BufferedReader reader = null;
+    boolean threw = true;
+    try {
+      reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
+      StringWriter writer = new StringWriter();
+      int c;
+      while ((c = reader.read()) != -1)
+        writer.write(c);
+      threw = false;
+      return writer.toString();
+    } finally {
+      if (reader != null) {
+        try {
+          reader.close();
+        } catch (IOException e) {
+          if (!threw) throw e; // if there was an initial exception, don't hide it
+        }
+      }
+    }
   }
 
   private Files() {}
