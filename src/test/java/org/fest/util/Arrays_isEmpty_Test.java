@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Tests for <code>{@link Arrays#isEmpty(Object[])}</code>.
+ * Tests for <code>{@link Arrays#isNullOrEmpty(Object[])}</code>.
  * 
  * @author Alex Ruiz
  */
@@ -27,16 +27,16 @@ public class Arrays_isEmpty_Test {
 
   @Test
   public void should_return_true_if_array_is_empty() {
-    assertTrue(Arrays.isEmpty(new String[0]));
+    assertTrue(Arrays.isNullOrEmpty(new String[0]));
   }
 
   @Test
   public void should_return_true_if_array_is_null() {
-    assertTrue(Arrays.isEmpty(null));
+    assertTrue(Arrays.isNullOrEmpty(null));
   }
 
   @Test
   public void should_return_false_if_array_has_elements() {
-    assertFalse(Arrays.isEmpty(new String[] { "Tuzi" }));
+    assertFalse(Arrays.isNullOrEmpty(new String[] { "Tuzi" }));
   }
 }

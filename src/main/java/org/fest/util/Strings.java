@@ -56,7 +56,7 @@ public final class Strings {
    * @return a {@code String} containing the given objects.
    */
   public static String concat(Object... objects) {
-    if (Arrays.isEmpty(objects)) return null;
+    if (Arrays.isNullOrEmpty(objects)) return null;
     StringBuilder b = new StringBuilder();
     for (Object o : objects)
       b.append(o);
@@ -103,7 +103,7 @@ public final class Strings {
      */
     public String with(String delimeter) {
       if (delimeter == null) throw new IllegalArgumentException("Delimiter should not be null");
-      if (Arrays.isEmpty(strings)) return "";
+      if (Arrays.isNullOrEmpty(strings)) return "";
       StringBuilder b = new StringBuilder();
       int stringCount = strings.length;
       for (int i = 0; i < stringCount; i++) {

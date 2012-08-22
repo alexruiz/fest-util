@@ -16,7 +16,7 @@ package org.fest.util;
 
 import static java.io.File.separator;
 import static java.lang.String.format;
-import static org.fest.util.Arrays.isEmpty;
+import static org.fest.util.Arrays.isNullOrEmpty;
 import static org.fest.util.Strings.*;
 import static org.junit.Assert.assertTrue;
 
@@ -97,7 +97,7 @@ public final class FolderFixture {
 
   public FolderFixture folder(String path) {
     String[] names = path.split(separatorAsRegEx());
-    if (isEmpty(names)) return null;
+    if (isNullOrEmpty(names)) return null;
     int i = 0;
     if (!name.equals(names[i++])) return null;
     FolderFixture current = this;

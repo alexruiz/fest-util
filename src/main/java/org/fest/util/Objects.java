@@ -60,7 +60,7 @@ public final class Objects {
    * @return the names of the given types stored in an array.
    */
   public static String[] namesOf(Class<?>... types) {
-    if (isEmpty(types)) return new String[0];
+    if (isNullOrEmpty(types)) return new String[0];
     String[] names = new String[types.length];
     for (int i = 0; i < types.length; i++)
       names[i] = types[i].getName();
