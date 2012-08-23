@@ -15,7 +15,7 @@
 
 package org.fest.util;
 
-import static org.fest.util.Collections.list;
+import static org.fest.util.Lists.newArrayList;
 
 import java.util.Collection;
 import java.util.List;
@@ -34,11 +34,11 @@ public final class Types {
   private static final Class<?>[] COLLECTION_TYPES = { Collection.class, List.class, Queue.class, Set.class };
 
   public static List<Class<?>> primitiveTypes() {
-    return list(PRIMITIVE_TYPES);
+    return newArrayList(PRIMITIVE_TYPES);
   }
 
   public static List<Class<?>> collectionTypes() {
-    return list(COLLECTION_TYPES);
+    return newArrayList(COLLECTION_TYPES);
   }
 
   private Types() {}

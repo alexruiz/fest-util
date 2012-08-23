@@ -16,7 +16,7 @@ package org.fest.util;
 
 import static junit.framework.Assert.assertFalse;
 import static org.fest.util.Arrays.array;
-import static org.fest.util.Collections.list;
+import static org.fest.util.Lists.newArrayList;
 import static org.fest.util.ToString.toStringOf;
 import static org.junit.Assert.*;
 
@@ -80,21 +80,21 @@ public class ToString_toStringOf_Test {
 
   @Test
   public void should_return_toString_of_Collection_of_String() {
-    Collection<String> collection = list("s1", "s2");
+    Collection<String> collection = newArrayList("s1", "s2");
     assertEquals("['s1', 's2']", ToString.toStringOf(collection));
   }
 
   @Test
   public void should_return_toString_of_Collection_of_arrays() {
-    List<Boolean[]> collection = list(array(true, false), array(true, false, true));
+    List<Boolean[]> collection = newArrayList(array(true, false), array(true, false, true));
     assertEquals("[[true, false], [true, false, true]]", ToString.toStringOf(collection));
   }
 
   @Test
   public void should_return_toString_of_Collection_of_Collections() {
     Collection<List<String>> collection = new ArrayList<List<String>>();
-    collection.add(list("s1", "s2"));
-    collection.add(list("s3", "s4", "s5"));
+    collection.add(newArrayList("s1", "s2"));
+    collection.add(newArrayList("s3", "s4", "s5"));
     assertEquals("[['s1', 's2'], ['s3', 's4', 's5']]", ToString.toStringOf(collection));
   }
 

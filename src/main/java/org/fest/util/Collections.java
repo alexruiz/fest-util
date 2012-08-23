@@ -31,69 +31,8 @@ import java.util.Set;
  * @author Yvonne Wang
  * @author Alex Ruiz
  * @author Joel Costigliola
- * @author Jonatan Jönsson
- * @author Florent Biville
  */
 public final class Collections {
-  /**
-   * Creates a mutable list containing the given elements.
-   * 
-   * @param <T> the type of elements of the list to create.
-   * @param elements the elements to store in the list.
-   * @return the created list.
-   */
-  public static <T> List<T> list(T... elements) {
-    if (elements == null) {
-      return null;
-    }
-    List<T> list = new ArrayList<T>();
-    for (T e : elements) {
-      list.add(e);
-    }
-    return list;
-  }
-
-  /**
-   * Creates a list containing the given element.
-   * <p>
-   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
-   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
-   * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
-   * 
-   * @param <T> the type of elements of the list to create.
-   * @param element the element to store in the list.
-   * @return the created list.
-   * @since 1.2.1
-   */
-  public static <T> List<T> list(T element) {
-    if (element == null) {
-      return null;
-    }
-    List<T> list = new ArrayList<T>();
-    list.add(element);
-    return list;
-  }
-
-  /**
-   * Creates a list containing the given elements.
-   * <p>
-   * This method is an alternative to {@link #list(Object...) list(Object...)} (with two elements!) which leads to a
-   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
-   * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
-   * 
-   * @param <T> the type of elements of the list to create.
-   * @param first the first element to store in the list.
-   * @param second the second element to store in the list.
-   * @return the created list.
-   * @since 1.2.1
-   */
-  public static <T> List<T> list(T first, T second) {
-    List<T> list = new ArrayList<T>();
-    list.add(first);
-    list.add(second);
-    return list;
-  }
-
   /**
    * Creates a set containing the given elements.
    * 
@@ -116,7 +55,7 @@ public final class Collections {
   /**
    * Creates a set containing the given element.
    * <p>
-   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
+   * This method is an alternative to {@link #newArrayList(Object...) newArrayList(Object...)} (with one element!) which leads to a
    * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
    * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
    * 
@@ -137,7 +76,7 @@ public final class Collections {
   /**
    * Creates a set containing the given elements.
    * <p>
-   * This method is an alternative to {@link #list(Object...) list(Object...)} (with one element!) which leads to a
+   * This method is an alternative to {@link #newArrayList(Object...) newArrayList(Object...)} (with one element!) which leads to a
    * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
    * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
    * 
@@ -299,24 +238,6 @@ public final class Collections {
       }
     }
     return true;
-  }
-
-  /**
-   * Creates a list containing the given {@link Iterable} elements.
-   * 
-   * @param <T> the type of elements of the list to create.
-   * @param iterable the {@link Iterable} to get elements from to store in the list.
-   * @return the created list.
-   */
-  public static <T> List<T> list(Iterable<T> iterable) {
-    if (iterable == null) {
-      return null;
-    }
-    List<T> list = new ArrayList<T>();
-    for (T e : iterable) {
-      list.add(e);
-    }
-    return list;
   }
 
   private Collections() {

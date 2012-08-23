@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Collections.list;
+import static org.fest.util.Lists.newArrayList;
 
 import static org.junit.Assert.*;
 
@@ -31,7 +31,7 @@ public class StandardComparisonStrategy_iterableRemove_Test extends AbstractTest
 
   @Test
   public void should_pass() {
-    List<?> list = list("Sam", "Merry", null, "Frodo");
+    List<?> list = newArrayList("Sam", "Merry", null, "Frodo");
     assertTrue(list.contains("Frodo"));
     standardComparisonStrategy.iterableRemoves(list, "Frodo");
     assertFalse(list.contains("Frodo"));

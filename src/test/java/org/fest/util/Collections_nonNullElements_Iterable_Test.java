@@ -17,7 +17,7 @@ package org.fest.util;
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static org.fest.util.Collections.isEmpty;
-import static org.fest.util.Collections.list;
+import static org.fest.util.Lists.newArrayList;
 import static org.fest.util.Collections.nonNullElements;
 import static org.fest.util.Collections.sizeOf;
 import static org.junit.Assert.*;
@@ -62,7 +62,7 @@ public class Collections_nonNullElements_Iterable_Test {
     Iterable<String> iterable = asList("Frodo", null, "Sam", null);
     Iterable<String> actual = nonNullElements(iterable);
     assertEquals(2, sizeOf(actual));
-    List<String> actualAsList = list(actual);
+    List<String> actualAsList = newArrayList(actual);
     assertTrue(actualAsList.contains("Frodo"));
     assertTrue(actualAsList.contains("Sam"));
   }

@@ -15,7 +15,7 @@
 package org.fest.util;
 
 import static org.fest.util.Collections.*;
-
+import static org.fest.util.Lists.newArrayList;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class StandardComparisonStrategy_duplicatesFrom_Test extends AbstractTest
   @Test
   public void should_return_existing_duplicates() {
     Iterable<?> duplicates = standardComparisonStrategy
-        .duplicatesFrom(list("Merry", "Frodo", null, null, "Merry", "Sam", "Frodo"));
+        .duplicatesFrom(newArrayList("Merry", "Frodo", null, null, "Merry", "Sam", "Frodo"));
     assertEquals(3, sizeOf(duplicates));
     assertTrue(standardComparisonStrategy.iterableContains(duplicates, "Frodo"));
     assertTrue(standardComparisonStrategy.iterableContains(duplicates, "Merry"));
@@ -41,7 +41,7 @@ public class StandardComparisonStrategy_duplicatesFrom_Test extends AbstractTest
 
   @Test
   public void should_not_return_any_duplicates() {
-    Iterable<?> duplicates = standardComparisonStrategy.duplicatesFrom(list("Frodo", "Sam", "Gandalf"));
+    Iterable<?> duplicates = standardComparisonStrategy.duplicatesFrom(newArrayList("Frodo", "Sam", "Gandalf"));
     assertTrue(isEmpty(duplicates));
   }
 

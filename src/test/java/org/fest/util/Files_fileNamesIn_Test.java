@@ -15,7 +15,7 @@
 package org.fest.util;
 
 import static java.io.File.separator;
-import static org.fest.util.Collections.list;
+import static org.fest.util.Lists.newArrayList;
 import static org.fest.util.Strings.concat;
 import static org.junit.Assert.*;
 import static org.junit.rules.ExpectedException.none;
@@ -58,19 +58,20 @@ public class Files_fileNamesIn_Test extends Files_TestCase {
   @Test
   public void should_return_names_of_files_in_given_directory_but_not_subdirectories() {
     String path = concat("root", separator, "dir_1");
-    assertThatContainsFiles(list("file_1_1", "file_1_2"), Files.fileNamesIn(path, false));
+    assertThatContainsFiles(newArrayList("file_1_1", "file_1_2"), Files.fileNamesIn(path, false));
   }
 
   @Test
   public void should_return_names_of_files_in_given_directory_and_its_subdirectories() {
     String path = concat("root", separator, "dir_1");
-    assertThatContainsFiles(list("file_1_1", "file_1_2", "file_1_1_1"), Files.fileNamesIn(path, true));
+    assertThatContainsFiles(newArrayList("file_1_1", "file_1_2", "file_1_1_1"), Files.fileNamesIn(path, true));
   }
 
   private void assertThatContainsFiles(List<String> expectedFiles, List<String> actualFiles) {
     assertThereAreNoDuplicates(actualFiles);
-    for (String fileName : actualFiles)
+    for (String fileName : actualFiles) {
       assertTrue(expectedFiles.remove(pathNameFor(fileName)));
+    }
     assertTrue(expectedFiles.isEmpty());
   }
 
@@ -79,7 +80,9 @@ public class Files_fileNamesIn_Test extends Files_TestCase {
   }
 
   private void assertThereAreNoDuplicates(List<String> actualFiles) {
-    if (actualFiles == null || actualFiles.isEmpty()) return;
+    if (actualFiles == null || actualFiles.isEmpty()) {
+      return;
+    }
     HashSet<String> withoutDuplicates = new HashSet<String>(actualFiles);
     assertEquals(withoutDuplicates.size(), actualFiles.size());
   }

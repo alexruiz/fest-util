@@ -14,6 +14,7 @@
  */
 package org.fest.util;
 
+import static org.fest.util.Lists.newArrayList;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -40,6 +41,6 @@ public class Collections_isEmpty_Test {
 
   @Test
   public void should_return_false_ifCollection_has_elements() {
-    assertFalse(Collections.isEmpty(Collections.list("Frodo")));
+    assertFalse(Collections.isEmpty(newArrayList("Frodo")));
   }
 }

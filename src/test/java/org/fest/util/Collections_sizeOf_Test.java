@@ -15,8 +15,8 @@
 package org.fest.util;
 
 import static junit.framework.Assert.assertEquals;
-
-import static org.fest.util.Collections.*;
+import static org.fest.util.Collections.sizeOf;
+import static org.fest.util.Lists.newArrayList;
 
 import java.util.ArrayList;
 
@@ -46,6 +46,6 @@ public class Collections_sizeOf_Test {
 
   @Test
   public void should_return_iterable_size() {
-    assertEquals(2, sizeOf(list("Frodo", "Sam")));
+    assertEquals(2, sizeOf(newArrayList("Frodo", "Sam")));
   }
 }

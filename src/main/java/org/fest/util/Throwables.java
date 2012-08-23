@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Collections.list;
+import static org.fest.util.Lists.newArrayList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public final class Throwables {
    * @param methodToStartFrom the name of the method used as the starting point of the current thread's stack trace.
    */
   public static void appendStackTraceInCurentThreadToThrowable(Throwable t, String methodToStartFrom) {
-    List<StackTraceElement> stackTrace = list(t.getStackTrace());
+    List<StackTraceElement> stackTrace = newArrayList(t.getStackTrace());
     stackTrace.addAll(stackTraceInCurrentThread(methodToStartFrom));
     t.setStackTrace(stackTrace.toArray(new StackTraceElement[stackTrace.size()]));
   }
@@ -51,7 +51,7 @@ public final class Throwables {
   }
 
   private static List<StackTraceElement> stackTraceInCurrentThread() {
-    return list(StackTraces.instance().stackTraceInCurrentThread());
+    return newArrayList(StackTraces.instance().stackTraceInCurrentThread());
   }
 
   /**
@@ -86,7 +86,7 @@ public final class Throwables {
    * @param throwable the {@code Throwable} to filter stack trace.
    */
   public static void removeFestRelatedElementsFromStackTrace(Throwable throwable) {
-    List<StackTraceElement> filtered = list(throwable.getStackTrace());
+    List<StackTraceElement> filtered = newArrayList(throwable.getStackTrace());
     StackTraceElement previous = null;
     for (StackTraceElement element : throwable.getStackTrace()) {
       if (element.getClassName().contains("org.fest")) {

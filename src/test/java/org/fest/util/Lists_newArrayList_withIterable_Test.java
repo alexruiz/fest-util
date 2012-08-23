@@ -10,43 +10,42 @@
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  * 
- * Copyright @2007-2011 the original author or authors.
+ * Copyright @2007-2012 the original author or authors.
  */
 package org.fest.util;
 
-import static org.fest.util.Collections.list;
-
+import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
 /**
- * Tests for <code>{@link Collections#list(Iterable)}</code>.
+ * Tests for <code>{@link Lists#newArrayList(Iterable)}</code>.
  * 
  * @author Joel Costigliola
  */
-public class Collections_list_from_iterable_Test {
-
+public class Lists_newArrayList_withIterable_Test {
   @Test
   public void should_return_List_containing_all_elements_in_iterable() {
-    Iterable<String> iterable = list("One", "Two");
-    List<String> list = list(iterable);
-    assertEquals(2, list.size());
-    assertEquals("One", list.get(0));
-    assertEquals("Two", list.get(1));
+    String[] expected = { "One", "Two" };
+    Iterable<String> elements = asList(expected);
+    ArrayList<String> list = Lists.newArrayList(elements);
+    assertArrayEquals(expected, list.toArray());
   }
 
   @Test
   public void should_return_null_if_iterable_is_null() {
-    assertNull(list((Iterable<?>) null));
+    Iterable<?> elements = null;
+    assertNull(Lists.newArrayList(elements));
   }
 
   @Test
   public void should_return_empty_List_if_iterable_is_empty() {
-    Iterable<String> iterable = list();
-    assertTrue(list(iterable).isEmpty());
+    Iterable<String> elements = new ArrayList<String>();
+    ArrayList<String> list = Lists.newArrayList(elements);
+    assertTrue(list.isEmpty());
   }
 
 }

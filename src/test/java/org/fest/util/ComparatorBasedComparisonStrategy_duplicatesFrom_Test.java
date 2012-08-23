@@ -15,7 +15,7 @@
 package org.fest.util;
 
 import static org.fest.util.Collections.*;
-
+import static org.fest.util.Lists.newArrayList;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class ComparatorBasedComparisonStrategy_duplicatesFrom_Test extends Abstr
 
   @Test
   public void should_return_existing_duplicates() {
-    Iterable<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(list("Merry", "Frodo", "Merry", "Sam", "FrODO",
+    Iterable<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(newArrayList("Merry", "Frodo", "Merry", "Sam", "FrODO",
         null, null));
     assertEquals(3, sizeOf(duplicates));
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(duplicates, "frodo"));
@@ -41,7 +41,7 @@ public class ComparatorBasedComparisonStrategy_duplicatesFrom_Test extends Abstr
 
   @Test
   public void should_not_return_any_duplicates() {
-    Iterable<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(list("Frodo", "Sam", "Gandalf"));
+    Iterable<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(newArrayList("Frodo", "Sam", "Gandalf"));
     assertTrue(isEmpty(duplicates));
   }
 

@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Collections.*;
-
+import static org.fest.util.Collections.hasOnlyNullElements;
+import static org.fest.util.Lists.newArrayList;
 import static org.junit.Assert.*;
 import static org.junit.rules.ExpectedException.none;
 
@@ -52,7 +52,7 @@ public class Collections_hasOnlyNullElements_Test {
 
   @Test
   public void should_return_false_if_given_collection_has_non_null_elements() {
-    assertFalse(hasOnlyNullElements(list("Frodo")));
+    assertFalse(hasOnlyNullElements(newArrayList("Frodo")));
   }
 
   @Test

@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Collections.list;
+import static org.fest.util.Lists.newArrayList;
 
 import static org.junit.Assert.*;
 
@@ -31,7 +31,7 @@ public class ComparatorBasedComparisonStrategy_iterableRemove_Test extends Abstr
 
   @Test
   public void should_remove_value_from_collections_since_it_matches_one_collections_element_according_to_given_comparator() {
-    List<String> hobbits = list("Merry", "Frodo", null, "Merry", "Sam");
+    List<String> hobbits = newArrayList("Merry", "Frodo", null, "Merry", "Sam");
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
     caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, "Sam");
     assertFalse(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
@@ -41,7 +41,7 @@ public class ComparatorBasedComparisonStrategy_iterableRemove_Test extends Abstr
 
   @Test
   public void should_not_remove_value_from_collections_since_it_does_not_match_any_collections_elements_according_to_given_comparator() {
-    List<String> hobbits = list("Merry", "Frodo", null, "Merry", "Sam");
+    List<String> hobbits = newArrayList("Merry", "Frodo", null, "Merry", "Sam");
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
     caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, "SAM ");
     assertTrue(caseInsensitiveComparisonStrategy.iterableContains(hobbits, "SAM"));
@@ -49,7 +49,7 @@ public class ComparatorBasedComparisonStrategy_iterableRemove_Test extends Abstr
 
   @Test
   public void should_not_fail_if_collections_is_empty_or_null() {
-    List<String> hobbits = list();
+    List<String> hobbits = newArrayList();
     caseInsensitiveComparisonStrategy.iterableRemoves(hobbits, "SAM");
     caseInsensitiveComparisonStrategy.iterableRemoves(null, "SAM ");
   }
