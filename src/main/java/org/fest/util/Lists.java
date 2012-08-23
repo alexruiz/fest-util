@@ -29,7 +29,7 @@ public final class Lists {
    * 
    * @param <T> the generic type of the {@code ArrayList} to create.
    * @param elements the elements to store in the {@code ArrayList}.
-   * @return the created {@code ArrayList}.
+   * @return the created {@code ArrayList}, of {@code null} if the given array of elements is {@code null}.
    */
   public static <T> ArrayList<T> newArrayList(T... elements) {
     if (elements == null) {
@@ -47,7 +47,7 @@ public final class Lists {
    * 
    * @param <T> the generic type of the {@code ArrayList} to create.
    * @param elements the elements to store in the {@code ArrayList}.
-   * @return the created {@code ArrayList}.
+   * @return the created {@code ArrayList}, of {@code null} if the given {@code Iterable} is {@code null}.
    */
   public static <T> ArrayList<T> newArrayList(Iterable<? extends T> elements) {
     if (elements == null) {

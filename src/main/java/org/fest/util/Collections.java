@@ -34,66 +34,6 @@ import java.util.Set;
  */
 public final class Collections {
   /**
-   * Creates a set containing the given elements.
-   * 
-   * @param <T> the type of elements of the set to create.
-   * @param elements the elements to store in the set.
-   * @return the created set.
-   * @since 1.1.5
-   */
-  public static <T> Set<T> set(T... elements) {
-    if (elements == null) {
-      return null;
-    }
-    Set<T> set = new LinkedHashSet<T>();
-    for (T e : elements) {
-      set.add(e);
-    }
-    return set;
-  }
-
-  /**
-   * Creates a set containing the given element.
-   * <p>
-   * This method is an alternative to {@link #newArrayList(Object...) newArrayList(Object...)} (with one element!) which leads to a
-   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
-   * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
-   * 
-   * @param <T> the type of elements of the set to create.
-   * @param element the element to store in the set.
-   * @return the created set.
-   * @since 1.2.1
-   */
-  public static <T> Set<T> set(T element) {
-    if (element == null) {
-      return null;
-    }
-    Set<T> set = new LinkedHashSet<T>();
-    set.add(element);
-    return set;
-  }
-
-  /**
-   * Creates a set containing the given elements.
-   * <p>
-   * This method is an alternative to {@link #newArrayList(Object...) newArrayList(Object...)} (with one element!) which leads to a
-   * spurious warnings when using a non reifiable type (Note that JDK 7 will provide a way to ignore this warning).<br>
-   * More details here : https://blogs.oracle.com/darcy/entry/projectcoin_inducing_contributory_pollution<br>
-   * 
-   * @param <T> the type of elements of the set to create.
-   * @param first the first element to store in the set.
-   * @param second the second element to store in the set.
-   * @return the created set.
-   * @since 1.2.1
-   */
-  public static <T> Set<T> set(T first, T second) {
-    Set<T> set = new LinkedHashSet<T>();
-    set.add(first);
-    set.add(second);
-    return set;
-  }
-
-  /**
    * Returns any duplicate elements from the given {@code Collection}.
    * 
    * @param <T> the generic type of the given {@code Collection}.
