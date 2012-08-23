@@ -129,27 +129,5 @@ public class Arrays {
     return array.length > 0;
   }
 
-  /**
-   * Copies the specified array, truncating or padding with nulls (if necessary) so the copy has the specified length.
-   * For all indices that are valid in both the original array and the copy, the two arrays will contain identical
-   * values. For any indices that are valid in the copy but not the original, the copy will contain {@code null}. Such
-   * indices will exist if and only if the specified length is greater than that of the original array.
-   * 
-   * @param <T> the component type of the array.
-   * @param original the array to be copied.
-   * @param newLength the length of the copy to be returned.
-   * @return a copy of the original array, truncated or padded with nulls to obtain the specified length.
-   * @throws NegativeArraySizeException if {@code newLength} is negative.
-   * @throws NullPointerException if {@code original} is {@code null}.
-   * @since 1.1.5
-   */
-  @SuppressWarnings("unchecked")
-  public static <T> T[] copyOf(T[] original, int newLength) {
-    // TODO test
-    T[] copy = (T[]) Array.newInstance(original.getClass().getComponentType(), newLength);
-    arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
-    return copy;
-  }
-
   private Arrays() {}
 }
