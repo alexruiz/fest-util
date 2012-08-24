@@ -31,16 +31,16 @@ public class Collections_isEmpty_Test {
 
   @Test
   public void should_return_true_if_Collection_is_empty() {
-    assertTrue(Collections.isEmpty(new ArrayList<String>()));
+    assertTrue(Iterables.isEmpty(new ArrayList<String>()));
   }
 
   @Test
   public void should_return_true_if_Collection_is_null() {
-    assertTrue(Collections.isEmpty(null));
+    assertTrue(Iterables.isEmpty(null));
   }
 
   @Test
   public void should_return_false_ifCollection_has_elements() {
-    assertFalse(Collections.isEmpty(newArrayList("Frodo")));
+    assertFalse(Iterables.isEmpty(newArrayList("Frodo")));
   }
 }

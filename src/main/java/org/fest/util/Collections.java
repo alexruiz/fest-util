@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static java.util.Collections.*;
+import static java.util.Collections.emptyList;
 import static org.fest.util.ToString.toStringOf;
 
 import java.util.ArrayList;
@@ -58,32 +58,13 @@ public final class Collections {
   }
 
   /**
-   * Returns {@code true} if the given {@link Iterable} is {@code null} or empty.
+   * Indicates whether the given {@code Collection} is {@code null} or empty.
    * 
-   * @param iterable the {@link Iterable} to check.
-   * @return {@code true} if the given {@link Iterable} is {@code null} or empty, otherwise {@code false}.
+   * @param c the given {@code Collection}.
+   * @return {@code true} if the given {@code Collection} is {@code null} or empty, otherwise {@code false}.
    */
-  public static boolean isEmpty(Iterable<?> iterable) {
-    return iterable == null || !iterable.iterator().hasNext();
-  }
-
-  /**
-   * Returns the size of the given {@link Iterable}.
-   * 
-   * @param iterable the {@link Iterable} to get size.
-   * @return the size of the given {@link Iterable}..
-   * @throws IllegalArgumentException if given {@link Iterable} is null.
-   */
-  public static int sizeOf(Iterable<?> iterable) {
-    if (iterable == null) {
-      throw new IllegalArgumentException("iterable parameter must not be null");
-    }
-    int size = 0;
-    for (@SuppressWarnings("unused")
-    Object object : iterable) {
-      size++;
-    }
-    return size;
+  public static boolean isEmpty(Collection<?> c) {
+    return c == null || c.isEmpty();
   }
 
   /**
@@ -114,72 +95,26 @@ public final class Collections {
   }
 
   /**
-   * Returns a new unmodifiable {@code Collection} containing the non-null elements of the given {@code Collection}.
-   * This method returns an empty unmodifiable {@code Collection} if the given {@code Collection} has only {@code null}
-   * elements or if it is empty. This method returns {@code null} if the given {@code Collection} is {@code null}.
+   * Returns all the non-{@code null} elements in the given {@link Collection}.
    * 
    * @param <T> the type of elements of the {@code Collection}.
-   * @param c the {@code Collection} we want to extract non-{@code null} elements from.
-   * @return a new unmodifiable containing the non-null elements of the given {@code Collection}, or {@code null} if the
+   * @param c the given {@code Collection}.
+   * @return all the non-{@code null} elements in the given {@code Collection}. An empty list is returned if the
    *         given {@code Collection} is {@code null}.
    * @since 1.1.3
    */
-  public static <T> Iterable<T> nonNullElements(Iterable<T> c) {
-    if (c == null) {
-      return null;
+  public static <T> List<T> nonNullElementsIn(Collection<T> c) {
+    if (isEmpty(c)) {
+      return emptyList();
     }
-    Collection<T> nonNullElements = new ArrayList<T>();
-    for (T o : c) {
-      if (o != null) {
-        nonNullElements.add(o);
-      }
-    }
-    return unmodifiableCollection(nonNullElements);
-  }
-
-  /**
-   * Returns a new unmodifiable list containing the non-null elements of the given list. This method returns an empty
-   * unmodifiable list if the given list has only {@code null} elements or if it is empty. This method returns
-   * {@code null} if the given list is {@code null}.
-   * 
-   * @param <T> the type of elements of the list.
-   * @param l the list we want to extract non null elements from.
-   * @return a new unmodifiable list containing the non-null elements of the given list, or {@code null} if the given
-   *         list is {@code null}.
-   * @since 1.1.3
-   */
-  public static <T> List<T> nonNullElements(List<T> l) {
-    Collection<T> nonNullElements = (Collection<T>) nonNullElements((Collection<T>) l);
-    if (nonNullElements == null) {
-      return null;
-    }
-    return unmodifiableList(new ArrayList<T>(nonNullElements));
-  }
-
-  /**
-   * Returns {@code true} if the given {@link Iterable} has only {@code null} elements, {@code false} otherwise. If
-   * given {@link Iterable} is empty, this method returns {@code true}.
-   * 
-   * @param iterable the given iterable. <b>It must not be null</b>.
-   * @return {@code true} if the given iterable has only {@code null} elements or is empty, {@code false} otherwise.
-   * @throws NullPointerException if the given iterable is {@code null}.
-   * @since 1.1.3
-   */
-  public static boolean hasOnlyNullElements(Iterable<?> iterable) {
-    if (iterable == null) {
-      throw new NullPointerException("The iterable to check should not be null");
-    }
-    if (isEmpty(iterable)) {
-      return false;
-    }
-    for (Object element : iterable) {
+    List<T> nonNull = new ArrayList<T>();
+    for (T element : c) {
       if (element != null) {
-        return false;
+        nonNull.add(element);
       }
     }
-    return true;
+    return nonNull;
   }
 
-  private Collections() {
-  }
+  private Collections() {}
 }

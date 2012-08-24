@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Collections.isEmpty;
+import static org.fest.util.Iterables.isEmpty;
 import static org.fest.util.Strings.quote;
 
 import java.util.Comparator;

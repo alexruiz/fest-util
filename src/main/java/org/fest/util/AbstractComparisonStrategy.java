@@ -1,5 +1,3 @@
-package org.fest.util;
-
 /*
  * Created on Sep 17, 2010
  * 
@@ -14,10 +12,10 @@ package org.fest.util;
  * 
  * Copyright @2010-2011 the original author or authors.
  */
+package org.fest.util;
 
 import static java.lang.reflect.Array.getLength;
-
-import static org.fest.util.Collections.isEmpty;
+import static org.fest.util.Iterables.isEmpty;
 
 import java.lang.reflect.Array;
 import java.util.HashSet;
@@ -30,9 +28,12 @@ import java.util.Set;
  */
 public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
 
+  @Override
   public Iterable<?> duplicatesFrom(Iterable<?> iterable) {
     Set<Object> duplicates = new HashSet<Object>();
-    if (isEmpty(iterable)) return duplicates;
+    if (isEmpty(iterable)) {
+      return duplicates;
+    }
     Set<Object> noDuplicates = new HashSet<Object>();
     for (Object element : iterable) {
       if (iterableContains(noDuplicates, element)) {
@@ -44,26 +45,38 @@ public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
     return duplicates;
   }
 
+  @Override
   public boolean arrayContains(Object array, Object value) {
     for (int i = 0; i < getLength(array); i++) {
       Object element = Array.get(array, i);
-      if (areEqual(element, value)) return true;
+      if (areEqual(element, value)) {
+        return true;
+      }
     }
     return false;
   }
 
+  @Override
   public boolean isLessThan(Object actual, Object other) {
-    if (areEqual(actual, other)) return false;
+    if (areEqual(actual, other)) {
+      return false;
+    }
     return !isGreaterThan(actual, other);
   }
 
+  @Override
   public boolean isLessThanOrEqualTo(Object actual, Object other) {
-    if (areEqual(actual, other)) return true;
+    if (areEqual(actual, other)) {
+      return true;
+    }
     return isLessThan(actual, other);
   }
 
+  @Override
   public boolean isGreaterThanOrEqualTo(Object actual, Object other) {
-    if (areEqual(actual, other)) return true;
+    if (areEqual(actual, other)) {
+      return true;
+    }
     return isGreaterThan(actual, other);
   }
 

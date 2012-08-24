@@ -14,7 +14,8 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Collections.*;
+import static org.fest.util.Iterables.isEmpty;
+import static org.fest.util.Iterables.sizeOf;
 import static org.fest.util.Lists.newArrayList;
 import static org.junit.Assert.*;
 
