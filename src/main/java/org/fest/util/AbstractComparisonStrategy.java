@@ -15,7 +15,7 @@
 package org.fest.util;
 
 import static java.lang.reflect.Array.getLength;
-import static org.fest.util.Iterables.isEmpty;
+import static org.fest.util.Iterables.isNullOrEmpty;
 
 import java.lang.reflect.Array;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ public abstract class AbstractComparisonStrategy implements ComparisonStrategy {
   @Override
   public Iterable<?> duplicatesFrom(Iterable<?> iterable) {
     Set<Object> duplicates = new HashSet<Object>();
-    if (isEmpty(iterable)) {
+    if (isNullOrEmpty(iterable)) {
       return duplicates;
     }
     Set<Object> noDuplicates = new HashSet<Object>();

@@ -43,7 +43,7 @@ public final class Collections {
    */
   public static <T> Collection<T> duplicatesFrom(Collection<T> c) {
     Set<T> duplicates = new LinkedHashSet<T>();
-    if (isEmpty(c)) {
+    if (isNullOrEmpty(c)) {
       return duplicates;
     }
     Set<T> noDuplicates = new HashSet<T>();
@@ -63,7 +63,7 @@ public final class Collections {
    * @param c the given {@code Collection}.
    * @return {@code true} if the given {@code Collection} is {@code null} or empty, otherwise {@code false}.
    */
-  public static boolean isEmpty(Collection<?> c) {
+  public static boolean isNullOrEmpty(Collection<?> c) {
     return c == null || c.isEmpty();
   }
 
@@ -104,7 +104,7 @@ public final class Collections {
    * @since 1.1.3
    */
   public static <T> List<T> nonNullElementsIn(Collection<T> c) {
-    if (isEmpty(c)) {
+    if (isNullOrEmpty(c)) {
       return emptyList();
     }
     List<T> nonNull = new ArrayList<T>();

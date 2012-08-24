@@ -86,7 +86,7 @@ public final class Introspection {
 
   private static void validate(String propertyName, Object target) {
     if (propertyName == null) throw new NullPointerException("The property name should not be null");
-    if (isEmpty(propertyName)) throw new IllegalArgumentException("The property name should not be empty");
+    if (isNullOrEmpty(propertyName)) throw new IllegalArgumentException("The property name should not be empty");
     if (target == null) throw new NullPointerException("The target object should not be null");
   }
 

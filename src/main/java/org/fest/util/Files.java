@@ -194,7 +194,7 @@ public class Files {
 
   private static FilesException cannotCreateNewFile(String path, String reason, Exception cause) {
     String message = String.format("Unable to create the new file %s", quote(path));
-    if (!Strings.isEmpty(reason)) {
+    if (!Strings.isNullOrEmpty(reason)) {
       message = concat(message, ": ", reason);
     }
     if (cause != null) {

@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Tests for <code>{@link Strings#isEmpty(String)}</code>.
+ * Tests for <code>{@link Strings#isNullOrEmpty(String)}</code>.
  * 
  * @author Alex Ruiz
  */
@@ -27,16 +27,16 @@ public class Strings_isEmpty_Test {
 
   @Test
   public void should_return_true_if_String_is_empty() {
-    assertTrue(Strings.isEmpty(""));
+    assertTrue(Strings.isNullOrEmpty(""));
   }
 
   @Test
   public void should_return_true_if_String_is_null() {
-    assertTrue(Strings.isEmpty(null));
+    assertTrue(Strings.isNullOrEmpty(null));
   }
 
   @Test
   public void should_return_false_if_String_is_not_empty() {
-    assertFalse(Strings.isEmpty("foo"));
+    assertFalse(Strings.isNullOrEmpty("foo"));
   }
 }

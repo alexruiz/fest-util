@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Iterables.isEmpty;
+import static org.fest.util.Iterables.isNullOrEmpty;
 import static org.fest.util.Strings.quote;
 
 import java.util.Comparator;
@@ -50,7 +50,7 @@ public class ComparatorBasedComparisonStrategy extends AbstractComparisonStrateg
    */
   @SuppressWarnings("unchecked")
   public boolean iterableContains(Iterable<?> iterable, Object value) {
-    if (isEmpty(iterable)) return false;
+    if (isNullOrEmpty(iterable)) return false;
     for (Object element : iterable) {
       // avoid comparison when objects are the same or both null
       if (element == value) return true;

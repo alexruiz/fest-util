@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Iterables.isEmpty;
+import static org.fest.util.Iterables.isNullOrEmpty;
 import static org.fest.util.Iterables.sizeOf;
 import static org.fest.util.Lists.newArrayList;
 import static org.junit.Assert.*;
@@ -43,19 +43,19 @@ public class ComparatorBasedComparisonStrategy_duplicatesFrom_Test extends Abstr
   @Test
   public void should_not_return_any_duplicates() {
     Iterable<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(newArrayList("Frodo", "Sam", "Gandalf"));
-    assertTrue(isEmpty(duplicates));
+    assertTrue(isNullOrEmpty(duplicates));
   }
 
   @Test
   public void should_not_return_any_duplicates_if_collection_is_empty() {
     Iterable<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(new ArrayList<String>());
-    assertTrue(isEmpty(duplicates));
+    assertTrue(isNullOrEmpty(duplicates));
   }
 
   @Test
   public void should_not_return_any_duplicates_if_collection_is_null() {
     Iterable<?> duplicates = caseInsensitiveComparisonStrategy.duplicatesFrom(null);
-    assertTrue(isEmpty(duplicates));
+    assertTrue(isNullOrEmpty(duplicates));
   }
 
 }

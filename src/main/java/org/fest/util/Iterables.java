@@ -36,7 +36,7 @@ public final class Iterables {
    * @param iterable the given {@code Iterable} to check.
    * @return {@code true} if the given {@code Iterable} is {@code null} or empty, otherwise {@code false}.
    */
-  public static boolean isEmpty(Iterable<?> iterable) {
+  public static boolean isNullOrEmpty(Iterable<?> iterable) {
     if (iterable == null) {
       return true;
     }
@@ -78,7 +78,7 @@ public final class Iterables {
    * @since 1.1.3
    */
   public static <T> List<T> nonNullElementsIn(Iterable<T> i) {
-    if (isEmpty(i)) {
+    if (isNullOrEmpty(i)) {
       return emptyList();
     }
     List<T> nonNull = new ArrayList<T>();
