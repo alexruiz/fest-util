@@ -24,7 +24,6 @@ import org.junit.Test;
  * @author Yvonne Wang
  */
 public class SystemsProperties_lineSeparator_Test {
-
   @Test
   public void should_return_line_separator() {
     assertEquals(System.getProperty("line.separator"), SystemProperties.LINE_SEPARATOR);
