@@ -17,9 +17,7 @@ package org.fest.util;
 import static org.fest.util.Lists.newArrayList;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -33,7 +31,7 @@ public class Iterables_nonNullElementsIn_Test {
   @Test
   public void should_return_empty_List_if_given_Iterable_is_null() {
     Collection<?> c = null;
-    assertNull(Iterables.nonNullElementsIn(c));
+    assertTrue(Iterables.nonNullElementsIn(c).isEmpty());
   }
 
   @Test
