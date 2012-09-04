@@ -24,7 +24,7 @@ public final class SystemProperties {
 
   private static String lineSeparator() {
     try {
-      return java.lang.System.getProperty("line.separator");
+      return System.getProperty("line.separator");
     } catch (Exception e) {
       return "\n";
     }
