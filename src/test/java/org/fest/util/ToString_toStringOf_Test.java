@@ -20,17 +20,8 @@ import static org.fest.util.Lists.newArrayList;
 import static org.fest.util.ToString.toStringOf;
 import static org.junit.Assert.*;
 
-import java.awt.Dimension;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -53,12 +44,6 @@ public class ToString_toStringOf_Test {
   @Test
   public void should_quote_empty_String() {
     assertEquals("''", ToString.toStringOf(""));
-  }
-
-  @Test
-  public void should_return_toString_of_Dimension() {
-    Dimension o = new Dimension(10, 20);
-    assertEquals("(w=10, h=20)", ToString.toStringOf(o));
   }
 
   @Test
