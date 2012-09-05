@@ -14,11 +14,10 @@
  */
 package org.fest.util;
 
-import static java.lang.System.arraycopy;
+import static java.util.Collections.emptyList;
+import static org.fest.util.Preconditions.checkNotNull;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Utility methods related to arrays.
@@ -73,20 +72,17 @@ public class Arrays {
   }
 
   /**
-   * Returns a new array containing the non-null elements of the given array. This method returns an empty array if the
-   * given array has only {@code null} elements or if it is empty. This method returns {@code null} if the given array
-   * is {@code null}.
+   * Returns all the non-{@code null} elements in the given array.
    * 
    * @param <T> the type of elements of the array.
-   * @param array the array we want to extract the non-null elements from.
-   * @return a new array containing the non-null elements of the given array, or {@code null} if the given array is
+   * @param array the given array.
+   * @return all the non-{@code null} elements in the given array. An empty list is returned if the given array is
    *         {@code null}.
    * @since 1.1.3
    */
-  @SuppressWarnings("unchecked")
-  public static <T> T[] nonNullElements(T[] array) {
+  public static <T> List<T> nonNullElementsIn(T[] array) {
     if (array == null) {
-      return null;
+      return emptyList();
     }
     List<T> nonNullElements = new ArrayList<T>();
     for (T o : array) {
@@ -94,10 +90,7 @@ public class Arrays {
         nonNullElements.add(o);
       }
     }
-    int elementCount = nonNullElements.size();
-    T[] newArray = (T[]) Array.newInstance(array.getClass().getComponentType(), elementCount);
-    arraycopy(nonNullElements.toArray(), 0, newArray, 0, elementCount);
-    return newArray;
+    return nonNullElements;
   }
 
   /**
@@ -111,9 +104,7 @@ public class Arrays {
    * @since 1.1.3
    */
   public static <T> boolean hasOnlyNullElements(T[] array) {
-    if (array == null) {
-      throw new NullPointerException("The array to check should not be null");
-    }
+    checkNotNull(array);
     if (!hasElements(array)) {
       return false;
     }
