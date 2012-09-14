@@ -132,11 +132,6 @@ public class ToString_toStringOf_Test {
   }
 
   @Test
-  public void toString_with_non_anonymous_comparator() {
-    assertEquals("'CaseInsensitiveStringComparator'", ToString.toStringOf(new CaseInsensitiveStringComparator()));
-  }
-
-  @Test
   public void should_format_longs_and_integers() {
     assertFalse(toStringOf(20L).equals(toStringOf(20)));
     assertEquals("20", toStringOf(20));
