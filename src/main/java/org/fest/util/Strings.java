@@ -30,6 +30,11 @@ public final class Strings {
     return s == null || s.length() == 0;
   }
 
+  @Deprecated
+  public static boolean isEmpty(String s) {
+    return isNullOrEmpty( s );
+  }
+
   /**
    * Returns the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is
    * {@code null}.
