@@ -14,7 +14,8 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -46,5 +47,6 @@ public class Throwables_removeFestElementFromStackTrace_Test {
   }
 
   private static class FestThrowable extends Throwable {
+    private static final long serialVersionUID = 1L;
   }
 }
