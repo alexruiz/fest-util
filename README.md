@@ -1,5 +1,5 @@
-Common utilities used in all FEST modules.
+Common utilities used in all [FEST](http://fest.easytesting.org) modules.
 
-To prevent this project to include everything even the kitchen sink, the scope of this project is to contain utilities needed in two or more FEST modules. 
+To avoid feature creep, the scope of this project is to contain utilities needed in two or more FEST modules.
 
-For more details please visit [FEST's home page](http://fest.easytesting.org).
+Code in this module is considered for internal use only. It is not meant to be used by end-users. We do not guarantee backwards compatibility.
