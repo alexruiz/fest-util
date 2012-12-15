@@ -55,7 +55,7 @@ public class Files_contentOf_Test {
     File missingFile = new File("missing.txt");
     assertFalse(missingFile.exists());
 
-    thrown.expect(FilesException.class);
+    thrown.expect(IORuntimeException.class);
     Files.contentOf(missingFile, Charset.defaultCharset());
   }
 

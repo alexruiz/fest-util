@@ -15,14 +15,16 @@
 package org.fest.util;
 
 import static org.fest.util.Dates.dayOfWeekOf;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.rules.ExpectedException.none;
 
-import java.text.*;
-import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-import org.junit.*;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 /**

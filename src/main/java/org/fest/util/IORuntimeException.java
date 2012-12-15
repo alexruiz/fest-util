@@ -14,28 +14,30 @@
  */
 package org.fest.util;
 
+import java.io.IOException;
+
 /**
- * Exception thrown by <code>{@link Files}</code>.
+ * Signals that an I/O exception of some sort has occurred.
  *
  * @author Yvonne Wang
  */
-public final class FilesException extends RuntimeException {
+public final class IORuntimeException extends RuntimeException {
   /**
-   * Creates a new {@link FilesException}.
+   * Creates a new {@link IORuntimeException}.
    *
    * @param message the detail message.
    */
-  public FilesException(String message) {
+  public IORuntimeException(String message) {
     super(message);
   }
 
   /**
-   * Creates a new {@link FilesException}.
+   * Creates a new {@link IORuntimeException}.
    *
    * @param message the detail message.
    * @param cause the cause of the error.
    */
-  public FilesException(String message, Throwable cause) {
+  public IORuntimeException(String message, IOException cause) {
     super(message, cause);
   }
 }

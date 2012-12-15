@@ -14,9 +14,10 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Dates.*;
-
-import static org.junit.Assert.*;
+import static org.fest.util.Dates.formatAsDatetime;
+import static org.fest.util.Dates.parse;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.rules.ExpectedException.none;
 
 import java.util.Date;

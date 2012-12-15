@@ -15,7 +15,8 @@
 package org.fest.util;
 
 import static org.fest.util.Strings.quote;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

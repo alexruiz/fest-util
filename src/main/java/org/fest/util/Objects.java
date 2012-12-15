@@ -14,7 +14,8 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Arrays.*;
+import static org.fest.util.Arrays.isArray;
+import static org.fest.util.Arrays.isNullOrEmpty;
 
 import java.lang.reflect.Array;
 
@@ -25,12 +26,11 @@ import java.lang.reflect.Array;
  * @author Joel Costigliola
  */
 public final class Objects {
-
   /** Prime number used to calculate the hash code of objects. */
   public static final int HASH_CODE_PRIME = 31;
 
   /**
-   * Returns {@code true} if the given objects are equal or if both objects are {@code null}.
+   * Indicates whether the given objects are equal.
    *
    * @param o1 one of the objects to compare.
    * @param o2 one of the objects to compare.

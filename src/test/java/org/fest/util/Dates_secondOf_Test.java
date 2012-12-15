@@ -15,14 +15,15 @@
 package org.fest.util;
 
 import static org.fest.util.Dates.secondOf;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.rules.ExpectedException.none;
 
-import java.text.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.junit.*;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 /**

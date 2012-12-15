@@ -17,10 +17,13 @@ package org.fest.util;
 import static java.lang.String.format;
 import static java.lang.reflect.Modifier.isPublic;
 import static java.util.Locale.ENGLISH;
-import static org.fest.util.Preconditions.*;
+import static org.fest.util.Preconditions.checkNotNull;
+import static org.fest.util.Preconditions.checkNotNullOrEmpty;
 import static org.fest.util.Strings.quote;
 
-import java.beans.*;
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 
 /**

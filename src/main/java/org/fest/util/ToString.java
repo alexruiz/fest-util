@@ -19,7 +19,11 @@ import static org.fest.util.Strings.quote;
 
 import java.awt.Dimension;
 import java.io.File;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * Obtains the {@code toString} representation of an object.

@@ -14,12 +14,14 @@
  */
 package org.fest.util;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
 import static org.fest.util.Introspection.getProperty;
 
 import java.beans.PropertyDescriptor;
 
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Tests for {@link Introspection#getProperty(String, Object)}.

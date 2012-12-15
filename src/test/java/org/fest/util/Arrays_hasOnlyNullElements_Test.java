@@ -14,7 +14,8 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.rules.ExpectedException.none;
 
 import org.junit.Rule;

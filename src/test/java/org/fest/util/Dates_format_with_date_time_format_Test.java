@@ -15,11 +15,14 @@
 package org.fest.util;
 
 import static org.fest.util.Dates.formatAsDatetime;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
-import static org.junit.Assert.*;
-
-import java.text.*;
-import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.Test;
 

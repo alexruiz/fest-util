@@ -17,7 +17,8 @@ package org.fest.util;
 import static java.util.Collections.emptyList;
 import static org.fest.util.Preconditions.checkNotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility methods related to arrays.

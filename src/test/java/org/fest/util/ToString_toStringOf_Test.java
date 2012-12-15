@@ -18,10 +18,19 @@ import static junit.framework.Assert.assertFalse;
 import static org.fest.util.Arrays.array;
 import static org.fest.util.Lists.newArrayList;
 import static org.fest.util.ToString.toStringOf;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 

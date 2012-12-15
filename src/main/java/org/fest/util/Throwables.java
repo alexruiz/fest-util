@@ -16,7 +16,8 @@ package org.fest.util;
 
 import static org.fest.util.Lists.newArrayList;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility methods related to <code>{@link Throwable}</code>s.
