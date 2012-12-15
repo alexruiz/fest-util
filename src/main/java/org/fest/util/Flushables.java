@@ -10,20 +10,20 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2008-2012 the original author or authors.
+ * Copyright @2008-2013 the original author or authors.
  */
 package org.fest.util;
 
 import java.io.Flushable;
 
 /**
- * Utility methods related to <code>{@link Flushable}</code>.
+ * Utility methods related to {@link Flushable}.
  * 
  * @author Yvonne Wang
  */
 public class Flushables {
   /**
-   * Flushes the given <code>{@link Flushable}</code>s, ignoring any thrown exceptions.
+   * Flushes the given {@link Flushable}s, ignoring any thrown exceptions.
    * 
    * @param flushables the {@code Flushable}s to flush.
    */
@@ -43,6 +43,5 @@ public class Flushables {
     }
   }
 
-  private Flushables() {
-  }
+  private Flushables() {}
 }

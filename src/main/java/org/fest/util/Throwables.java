@@ -10,7 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *
- * Copyright @2008-2012 the original author or authors.
+ * Copyright @2008-2013 the original author or authors.
  */
 package org.fest.util;
 
@@ -20,17 +20,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Utility methods related to <code>{@link Throwable}</code>s.
+ * Utility methods related to {@link Throwable}s.
  *
  * @author Alex Ruiz
  */
+// TODO(Alex): Clean up this code.
 public final class Throwables {
   /**
-   * Appends the stack trace of the current thread to the one in the given <code>{@link Throwable}</code>.
+   * Appends the stack trace of the current thread to the one in the given {@link Throwable}.
    *
    * @param t the given {@code Throwable}.
    * @param methodToStartFrom the name of the method used as the starting point of the current thread's stack trace.
    */
+  // TODO(Alex): Rename to 'appendStackTrace'
   public static void appendStackTraceInCurentThreadToThrowable(Throwable t, String methodToStartFrom) {
     List<StackTraceElement> stackTrace = newArrayList(t.getStackTrace());
     stackTrace.addAll(stackTraceInCurrentThread(methodToStartFrom));
@@ -55,7 +57,7 @@ public final class Throwables {
   }
 
   /**
-   * Removes the FEST-related elements from the <code>{@link Throwable}</code> stack trace that have little value for
+   * Removes the FEST-related elements from the {@link Throwable} stack trace that have little value for
    * end user. Therefore, instead of seeing this:
    *
    * <pre>
@@ -85,6 +87,7 @@ public final class Throwables {
    * </pre>
    * @param throwable the {@code Throwable} to filter stack trace.
    */
+  // TODO(Alex): Rename to 'removeFestFromStackTrace'
   public static void removeFestRelatedElementsFromStackTrace(Throwable throwable) {
     List<StackTraceElement> filtered = newArrayList(throwable.getStackTrace());
     StackTraceElement previous = null;

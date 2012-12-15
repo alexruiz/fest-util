@@ -10,11 +10,12 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2012 the original author or authors.
+ * Copyright @2012-2013 the original author or authors.
  */
 package org.fest.util;
 
 import static java.util.Collections.emptyList;
+import static org.fest.util.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,9 +55,7 @@ public final class Iterables {
    * @throws NullPointerException if given {@link Iterable} is null.
    */
   public static int sizeOf(Iterable<?> iterable) {
-    if (iterable == null) {
-      throw new NullPointerException("Iterable must not be null");
-    }
+    checkNotNull(iterable);
     if (iterable instanceof Collection) {
       return ((Collection<?>) iterable).size();
     }

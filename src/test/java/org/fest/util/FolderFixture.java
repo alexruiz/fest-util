@@ -1,16 +1,16 @@
 /*
  * Created on Sep 25, 2006
  * 
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the
- * License. You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS"
- * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2006-2011 the original author or authors.
+ * Copyright @2006-2013 the original author or authors.
  */
 package org.fest.util;
 
@@ -67,7 +67,9 @@ public final class FolderFixture {
       logger.info(format("Created directory %s", quote(path)));
       return;
     }
-    if (!dir.isDirectory()) throw new AssertionError(String.format("%s should be a directory", quote(path)));
+    if (!dir.isDirectory()) {
+      throw new AssertionError(String.format("%s should be a directory", quote(path)));
+    }
     logger.info(format("The directory %s already exists", quote(path)));
   }
 
@@ -78,19 +80,24 @@ public final class FolderFixture {
   }
 
   public FolderFixture addFiles(String... names) throws IOException {
-    for (String file : names)
+    for (String file : names) {
       files.add(new FileFixture(file, this));
+    }
     return this;
   }
 
   public void delete() {
-    for (FolderFixture folder : folders)
+    for (FolderFixture folder : folders) {
       folder.delete();
-    for (FileFixture file : files)
+    }
+    for (FileFixture file : files) {
       file.delete();
+    }
     String path = relativePath();
     boolean dirDeleted = dir.delete();
-    if (!dirDeleted) throw new AssertionError(String.format("Unable to delete directory %s", quote(path)));
+    if (!dirDeleted) {
+      throw new AssertionError(String.format("Unable to delete directory %s", quote(path)));
+    }
     logger.info(format("The directory %s was deleted", quote(path)));
   }
 
@@ -100,26 +107,37 @@ public final class FolderFixture {
 
   public FolderFixture folder(String path) {
     String[] names = path.split(separatorAsRegEx());
-    if (isNullOrEmpty(names)) return null;
+    if (isNullOrEmpty(names)) {
+      return null;
+    }
     int i = 0;
-    if (!name.equals(names[i++])) return null;
+    if (!name.equals(names[i++])) {
+      return null;
+    }
     FolderFixture current = this;
     for (; i < names.length; i++) {
       current = current.childFolder(names[i]);
-      if (current == null) break;
+      if (current == null) {
+        break;
+      }
     }
     return current;
   }
 
   private FolderFixture childFolder(String folderName) {
-    for (FolderFixture folder : folders)
-      if (folder.name.equals(folderName)) return folder;
+    for (FolderFixture folder : folders) {
+      if (folder.name.equals(folderName)) {
+        return folder;
+      }
+    }
     return null;
   }
 
   private String separatorAsRegEx() {
     String regex = separator;
-    if ("\\".equals(regex)) regex = "\\\\";
+    if ("\\".equals(regex)) {
+      regex = "\\\\";
+    }
     return regex;
   }
 }

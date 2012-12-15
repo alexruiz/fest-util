@@ -14,6 +14,8 @@
  */
 package org.fest.util;
 
+import static org.fest.util.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,7 +29,7 @@ import java.util.List;
  */
 public class TypeFilter<T> implements CollectionFilter<T> {
   /**
-   * Creates a new <code>{@link TypeFilter}</code>.
+   * Creates a new {@link TypeFilter}.
    * 
    * @param <T> the generic type of the target type.
    * @param type the target type for this filter.
@@ -48,14 +50,12 @@ public class TypeFilter<T> implements CollectionFilter<T> {
    * 
    * @param target the collection to filter.
    * @return a list containing the filtered elements.
-   * @throws IllegalArgumentException if the given collection is {@code null}.
+   * @throws NullPointerException if the given collection is {@code null}.
    */
   @Override
   @SuppressWarnings("unchecked")
   public List<T> filter(Collection<?> target) {
-    if (target == null) {
-      throw new IllegalArgumentException("The collection to filter should not be null");
-    }
+    checkNotNull(target);
     List<Object> filtered = new ArrayList<Object>();
     for (Object o : target) {
       if (o == null) {

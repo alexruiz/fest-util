@@ -10,9 +10,11 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2006-2012 the original author or authors.
+ * Copyright @2006-2013 the original author or authors.
  */
 package org.fest.util;
+
+import static org.fest.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods related to {@code String}s.
@@ -55,10 +57,10 @@ public final class Strings {
 
   /**
    * Concatenates the given objects into a single {@code String}. This method is more efficient than concatenating using
-   * "+", since only one <code>{@link StringBuilder}</code> is created.
+   * "+", since only one {@link StringBuilder} is created.
    * 
    * @param objects the objects to concatenate.
-   * @return a {@code String} containing the given objects.
+   * @return a {@code String} containing the given objects, or {@code null} if the given array is empty or {@code null}.
    */
   public static String concat(Object... objects) {
     if (Arrays.isNullOrEmpty(objects)) {
@@ -100,7 +102,7 @@ public final class Strings {
     private final String[] strings;
 
     /**
-     * Creates a new <code>{@link StringsToJoin}</code>.
+     * Creates a new {@link StringsToJoin}.
      * 
      * @param strings the {@code String}s to join.
      */
@@ -113,11 +115,10 @@ public final class Strings {
      * 
      * @param delimeter the delimeter to use.
      * @return the {@code String}s joined using the given delimeter.
+     * @throws NullPointerException if the given delimeter is {@code null}.
      */
     public String with(String delimeter) {
-      if (delimeter == null) {
-        throw new IllegalArgumentException("Delimiter should not be null");
-      }
+      checkNotNull(delimeter);
       if (Arrays.isNullOrEmpty(strings)) {
         return "";
       }

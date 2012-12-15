@@ -10,7 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2012 Google, Inc. and others.
+ * Copyright @2012-2013 Google, Inc. and others.
  */
 package org.fest.util;
 
@@ -25,7 +25,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * Tests for <code>{@link Iterables#isNullOrEmpty(Iterable)}</code>.
+ * Tests for {@link Iterables#isNullOrEmpty(Iterable)}.
  * 
  * @author Alex Ruiz
  */
@@ -62,7 +62,7 @@ public class Iterables_isNullOrEmpty_Test {
   private static class StringIterable implements Iterable<String> {
     private final List<String> elements;
 
-    StringIterable(String...elements) {
+    StringIterable(String... elements) {
       this.elements = Lists.newArrayList(elements);
     }
 

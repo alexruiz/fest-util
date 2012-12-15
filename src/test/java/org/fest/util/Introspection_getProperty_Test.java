@@ -10,18 +10,21 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2010-2012 the original author or authors.
+ * Copyright @2010-2013 the original author or authors.
  */
 package org.fest.util;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static org.fest.util.Introspection.getProperty;
+import static org.junit.rules.ExpectedException.none;
 
 import java.beans.PropertyDescriptor;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Tests for {@link Introspection#getProperty(String, Object)}.
@@ -29,6 +32,9 @@ import org.junit.Test;
  * @author Joel Costigliola
  */
 public class Introspection_getProperty_Test {
+  @Rule
+  public ExpectedException thrown = none();
+
   private Employee judy;
 
   @Before
@@ -45,25 +51,15 @@ public class Introspection_getProperty_Test {
 
   @Test
   public void should_raise_an_error_because_of_missing_getter() {
-    try {
-      getProperty("salary", judy);
-    } catch (IntrospectionError error) {
-      assertEquals("No getter for property 'salary' in org.fest.util.Employee", error.getMessage());
-    }
+    thrown.expect(IntrospectionError.class);
+    thrown.expectMessage("No getter for property 'salary' in org.fest.util.Employee");
+    getProperty("salary", judy);
   }
 
   @Test
   public void should_raise_an_error_because_of_non_public_getter() {
-    try {
-      getProperty("company", judy);
-    } catch (IntrospectionError error) {
-      assertEquals("No public getter for property 'company' in org.fest.util.Employee", error.getMessage());
-    }
-    try {
-      getProperty("firstJob", judy);
-    } catch (IntrospectionError error) {
-      assertEquals("No public getter for property 'firstJob' in org.fest.util.Employee", error.getMessage());
-    }
+    thrown.expect(IntrospectionError.class);
+    thrown.expectMessage("No public getter for property 'company' in org.fest.util.Employee");
+    getProperty("company", judy);
   }
-
 }

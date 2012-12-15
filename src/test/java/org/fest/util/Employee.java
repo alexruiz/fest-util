@@ -10,12 +10,12 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  * 
- * Copyright @2010-2012 the original author or authors.
+ * Copyright @2010-2013 the original author or authors.
  */
 package org.fest.util;
 
 /**
- * Class used for testing <code>{@link Introspection}</code>.
+ * Class used for testing {@link Introspection}.
  * 
  * @author Joel Costigliola
  */

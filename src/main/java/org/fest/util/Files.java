@@ -10,16 +10,16 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  *
- * Copyright @2006-2012 the original author or authors.
+ * Copyright @2006-2013 the original author or authors.
  */
 package org.fest.util;
 
 import static java.io.File.separator;
 import static java.lang.String.format;
-import static java.lang.String.valueOf;
 import static org.fest.util.Arrays.isNullOrEmpty;
 import static org.fest.util.Closeables.closeQuietly;
 import static org.fest.util.Flushables.flush;
+import static org.fest.util.Preconditions.checkNotNull;
 import static org.fest.util.Strings.append;
 import static org.fest.util.Strings.concat;
 import static org.fest.util.Strings.quote;
@@ -67,24 +67,24 @@ public class Files {
    * @return the names of the files inside the specified directory.
    */
   private static List<String> fileNamesIn(File dir, boolean recurse) {
-    List<String> scriptNames = new ArrayList<String>();
+    List<String> fileNames = new ArrayList<String>();
     File[] existingFiles = dir.listFiles();
     if (isNullOrEmpty(existingFiles)) {
-      return scriptNames;
+      return fileNames;
     }
     for (File existingFile : existingFiles) {
       if (existingFile.isDirectory()) {
         if (recurse) {
-          scriptNames.addAll(fileNamesIn(existingFile, recurse));
+          fileNames.addAll(fileNamesIn(existingFile, recurse));
         }
         continue;
       }
       String filename = existingFile.getAbsolutePath();
-      if (!scriptNames.contains(filename)) {
-        scriptNames.add(filename);
+      if (!fileNames.contains(filename)) {
+        fileNames.add(filename);
       }
     }
-    return scriptNames;
+    return fileNames;
   }
 
   /**
@@ -121,7 +121,7 @@ public class Files {
    * @return the created file.
    */
   public static File newTemporaryFile() {
-    String tempFileName = concat(valueOf(System.currentTimeMillis()), ".txt");
+    String tempFileName = String.format("%d.%s", System.currentTimeMillis(), ".txt");
     return newFile(concat(temporaryFolderPath(), tempFileName));
   }
 
@@ -194,17 +194,13 @@ public class Files {
   private static IORuntimeException cannotCreateNewFile(String path, String reason, IOException cause) {
     String message = String.format("Unable to create the new file %s", quote(path));
     if (!Strings.isNullOrEmpty(reason)) {
-      message = concat(message, ": ", reason);
+      message = String.format("%s: %s", message, reason);
     }
-    if (cause != null) {
-      throw new IORuntimeException(message, cause);
-    }
-    throw new IORuntimeException(message);
+    throw new IORuntimeException(message, cause);
   }
 
   /**
-   * Flushes and closes the given <code>{@link Writer}</code>. Any I/O errors catched by this method are ignored and not
-   * rethrown.
+   * Flushes and closes the given {@link Writer}. Any I/O errors caught by this method are ignored and not re-thrown.
    *
    * @param writer the writer to flush and close.
    */
@@ -217,8 +213,8 @@ public class Files {
   }
 
   /**
-   * Flushes and closes the given <code>{@link OutputStream}</code>. Any I/O errors catched by this method are ignored
-   * and not rethrown.
+   * Flushes and closes the given {@link OutputStream}. Any I/O errors caught by this method are ignored and not
+   * re-thrown.
    *
    * @param out the output stream to flush and close.
    */
@@ -289,9 +285,7 @@ public class Files {
    * @throws IORuntimeException if an I/O exception occurs.
    */
   public static String contentOf(File file, Charset charset) {
-    if (charset == null) {
-      throw new NullPointerException("The charset should not be null");
-    }
+    checkNotNull(charset);
     try {
       return loadContents(file, charset);
     } catch (IOException e) {
