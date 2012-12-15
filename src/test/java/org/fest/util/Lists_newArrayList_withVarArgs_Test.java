@@ -17,10 +17,13 @@ package org.fest.util;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.rules.ExpectedException.none;
 
 import java.util.ArrayList;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Tests for {@link Lists#newArrayList(Object...)}.
@@ -29,6 +32,9 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class Lists_newArrayList_withVarArgs_Test {
+  @Rule
+  public ExpectedException thrown = none();
+
   @Test
   public void should_return_List_containing_all_elements_in_array() {
     String[] expected = { "One", "Two" };
@@ -37,7 +43,8 @@ public class Lists_newArrayList_withVarArgs_Test {
   }
 
   @Test
-  public void should_return_null_if_array_is_null() {
+  public void should_throw_error_if_array_is_null() {
+    thrown.expect(NullPointerException.class);
     Object[] elements = null;
     assertNull(Lists.newArrayList(elements));
   }

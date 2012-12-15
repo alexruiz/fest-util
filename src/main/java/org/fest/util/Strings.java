@@ -16,6 +16,9 @@ package org.fest.util;
 
 import static org.fest.util.Preconditions.checkNotNull;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Utility methods related to {@code String}s.
  * 
@@ -28,7 +31,7 @@ public final class Strings {
    * @param s the {@code String} to check.
    * @return {@code true} if the given {@code String} is {@code null} or empty, otherwise {@code false}.
    */
-  public static boolean isNullOrEmpty(String s) {
+  public static boolean isNullOrEmpty(@Nullable String s) {
     return s == null || s.length() == 0;
   }
 
@@ -40,7 +43,7 @@ public final class Strings {
    * @return the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is
    *         {@code null}.
    */
-  public static String quote(String s) {
+  public static @Nullable String quote(@Nullable String s) {
     return s != null ? concat("'", s, "'") : null;
   }
 
@@ -51,7 +54,7 @@ public final class Strings {
    * @return the given object surrounded by single quotes, only if the object is a {@code String}.
    * @see #quote(String)
    */
-  public static Object quote(Object o) {
+  public static @Nullable Object quote(@Nullable Object o) {
     return o instanceof String ? quote(o.toString()) : o;
   }
 
@@ -60,17 +63,15 @@ public final class Strings {
    * "+", since only one {@link StringBuilder} is created.
    * 
    * @param objects the objects to concatenate.
-   * @return a {@code String} containing the given objects, or {@code null} if the given array is empty or {@code null}.
+   * @return a {@code String} containing the given objects, or empty {@code String} if the given array is empty.
    */
-  public static String concat(Object... objects) {
-    if (Arrays.isNullOrEmpty(objects)) {
-      return null;
-    }
+  public static @Nonnull String concat(@Nonnull Object... objects) {
+    checkNotNull(objects);
     StringBuilder b = new StringBuilder();
     for (Object o : objects) {
       b.append(o);
     }
-    return b.toString();
+    return checkNotNull(b.toString());
   }
 
   /**
@@ -87,7 +88,7 @@ public final class Strings {
    * @return an intermediate object that takes a given delimiter and knows how to join the given {@code String}s.
    * @see StringsToJoin#with(String)
    */
-  public static StringsToJoin join(String... strings) {
+  public static @Nonnull StringsToJoin join(@Nonnull String... strings) {
     return new StringsToJoin(strings);
   }
 
@@ -97,7 +98,6 @@ public final class Strings {
    * @see Strings#join(String[])
    */
   public static class StringsToJoin {
-
     /** The {@code String}s to join. */
     private final String[] strings;
 
@@ -106,7 +106,7 @@ public final class Strings {
      * 
      * @param strings the {@code String}s to join.
      */
-    StringsToJoin(String... strings) {
+    StringsToJoin(@Nonnull String... strings) {
       this.strings = strings;
     }
 
@@ -117,7 +117,7 @@ public final class Strings {
      * @return the {@code String}s joined using the given delimeter.
      * @throws NullPointerException if the given delimeter is {@code null}.
      */
-    public String with(String delimeter) {
+    public @Nonnull String with(@Nonnull String delimeter) {
       checkNotNull(delimeter);
       if (Arrays.isNullOrEmpty(strings)) {
         return "";
@@ -131,7 +131,7 @@ public final class Strings {
           b.append(delimeter);
         }
       }
-      return b.toString();
+      return checkNotNull(b.toString());
     }
   }
 
@@ -150,7 +150,7 @@ public final class Strings {
    * @return an intermediate object that takes the target {@code String} and knows to append the given {@code String}.
    * @see StringToAppend#to(String)
    */
-  public static StringToAppend append(String toAppend) {
+  public static @Nonnull StringToAppend append(@Nonnull String toAppend) {
     return new StringToAppend(toAppend);
   }
 
@@ -161,7 +161,7 @@ public final class Strings {
   public static class StringToAppend {
     private final String toAppend;
 
-    StringToAppend(String toAppend) {
+    StringToAppend(@Nonnull String toAppend) {
       this.toAppend = toAppend;
     }
 
@@ -172,7 +172,7 @@ public final class Strings {
      * @return a {@code String} containing the target {@code String} with the given {@code String} to append added to
      *         the end.
      */
-    public String to(String s) {
+    public @Nonnull String to(@Nonnull String s) {
       if (!s.endsWith(toAppend)) {
         return concat(s, toAppend);
       }

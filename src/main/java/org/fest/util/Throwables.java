@@ -15,9 +15,12 @@
 package org.fest.util;
 
 import static org.fest.util.Lists.newArrayList;
+import static org.fest.util.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Nonnull;
 
 /**
  * Utility methods related to {@link Throwable}s.
@@ -30,20 +33,20 @@ public final class Throwables {
    * Appends the stack trace of the current thread to the one in the given {@link Throwable}.
    *
    * @param t the given {@code Throwable}.
-   * @param methodToStartFrom the name of the method used as the starting point of the current thread's stack trace.
+   * @param startingMethod the name of the method used as the starting point of the current thread's stack trace.
    */
   // TODO(Alex): Rename to 'appendStackTrace'
-  public static void appendStackTraceInCurentThreadToThrowable(Throwable t, String methodToStartFrom) {
-    List<StackTraceElement> stackTrace = newArrayList(t.getStackTrace());
-    stackTrace.addAll(stackTraceInCurrentThread(methodToStartFrom));
+  public static void appendStackTraceInCurentThreadToThrowable(@Nonnull Throwable t, @Nonnull String startingMethod) {
+    List<StackTraceElement> stackTrace = newArrayList(checkNotNull(t.getStackTrace()));
+    stackTrace.addAll(filteredStackTrace(startingMethod));
     t.setStackTrace(stackTrace.toArray(new StackTraceElement[stackTrace.size()]));
   }
 
-  private static List<StackTraceElement> stackTraceInCurrentThread(String methodToStartFrom) {
+  private static @Nonnull List<StackTraceElement> filteredStackTrace(@Nonnull String startingMethod) {
     List<StackTraceElement> filtered = stackTraceInCurrentThread();
     List<StackTraceElement> toRemove = new ArrayList<StackTraceElement>();
     for (StackTraceElement e : filtered) {
-      if (methodToStartFrom.equals(e.getMethodName())) {
+      if (startingMethod.equals(e.getMethodName())) {
         break;
       }
       toRemove.add(e);
@@ -53,7 +56,8 @@ public final class Throwables {
   }
 
   private static List<StackTraceElement> stackTraceInCurrentThread() {
-    return newArrayList(Thread.currentThread().getStackTrace());
+    StackTraceElement[] stackTrace = checkNotNull(Thread.currentThread().getStackTrace());
+    return newArrayList(stackTrace);
   }
 
   /**
@@ -88,8 +92,9 @@ public final class Throwables {
    * @param throwable the {@code Throwable} to filter stack trace.
    */
   // TODO(Alex): Rename to 'removeFestFromStackTrace'
-  public static void removeFestRelatedElementsFromStackTrace(Throwable throwable) {
-    List<StackTraceElement> filtered = newArrayList(throwable.getStackTrace());
+  public static void removeFestRelatedElementsFromStackTrace(@Nonnull Throwable throwable) {
+    StackTraceElement[] stackTrace = checkNotNull(throwable.getStackTrace());
+    List<StackTraceElement> filtered = newArrayList(stackTrace);
     StackTraceElement previous = null;
     for (StackTraceElement element : throwable.getStackTrace()) {
       if (element.getClassName().contains("org.fest")) {

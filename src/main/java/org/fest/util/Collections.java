@@ -25,6 +25,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Utility methods related to {@code Collection}s.
  * 
@@ -38,21 +41,21 @@ public final class Collections {
    * 
    * @param <T> the generic type of the given {@code Collection}.
    * @param c the given {@code Collection} that might have duplicate elements.
-   * @return a {@code Collection} containing the duplicate elements of the given one. If no duplicates are found, an
-   *         empty {@code Collection} is returned.
+   * @return a {@code Collection} containing the duplicate elements of the given one. If the given {@Collection} is
+   *         {@code null} or if no duplicates were found, an empty {@code Collection} is returned.
    */
-  public static <T> Collection<T> duplicatesFrom(Collection<T> c) {
+  public static @Nonnull <T> Collection<T> duplicatesFrom(@Nullable Collection<T> c) {
     Set<T> duplicates = new LinkedHashSet<T>();
-    if (isNullOrEmpty(c)) {
+    if (c == null) {
       return duplicates;
     }
-    Set<T> noDuplicates = new HashSet<T>();
+    Set<T> unique = new HashSet<T>();
     for (T e : c) {
-      if (noDuplicates.contains(e)) {
+      if (unique.contains(e)) {
         duplicates.add(e);
         continue;
       }
-      noDuplicates.add(e);
+      unique.add(e);
     }
     return duplicates;
   }
@@ -63,7 +66,7 @@ public final class Collections {
    * @param c the given {@code Collection}.
    * @return {@code true} if the given {@code Collection} is {@code null} or empty, otherwise {@code false}.
    */
-  public static boolean isNullOrEmpty(Collection<?> c) {
+  public static boolean isNullOrEmpty(@Nullable Collection<?> c) {
     return c == null || c.isEmpty();
   }
 
@@ -74,7 +77,7 @@ public final class Collections {
    * @param c the {@code Collection} to format.
    * @return the {@code String} representation of the given {@code Collection}.
    */
-  public static String format(Collection<?> c) {
+  public static @Nullable String format(@Nullable Collection<?> c) {
     if (c == null) {
       return null;
     }

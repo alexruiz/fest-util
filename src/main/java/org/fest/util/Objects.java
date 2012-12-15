@@ -15,9 +15,12 @@
 package org.fest.util;
 
 import static org.fest.util.Arrays.isArray;
-import static org.fest.util.Arrays.isNullOrEmpty;
+import static org.fest.util.Preconditions.checkNotNull;
 
 import java.lang.reflect.Array;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Utility methods related to objects.
@@ -36,7 +39,7 @@ public final class Objects {
    * @param o2 one of the objects to compare.
    * @return {@code true} if the given objects are equal or if both objects are {@code null}.
    */
-  public static boolean areEqual(Object o1, Object o2) {
+  public static boolean areEqual(@Nullable Object o1, @Nullable Object o2) {
     if (o1 == null) {
       return o2 == null;
     }
@@ -46,7 +49,7 @@ public final class Objects {
     return areEqualArrays(o1, o2);
   }
 
-  private static boolean areEqualArrays(Object o1, Object o2) {
+  private static boolean areEqualArrays(@Nullable Object o1, @Nullable Object o2) {
     if (!isArray(o1) || !isArray(o2)) {
       return false;
     }
@@ -72,11 +75,10 @@ public final class Objects {
    *
    * @param types the given types.
    * @return the names of the given types stored in an array.
+   * @throws NullPointerException if the given array of types is {@code null}.
    */
-  public static String[] namesOf(Class<?>... types) {
-    if (isNullOrEmpty(types)) {
-      return new String[0];
-    }
+  public static @Nonnull String[] namesOf(@Nonnull Class<?>... types) {
+    checkNotNull(types);
     String[] names = new String[types.length];
     for (int i = 0; i < types.length; i++) {
       names[i] = types[i].getName();

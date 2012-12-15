@@ -17,10 +17,13 @@ package org.fest.util;
 import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.rules.ExpectedException.none;
 
 import java.util.Arrays;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Tests for {@link Objects#namesOf(Class...)}.
@@ -29,8 +32,12 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class Objects_namesOf_Test {
+  @Rule
+  public ExpectedException thrown = none();
+
   @Test
-  public void should_return_empty_array_if_type_array_is_null() {
+  public void should_throw_error_if_type_array_is_null() {
+    thrown.expect(NullPointerException.class);
     assertEquals(Objects.namesOf((Class<?>[]) null).length, 0);
   }
 

@@ -20,6 +20,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Utility methods related to maps.
  * 
@@ -33,7 +36,7 @@ public class Maps {
    * @param map the map to check.
    * @return {@code true} if the given {@code Map} is {@code null} or empty, otherwise {@code false}.
    */
-  public static boolean isNullOrEmpty(Map<?, ?> map) {
+  public static boolean isNullOrEmpty(@Nullable Map<?, ?> map) {
     return map == null || map.isEmpty();
   }
 
@@ -43,7 +46,7 @@ public class Maps {
    * @param map the map to format.
    * @return the {@code String} representation of the given map.
    */
-  public static String format(Map<?, ?> map) {
+  public static @Nullable String format(@Nullable Map<?, ?> map) {
     if (map == null) {
       return null;
     }
@@ -65,7 +68,7 @@ public class Maps {
     }
   }
 
-  private static Object format(Map<?, ?> map, Object o) {
+  private static @Nullable Object format(@Nonnull Map<?, ?> map, @Nullable Object o) {
     return o == map ? "(this Map)" : toStringOf(o);
   }
 

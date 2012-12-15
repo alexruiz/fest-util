@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 /**
  * Filters elements of a collection by their data type.
  * 
@@ -35,7 +37,7 @@ public class TypeFilter<T> implements CollectionFilter<T> {
    * @param type the target type for this filter.
    * @return the created filter.
    */
-  public static <T> TypeFilter<T> byType(Class<T> type) {
+  public static @Nonnull <T> TypeFilter<T> byType(@Nonnull Class<T> type) {
     return new TypeFilter<T>(type);
   }
 
@@ -54,7 +56,7 @@ public class TypeFilter<T> implements CollectionFilter<T> {
    */
   @Override
   @SuppressWarnings("unchecked")
-  public List<T> filter(Collection<?> target) {
+  public @Nonnull List<T> filter(@Nonnull Collection<?> target) {
     checkNotNull(target);
     List<Object> filtered = new ArrayList<Object>();
     for (Object o : target) {

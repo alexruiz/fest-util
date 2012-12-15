@@ -17,6 +17,8 @@ package org.fest.util;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 /**
  * Filters elements in a collection.
  * 
@@ -25,5 +27,5 @@ import java.util.List;
  * @author Yvonne Wang
  */
 public interface CollectionFilter<T> {
-  List<T> filter(Collection<?> target);
+  @Nonnull List<T> filter(@Nonnull Collection<?> target);
 }

@@ -14,7 +14,6 @@
  */
 package org.fest.util;
 
-import static java.lang.String.format;
 import static java.lang.reflect.Modifier.isPublic;
 import static java.util.Locale.ENGLISH;
 import static org.fest.util.Preconditions.checkNotNull;
@@ -25,6 +24,9 @@ import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Utility methods related to <a
@@ -44,7 +46,7 @@ public final class Introspection {
    * @throws NullPointerException if the given object is {@code null}.
    * @throws IntrospectionError if a matching property cannot be found or accessed.
    */
-  public static PropertyDescriptor getProperty(String propertyName, Object target) {
+  public static PropertyDescriptor getProperty(@Nonnull String propertyName, @Nonnull Object target) {
     checkNotNullOrEmpty(propertyName);
     checkNotNull(target);
     BeanInfo beanInfo = null;
@@ -52,30 +54,33 @@ public final class Introspection {
     try {
       beanInfo = Introspector.getBeanInfo(type);
     } catch (Throwable t) {
-      throw new IntrospectionError(format("Unable to get BeanInfo for type %s", type.getName()), t);
+      String msg = String.format("Unable to get BeanInfo for type %s", type.getName());
+      throw new IntrospectionError(checkNotNull(msg), t);
     }
     for (PropertyDescriptor descriptor : beanInfo.getPropertyDescriptors()) {
       if (propertyName.equals(descriptor.getName())) {
         return descriptor;
       }
     }
-    throw new IntrospectionError(propertyNotFoundErrorMessage(propertyName, target));
+    throw propertyNotFoundError(propertyName, target);
   }
 
-  private static String propertyNotFoundErrorMessage(String propertyName, Object target) {
-    String targetTypeName = target.getClass().getName();
-    String property = quote(propertyName);
+  private static @Nonnull IntrospectionError propertyNotFoundError(@Nonnull String propertyName,
+      @Nonnull Object target) {
     Method getter = findGetter(propertyName, target);
+    String format = null;
     if (getter == null) {
-      return format("No getter for property %s in %s", property, targetTypeName);
+      format = "No getter for property %s in %s";
+    } else if (!isPublic(getter.getModifiers())) {
+      format = "No public getter for property %s in %s";
+    } else {
+      format = "Unable to find property %s in %s";
     }
-    if (!isPublic(getter.getModifiers())) {
-      return format("No public getter for property %s in %s", property, targetTypeName);
-    }
-    return format("Unable to find property %s in %s", property, targetTypeName);
+    String msg = String.format(format, quote(propertyName), target.getClass().getName());
+    return new IntrospectionError(checkNotNull(msg));
   }
 
-  private static Method findGetter(String propertyName, Object target) {
+  private static Method findGetter(@Nonnull String propertyName, @Nonnull Object target) {
     String capitalized = propertyName.substring(0, 1).toUpperCase(ENGLISH) + propertyName.substring(1);
     // try to find getProperty
     Method getter = findMethod("get" + capitalized, target);
@@ -86,7 +91,7 @@ public final class Introspection {
     return findMethod("is" + capitalized, target);
   }
 
-  private static Method findMethod(String name, Object target) {
+  private static @Nullable Method findMethod(@Nonnull String name, @Nonnull Object target) {
     // TODO walk class hierarchy to check if any superclass declares the method we are looking for.
     try {
       return target.getClass().getDeclaredMethod(name);

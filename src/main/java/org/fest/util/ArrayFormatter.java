@@ -22,6 +22,8 @@ import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.Nullable;
+
 /**
  * Creates a {@code String} representation of an array.
  * 
@@ -31,7 +33,7 @@ import java.util.Set;
 final class ArrayFormatter {
   private static final String NULL = "null";
 
-  String format(Object o) {
+  String format(@Nullable Object o) {
     if (!isArray(o)) {
       return null;
     }
@@ -89,7 +91,7 @@ final class ArrayFormatter {
       return null;
     }
     if (!isArrayTypePrimitive(o)) {
-      throw notAnArrayOfPrimitives(o);
+      throw new IllegalArgumentException(String.format("<%s> is not an array of primitives", o));
     }
     int size = getLength(o);
     if (size == 0) {
@@ -108,9 +110,5 @@ final class ArrayFormatter {
 
   private boolean isArrayTypePrimitive(Object o) {
     return o.getClass().getComponentType().isPrimitive();
-  }
-
-  private IllegalArgumentException notAnArrayOfPrimitives(Object o) {
-    return new IllegalArgumentException(String.format("<%s> is not an array of primitives", o));
   }
 }

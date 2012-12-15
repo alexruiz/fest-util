@@ -14,8 +14,12 @@
  */
 package org.fest.util;
 
+import static org.fest.util.Preconditions.checkNotNull;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import javax.annotation.Nonnull;
 
 /**
  * Utility methods related to {@link Set}s.
@@ -30,7 +34,7 @@ public final class Sets {
    * @return the created {@code LinkedHashSet}.
    * @since 1.2.3
    */
-  public static <T> LinkedHashSet<T> newLinkedHashSet() {
+  public static @Nonnull <T> LinkedHashSet<T> newLinkedHashSet() {
     return new LinkedHashSet<T>();
   }
 
@@ -39,13 +43,12 @@ public final class Sets {
    *
    * @param <T> the generic type of the {@code LinkedHashSet} to create.
    * @param elements the elements to store in the {@code LinkedHashSet}.
-   * @return the created {@code LinkedHashSet}, of {@code null} if the given array of elements is {@code null}.
+   * @return the created {@code LinkedHashSet}.
+   * @throws NullPointerException if the given array is {@code null}.
    * @since 1.2.3
    */
-  public static <T> LinkedHashSet<T> newLinkedHashSet(T... elements) {
-    if (elements == null) {
-      return null;
-    }
+  public static @Nonnull <T> LinkedHashSet<T> newLinkedHashSet(T... elements) {
+    checkNotNull(elements);
     LinkedHashSet<T> set = new LinkedHashSet<T>();
     for (T e : elements) {
       set.add(e);

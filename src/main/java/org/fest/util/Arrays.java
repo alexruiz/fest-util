@@ -14,11 +14,13 @@
  */
 package org.fest.util;
 
-import static java.util.Collections.emptyList;
 import static org.fest.util.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Utility methods related to arrays.
@@ -35,7 +37,7 @@ public class Arrays {
    * @param o the given object.
    * @return {@code true} if the given object is not {@code null} and is an array, otherwise {@code false}.
    */
-  public static boolean isArray(Object o) {
+  public static boolean isArray(@Nullable Object o) {
     return o != null && o.getClass().isArray();
   }
 
@@ -46,7 +48,7 @@ public class Arrays {
    * @param array the array to check.
    * @return {@code true} if the given array is {@code null} or empty, otherwise {@code false}.
    */
-  public static <T> boolean isNullOrEmpty(T[] array) {
+  public static <T> boolean isNullOrEmpty(@Nullable T[] array) {
     return array == null || !hasElements(array);
   }
 
@@ -57,7 +59,7 @@ public class Arrays {
    * @param values the values to store in the array.
    * @return an array containing the given arguments.
    */
-  public static <T> T[] array(T... values) {
+  public static <T> T[] array(@Nullable T... values) {
     return values;
   }
 
@@ -68,7 +70,7 @@ public class Arrays {
    * @param array the object that is expected to be an array.
    * @return the {@code String} representation of the given array.
    */
-  public static String format(Object array) {
+  public static String format(@Nullable Object array) {
     return FORMATTER.format(array);
   }
 
@@ -77,14 +79,12 @@ public class Arrays {
    * 
    * @param <T> the type of elements of the array.
    * @param array the given array.
-   * @return all the non-{@code null} elements in the given array. An empty list is returned if the given array is
-   *         {@code null}.
+   * @return all the non-{@code null} elements in the given array.
+   * @throws NullPointerException if the given array is {@code null}.
    * @since 1.1.3
    */
-  public static <T> List<T> nonNullElementsIn(T[] array) {
-    if (array == null) {
-      return emptyList();
-    }
+  public static <T> List<T> nonNullElementsIn(@Nonnull T[] array) {
+    checkNotNull(array);
     List<T> nonNullElements = new ArrayList<T>();
     for (T o : array) {
       if (o != null) {
@@ -104,7 +104,7 @@ public class Arrays {
    * @throws NullPointerException if the given array is {@code null}.
    * @since 1.1.3
    */
-  public static <T> boolean hasOnlyNullElements(T[] array) {
+  public static <T> boolean hasOnlyNullElements(@Nonnull T[] array) {
     checkNotNull(array);
     if (!hasElements(array)) {
       return false;
@@ -117,7 +117,7 @@ public class Arrays {
     return true;
   }
 
-  private static <T> boolean hasElements(T[] array) {
+  private static <T> boolean hasElements(@Nonnull T[] array) {
     return array.length > 0;
   }
 

@@ -15,6 +15,7 @@
 package org.fest.util;
 
 import static org.fest.util.Arrays.isArray;
+import static org.fest.util.Preconditions.checkNotNull;
 import static org.fest.util.Strings.quote;
 
 import java.awt.Dimension;
@@ -24,6 +25,9 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * Obtains the {@code toString} representation of an object.
@@ -40,7 +44,7 @@ public final class ToString {
    * @param o the given object.
    * @return the {@code toString} representation of the given object.
    */
-  public static String toStringOf(Object o) {
+  public static @Nullable String toStringOf(@Nullable Object o) {
     if (isArray(o)) {
       return Arrays.format(o);
     }
@@ -80,33 +84,34 @@ public final class ToString {
     return o == null ? null : o.toString();
   }
 
-  private static String toStringOf(Comparator<?> comparator) {
-    String comparatorSimpleClassName = comparator.getClass().getSimpleName();
-    return quote(!comparatorSimpleClassName.isEmpty() ? comparatorSimpleClassName : "Anonymous Comparator class");
+  private static @Nonnull String toStringOf(@Nonnull Comparator<?> comparator) {
+    String typeName = comparator.getClass().getSimpleName();
+    String toString = quote(!typeName.isEmpty() ? typeName : "Anonymous Comparator class");
+    return checkNotNull(toString);
   }
 
-  private static String toStringOf(Class<?> c) {
-    return c.getCanonicalName();
+  private static @Nonnull String toStringOf(@Nonnull Class<?> c) {
+    return checkNotNull(c.getCanonicalName());
   }
 
-  private static String toStringOf(Collection<?> c) {
-    return Collections.format(c);
+  private static @Nonnull String toStringOf(@Nonnull Collection<?> c) {
+    return checkNotNull(Collections.format(c));
   }
 
-  private static String toStringOf(Float f) {
-    return String.format("%sf", f);
+  private static @Nonnull String toStringOf(@Nonnull Float f) {
+    return checkNotNull(String.format("%sf", f));
   }
 
-  private static String toStringOf(Long l) {
-    return String.format("%sL", l);
+  private static @Nonnull String toStringOf(@Nonnull Long l) {
+    return checkNotNull(String.format("%sL", l));
   }
 
-  private static String toStringOf(File f) {
+  private static @Nullable String toStringOf(@Nonnull File f) {
     return f.getAbsolutePath();
   }
 
-  private static String toStringOf(Map<?, ?> m) {
-    return Maps.format(m);
+  private static @Nonnull String toStringOf(@Nonnull Map<?, ?> m) {
+    return checkNotNull(Maps.format(m));
   }
 
   private ToString() {}

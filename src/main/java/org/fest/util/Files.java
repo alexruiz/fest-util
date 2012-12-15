@@ -36,6 +36,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Utility methods related to files.
  *
@@ -51,7 +54,7 @@ public class Files {
    * @return the names of the files inside the specified directory.
    * @throws IllegalArgumentException if the given directory name does not point to an existing directory.
    */
-  public static List<String> fileNamesIn(String dirName, boolean recurse) {
+  public static @Nonnull List<String> fileNamesIn(@Nonnull String dirName, boolean recurse) {
     File dir = new File(dirName);
     if (!dir.isDirectory()) {
       throw new IllegalArgumentException(format("%s is not a directory", quote(dirName)));
@@ -66,7 +69,7 @@ public class Files {
    * @param recurse if {@code true}, we will look in subdirectories.
    * @return the names of the files inside the specified directory.
    */
-  private static List<String> fileNamesIn(File dir, boolean recurse) {
+  private static @Nonnull List<String> fileNamesIn(@Nonnull File dir, boolean recurse) {
     List<String> fileNames = new ArrayList<String>();
     File[] existingFiles = dir.listFiles();
     if (isNullOrEmpty(existingFiles)) {
@@ -93,7 +96,7 @@ public class Files {
    * @return the system's temporary directory.
    * @throws IORuntimeException if this method cannot find or create the system's temporary directory.
    */
-  public static File temporaryFolder() {
+  public static @Nonnull File temporaryFolder() {
     File temp = new File(temporaryFolderPath());
     if (!temp.isDirectory()) {
       throw new IORuntimeException("Unable to find temporary directory");
@@ -107,8 +110,8 @@ public class Files {
    *
    * @return the path of the system's temporary directory.
    */
-  public static String temporaryFolderPath() {
-    return append(separator).to(System.getProperty("java.io.tmpdir"));
+  public static @Nonnull String temporaryFolderPath() {
+    return append(checkNotNull(separator)).to(checkNotNull(System.getProperty("java.io.tmpdir")));
   }
 
   /**
@@ -120,7 +123,7 @@ public class Files {
    *
    * @return the created file.
    */
-  public static File newTemporaryFile() {
+  public static @Nonnull File newTemporaryFile() {
     String tempFileName = String.format("%d.%s", System.currentTimeMillis(), ".txt");
     return newFile(concat(temporaryFolderPath(), tempFileName));
   }
@@ -134,7 +137,7 @@ public class Files {
    *
    * @return the created file.
    */
-  public static File newTemporaryFolder() {
+  public static @Nonnull File newTemporaryFolder() {
     String tempFileName = String.valueOf(System.currentTimeMillis());
     return newFolder(concat(temporaryFolderPath(), tempFileName));
   }
@@ -148,7 +151,7 @@ public class Files {
    * @throws IORuntimeException if the path belongs to an existing file.
    * @throws IORuntimeException if any I/O error is thrown when creating the new file.
    */
-  public static File newFile(String path) {
+  public static @Nonnull File newFile(@Nonnull String path) {
     File file = new File(path);
     if (file.isDirectory() && !isNullOrEmpty(file.list())) {
       throw cannotCreateNewFile(path, "a non-empty directory was found with the same path");
@@ -172,7 +175,7 @@ public class Files {
    * @throws IORuntimeException if the path belongs to an existing file.
    * @throws IORuntimeException if any I/O error is thrown when creating the new directory.
    */
-  public static File newFolder(String path) {
+  public static @Nonnull File newFolder(@Nonnull String path) {
     File file = new File(path);
     if (file.isDirectory() && !isNullOrEmpty(file.list())) {
       throw cannotCreateNewFile(path, "a non-empty directory was found with the same path");
@@ -183,20 +186,21 @@ public class Files {
     return file;
   }
 
-  private static IORuntimeException cannotCreateNewFile(String path, String reason) {
+  private static @Nonnull IORuntimeException cannotCreateNewFile(@Nonnull String path, @Nonnull String reason) {
     throw cannotCreateNewFile(path, reason, null);
   }
 
-  private static IORuntimeException cannotCreateNewFile(String path, IOException cause) {
+  private static @Nonnull IORuntimeException cannotCreateNewFile(@Nonnull String path, @Nonnull IOException cause) {
     throw cannotCreateNewFile(path, null, cause);
   }
 
-  private static IORuntimeException cannotCreateNewFile(String path, String reason, IOException cause) {
+  private static @Nonnull IORuntimeException cannotCreateNewFile(
+      @Nonnull String path, @Nullable String reason, @Nullable IOException cause) {
     String message = String.format("Unable to create the new file %s", quote(path));
     if (!Strings.isNullOrEmpty(reason)) {
       message = String.format("%s: %s", message, reason);
     }
-    throw new IORuntimeException(message, cause);
+    return new IORuntimeException(checkNotNull(message), cause);
   }
 
   /**
@@ -204,7 +208,7 @@ public class Files {
    *
    * @param writer the writer to flush and close.
    */
-  public static void flushAndClose(Writer writer) {
+  public static void flushAndClose(@Nullable Writer writer) {
     if (writer == null) {
       return;
     }
@@ -218,7 +222,7 @@ public class Files {
    *
    * @param out the output stream to flush and close.
    */
-  public static void flushAndClose(OutputStream out) {
+  public static void flushAndClose(@Nullable OutputStream out) {
     if (out == null) {
       return;
     }
@@ -232,9 +236,9 @@ public class Files {
    * @return the current directory.
    * @throws IORuntimeException if the current directory cannot be obtained.
    */
-  public static File currentFolder() {
+  public static @Nonnull File currentFolder() {
     try {
-      return new File(".").getCanonicalFile();
+      return checkNotNull(new File(".").getCanonicalFile());
     } catch (IOException e) {
       throw new IORuntimeException("Unable to get current directory", e);
     }
@@ -245,7 +249,7 @@ public class Files {
    *
    * @param file the file or directory to delete.
    */
-  public static void delete(File file) {
+  public static void delete(@Nonnull File file) {
     if (file.isFile()) {
       file.delete();
       return;
@@ -254,7 +258,7 @@ public class Files {
       return;
     }
     for (File f : file.listFiles()) {
-      delete(f);
+      delete(checkNotNull(f));
     }
     file.delete();
   }
@@ -268,11 +272,11 @@ public class Files {
    * @throws IllegalArgumentException if the given character set is not supported on this platform.
    * @throws IORuntimeException if an I/O exception occurs.
    */
-  public static String contentOf(File file, String charsetName) {
+  public static @Nonnull String contentOf(@Nonnull File file, @Nonnull String charsetName) {
     if (!Charset.isSupported(charsetName)) {
       throw new IllegalArgumentException(String.format("Charset:<'%s'> is not supported on this system", charsetName));
     }
-    return contentOf(file, Charset.forName(charsetName));
+    return contentOf(file, checkNotNull(Charset.forName(charsetName)));
   }
 
   /**
@@ -284,7 +288,7 @@ public class Files {
    * @throws NullPointerException if the given charset is {@code null}.
    * @throws IORuntimeException if an I/O exception occurs.
    */
-  public static String contentOf(File file, Charset charset) {
+  public static @Nonnull String contentOf(@Nonnull File file, @Nonnull Charset charset) {
     checkNotNull(charset);
     try {
       return loadContents(file, charset);
@@ -293,7 +297,7 @@ public class Files {
     }
   }
 
-  private static String loadContents(File file, Charset charset) throws IOException {
+  private static @Nonnull String loadContents(@Nonnull File file, @Nonnull Charset charset) throws IOException {
     BufferedReader reader = null;
     boolean threw = true;
     try {
@@ -304,7 +308,7 @@ public class Files {
         writer.write(c);
       }
       threw = false;
-      return writer.toString();
+      return checkNotNull(writer.toString());
     } finally {
       if (reader != null) {
         try {

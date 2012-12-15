@@ -10,25 +10,27 @@
  * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  * 
- * Copyright @2010-2011 the original author or authors.
+ * Copyright @2010-2013 the original author or authors.
  */
 package org.fest.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
- * Error that occurred when using <a href="http://java.sun.com/docs/books/tutorial/javabeans/introspection/index.html">JavaBeans
- * Instrospection</a>.
+ * Error that occurred when using
+ * <a href="http://java.sun.com/docs/books/tutorial/javabeans/introspection/index.html">JavaBeans Instrospection</a>.
  * 
  * @author Alex Ruiz
  */
 public class IntrospectionError extends RuntimeException {
-
   private static final long serialVersionUID = 1L;
 
   /**
    * Creates a new </code>{@link IntrospectionError}.
    * @param message the detail message.
    */
-  public IntrospectionError(String message) {
+  public IntrospectionError(@Nonnull String message) {
     super(message);
   }
 
@@ -37,7 +39,7 @@ public class IntrospectionError extends RuntimeException {
    * @param message the detail message.
    * @param cause the original cause.
    */
-  public IntrospectionError(String message, Throwable cause) {
+  public IntrospectionError(@Nonnull String message, @Nullable Throwable cause) {
     super(message, cause);
   }
 }

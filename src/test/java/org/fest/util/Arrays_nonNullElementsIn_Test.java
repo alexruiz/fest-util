@@ -17,10 +17,13 @@ package org.fest.util;
 import static org.fest.util.Arrays.nonNullElementsIn;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.rules.ExpectedException.none;
 
 import java.util.List;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Tests for {@link Arrays#nonNullElementsIn(Object[])}.
@@ -29,9 +32,13 @@ import org.junit.Test;
  * @author Alex Ruiz
  */
 public class Arrays_nonNullElementsIn_Test {
+  @Rule
+  public ExpectedException thrown = none();
+
   @Test
-  public void should_return_empty_Collection_if_given_array_is_null() {
-    assertTrue(Arrays.nonNullElementsIn(null).isEmpty());
+  public void should_throw_error_if_given_array_is_null() {
+    thrown.expect(NullPointerException.class);
+    Arrays.nonNullElementsIn(null);
   }
 
   @Test

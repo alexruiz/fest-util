@@ -22,6 +22,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Utility methods related to {@code Iterable}s.
  * 
@@ -37,7 +40,7 @@ public final class Iterables {
    * @param iterable the given {@code Iterable} to check.
    * @return {@code true} if the given {@code Iterable} is {@code null} or empty, otherwise {@code false}.
    */
-  public static boolean isNullOrEmpty(Iterable<?> iterable) {
+  public static boolean isNullOrEmpty(@Nullable Iterable<?> iterable) {
     if (iterable == null) {
       return true;
     }
@@ -54,7 +57,7 @@ public final class Iterables {
    * @return the size of the given {@link Iterable}.
    * @throws NullPointerException if given {@link Iterable} is null.
    */
-  public static int sizeOf(Iterable<?> iterable) {
+  public static int sizeOf(@Nonnull Iterable<?> iterable) {
     checkNotNull(iterable);
     if (iterable instanceof Collection) {
       return ((Collection<?>) iterable).size();

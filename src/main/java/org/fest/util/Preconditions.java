@@ -14,6 +14,9 @@
  */
 package org.fest.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Verifies correct argument values and state (borrowed from Guava.)
  *
@@ -28,12 +31,12 @@ public final class Preconditions {
    * @throws NullPointerException if the given {@code String} is {@code null}.
    * @throws IllegalArgumentException if the given {@code String} is empty.
    */
-  public static String checkNotNullOrEmpty(String s) {
-    checkNotNull(s);
-    if (s.isEmpty()) {
+  public static @Nonnull String checkNotNullOrEmpty(@Nullable String s) {
+    String text = checkNotNull(s);
+    if (text.isEmpty()) {
       throw new IllegalArgumentException();
     }
-    return s;
+    return text;
   }
 
   /**
@@ -44,7 +47,7 @@ public final class Preconditions {
    * @return the non-{@code null} reference that was validated.
    * @throws NullPointerException if the given object reference is {@code null}.
    */
-  public static <T> T checkNotNull(T reference) {
+  public static @Nonnull <T> T checkNotNull(@Nullable T reference) {
     if (reference == null) {
       throw new NullPointerException();
     }

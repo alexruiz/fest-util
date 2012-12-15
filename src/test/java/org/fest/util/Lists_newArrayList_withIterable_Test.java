@@ -18,10 +18,13 @@ import static java.util.Arrays.asList;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.rules.ExpectedException.none;
 
 import java.util.ArrayList;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Tests for {@link Lists#newArrayList(Iterable)}.
@@ -29,6 +32,9 @@ import org.junit.Test;
  * @author Joel Costigliola
  */
 public class Lists_newArrayList_withIterable_Test {
+  @Rule
+  public ExpectedException thrown = none();
+
   @Test
   public void should_return_List_containing_all_elements_in_iterable() {
     String[] expected = { "One", "Two" };
@@ -38,7 +44,8 @@ public class Lists_newArrayList_withIterable_Test {
   }
 
   @Test
-  public void should_return_null_if_iterable_is_null() {
+  public void should_throw_error_if_iterable_is_null() {
+    thrown.expect(NullPointerException.class);
     Iterable<?> elements = null;
     assertNull(Lists.newArrayList(elements));
   }

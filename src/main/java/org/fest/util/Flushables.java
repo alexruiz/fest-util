@@ -16,6 +16,9 @@ package org.fest.util;
 
 import java.io.Flushable;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 /**
  * Utility methods related to {@link Flushable}.
  * 
@@ -27,13 +30,13 @@ public class Flushables {
    * 
    * @param flushables the {@code Flushable}s to flush.
    */
-  public static void flush(Flushable... flushables) {
+  public static void flush(@Nonnull Flushable... flushables) {
     for (Flushable f : flushables) {
       flushFlushable(f);
     }
   }
 
-  private static void flushFlushable(Flushable f) {
+  private static void flushFlushable(@Nullable Flushable f) {
     if (f == null) {
       return;
     }

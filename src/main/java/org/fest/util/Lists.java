@@ -14,7 +14,11 @@
  */
 package org.fest.util;
 
+import static org.fest.util.Preconditions.checkNotNull;
+
 import java.util.ArrayList;
+
+import javax.annotation.Nonnull;
 
 /**
  * Utility methods related to {@code java.util.List}s.
@@ -29,12 +33,11 @@ public final class Lists {
    *
    * @param <T> the generic type of the {@code ArrayList} to create.
    * @param elements the elements to store in the {@code ArrayList}.
-   * @return the created {@code ArrayList}, of {@code null} if the given array of elements is {@code null}.
+   * @return the created {@code ArrayList}.
+   * @throws NullPointerException if the given array is {@code null}.
    */
-  public static <T> ArrayList<T> newArrayList(T... elements) {
-    if (elements == null) {
-      return null;
-    }
+  public static @Nonnull <T> ArrayList<T> newArrayList(@Nonnull T... elements) {
+    checkNotNull(elements);
     ArrayList<T> list = newArrayList();
     for (T e : elements) {
       list.add(e);
@@ -47,12 +50,11 @@ public final class Lists {
    *
    * @param <T> the generic type of the {@code ArrayList} to create.
    * @param elements the elements to store in the {@code ArrayList}.
-   * @return the created {@code ArrayList}, of {@code null} if the given {@code Iterable} is {@code null}.
+   * @return the created {@code ArrayList}.
+   * @throws NullPointerException if the given {@code Iterable} is {@code null}.
    */
-  public static <T> ArrayList<T> newArrayList(Iterable<? extends T> elements) {
-    if (elements == null) {
-      return null;
-    }
+  public static @Nonnull <T> ArrayList<T> newArrayList(@Nonnull Iterable<? extends T> elements) {
+    checkNotNull(elements);
     ArrayList<T> list = newArrayList();
     for (T e : elements) {
       list.add(e);
@@ -66,7 +68,7 @@ public final class Lists {
    * @param <T> the generic type of the {@code ArrayList} to create.
    * @return the created {@code ArrayList}, of {@code null} if the given array of elements is {@code null}.
    */
-  public static <T> ArrayList<T> newArrayList() {
+  public static @Nonnull <T> ArrayList<T> newArrayList() {
     return new ArrayList<T>();
   }
 
