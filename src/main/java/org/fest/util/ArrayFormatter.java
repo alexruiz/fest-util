@@ -16,12 +16,14 @@ package org.fest.util;
 
 import static java.lang.reflect.Array.getLength;
 import static org.fest.util.Arrays.isArray;
+import static org.fest.util.Preconditions.checkNotNullOrEmpty;
 import static org.fest.util.ToString.toStringOf;
 
 import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 /**
@@ -34,13 +36,13 @@ final class ArrayFormatter {
   private static final String NULL = "null";
 
   String format(@Nullable Object o) {
-    if (!isArray(o)) {
+    if (o == null || !isArray(o)) {
       return null;
     }
     return isObjectArray(o) ? formatObjectArray(o) : formatPrimitiveArray(o);
   }
 
-  private String formatObjectArray(Object o) {
+  private @Nonnull String formatObjectArray(@Nonnull Object o) {
     Object[] array = (Object[]) o;
     int size = array.length;
     if (size == 0) {
@@ -48,10 +50,11 @@ final class ArrayFormatter {
     }
     StringBuilder buffer = new StringBuilder((20 * (size - 1)));
     deepToString(array, buffer, new HashSet<Object[]>());
-    return buffer.toString();
+    return checkNotNullOrEmpty(buffer.toString());
   }
 
-  private void deepToString(Object[] array, StringBuilder buffer, Set<Object[]> alreadyFormatted) {
+  private void deepToString(@Nullable Object[] array, @Nonnull StringBuilder buffer,
+      @Nonnull Set<Object[]> alreadyFormatted) {
     if (array == null) {
       buffer.append(NULL);
       return;
@@ -82,16 +85,17 @@ final class ArrayFormatter {
     alreadyFormatted.remove(array);
   }
 
-  private boolean isObjectArray(Object o) {
-    return isArray(o) && !isArrayTypePrimitive(o);
+  private boolean isObjectArray(@Nullable Object o) {
+    return o != null && isArray(o) && !isArrayTypePrimitive(o);
   }
 
-  private String formatPrimitiveArray(Object o) {
-    if (!isArray(o)) {
+  private String formatPrimitiveArray(@Nullable Object o) {
+    if (o == null || !isArray(o)) {
       return null;
     }
     if (!isArrayTypePrimitive(o)) {
-      throw new IllegalArgumentException(String.format("<%s> is not an array of primitives", o));
+      String msg = String.format("<%s> is not an array of primitives", o);
+      throw new IllegalArgumentException(msg);
     }
     int size = getLength(o);
     if (size == 0) {
@@ -108,7 +112,7 @@ final class ArrayFormatter {
     return buffer.toString();
   }
 
-  private boolean isArrayTypePrimitive(Object o) {
+  private boolean isArrayTypePrimitive(@Nonnull Object o) {
     return o.getClass().getComponentType().isPrimitive();
   }
 }
