@@ -45,7 +45,7 @@ public final class ToString {
       return Arrays.format(o);
     }
     if (o instanceof Calendar) {
-      return toStringOf((Calendar) o);
+      return toStringOf(o);
     }
     if (o instanceof Class<?>) {
       return toStringOf((Class<?>) o);
@@ -54,7 +54,7 @@ public final class ToString {
       return toStringOf((Collection<?>) o);
     }
     if (o instanceof Date) {
-      return toStringOf((Date) o);
+      return toStringOf(o);
     }
     if (o instanceof Float) {
       return toStringOf((Float) o);
@@ -85,20 +85,12 @@ public final class ToString {
     return quote(!comparatorSimpleClassName.isEmpty() ? comparatorSimpleClassName : "Anonymous Comparator class");
   }
 
-  private static String toStringOf(Calendar c) {
-    return Dates.formatAsDatetime(c);
-  }
-
   private static String toStringOf(Class<?> c) {
     return c.getCanonicalName();
   }
 
   private static String toStringOf(Collection<?> c) {
     return Collections.format(c);
-  }
-
-  private static String toStringOf(Date d) {
-    return Dates.formatAsDatetime(d);
   }
 
   private static String toStringOf(Float f) {

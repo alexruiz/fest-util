@@ -15,7 +15,6 @@
 package org.fest.util;
 
 import static junit.framework.Assert.assertFalse;
-
 import static org.fest.util.Arrays.array;
 import static org.fest.util.Lists.newArrayList;
 import static org.fest.util.ToString.toStringOf;
@@ -24,11 +23,8 @@ import static org.junit.Assert.assertNull;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -117,18 +113,6 @@ public class ToString_toStringOf_Test {
   public void should_return_toString_of_array_of_Class() {
     Class<?>[] array = { String.class, File.class };
     assertEquals("[java.lang.String, java.io.File]", ToString.toStringOf(array));
-  }
-
-  @Test
-  public void should_return_toString_of_calendar() {
-    GregorianCalendar calendar = new GregorianCalendar(2011, Calendar.JANUARY, 18, 23, 53, 17);
-    assertEquals("2011-01-18T23:53:17", ToString.toStringOf(calendar));
-  }
-
-  @Test
-  public void should_return_toString_of_date() {
-    Date date = new GregorianCalendar(2011, Calendar.JUNE, 18, 23, 53, 17).getTime();
-    assertEquals("2011-06-18T23:53:17", ToString.toStringOf(date));
   }
 
   @Test
