@@ -64,6 +64,7 @@ public final class Iterables {
     Iterator<?> iterator = iterable.iterator();
     while (iterator.hasNext()) {
       size++;
+      iterator.next();
     }
     return size;
   }

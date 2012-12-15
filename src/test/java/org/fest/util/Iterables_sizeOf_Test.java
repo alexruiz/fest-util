@@ -15,8 +15,10 @@
 package org.fest.util;
 
 import static junit.framework.Assert.assertEquals;
+
 import static org.fest.util.Lists.newArrayList;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +45,11 @@ public class Iterables_sizeOf_Test {
   public void should_return_iterable_size() {
     List<String> list = newArrayList("Frodo", "Sam");
     assertEquals(2, Iterables.sizeOf(list));
+  }
+
+  @Test
+  public void should_return_correct_size_for_non_collection_iterable() {
+    Iterable<Throwable> sqlException = new SQLException(new Exception(new Exception()));
+    assertEquals(3, Iterables.sizeOf(sqlException));
   }
 }
