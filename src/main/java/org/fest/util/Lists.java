@@ -17,6 +17,7 @@ package org.fest.util;
 import static org.fest.util.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.annotation.Nonnull;
 
@@ -58,6 +59,23 @@ public final class Lists {
     ArrayList<T> list = newArrayList();
     for (T e : elements) {
       list.add(e);
+    }
+    return list;
+  }
+
+  /**
+   * Creates a <em>mutable</em> {@link ArrayList} containing the given elements.
+   *
+   * @param <T> the generic type of the {@code ArrayList} to create.
+   * @param elements the elements to store in the {@code ArrayList}.
+   * @return the created {@code ArrayList}.
+   * @throws NullPointerException if the given {@code Iterable} is {@code null}.
+   */
+  public static @Nonnull <T> ArrayList<T> newArrayList(@Nonnull Iterator<? extends T> elements) {
+    checkNotNull(elements);
+    ArrayList<T> list = newArrayList();
+    while (elements.hasNext()) {
+      list.add(elements.next());
     }
     return list;
   }
