@@ -68,7 +68,7 @@ public class Arrays_format_Test {
   @Test
   public void should_format_float_array() {
     Object o = new float[] { 6.1f, 8.6f };
-    assertEquals("[6.1, 8.6]", Arrays.format(o));
+    assertEquals("[6.1f, 8.6f]", Arrays.format(o));
   }
 
   @Test
@@ -80,7 +80,7 @@ public class Arrays_format_Test {
   @Test
   public void should_format_long_array() {
     Object o = new long[] { 160l, 98l };
-    assertEquals("[160, 98]", Arrays.format(o));
+    assertEquals("[160L, 98L]", Arrays.format(o));
   }
 
   @Test

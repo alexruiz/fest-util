@@ -18,7 +18,6 @@ import static org.fest.util.Arrays.isArray;
 import static org.fest.util.Preconditions.checkNotNull;
 import static org.fest.util.Strings.quote;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.util.Calendar;
 import java.util.Collection;
@@ -66,9 +65,6 @@ public final class ToString {
     if (o instanceof Long) {
       return toStringOf((Long) o);
     }
-    if (o instanceof Dimension) {
-      return toStringOf(o);
-    }
     if (o instanceof File) {
       return toStringOf((File) o);
     }
@@ -99,6 +95,9 @@ public final class ToString {
   }
 
   private static @Nonnull String toStringOf(@Nonnull Float f) {
+    if (f.isNaN()) {
+      return "NaN";
+    }
     return checkNotNull(String.format("%sf", f));
   }
 

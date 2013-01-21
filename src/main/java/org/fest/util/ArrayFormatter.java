@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
 final class ArrayFormatter {
   private static final String NULL = "null";
 
-  String format(@Nullable Object o) {
+  @Nullable String format(@Nullable Object o) {
     if (o == null || !isArray(o)) {
       return null;
     }
@@ -103,10 +103,10 @@ final class ArrayFormatter {
     }
     StringBuilder buffer = new StringBuilder();
     buffer.append('[');
-    buffer.append(Array.get(o, 0));
+    buffer.append(toStringOf(Array.get(o, 0)));
     for (int i = 1; i < size; i++) {
       buffer.append(", ");
-      buffer.append(Array.get(o, i));
+      buffer.append(toStringOf(Array.get(o, i)));
     }
     buffer.append("]");
     return buffer.toString();

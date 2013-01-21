@@ -47,7 +47,7 @@ public final class Sets {
    * @throws NullPointerException if the given array is {@code null}.
    * @since 1.2.3
    */
-  public static @Nonnull <T> LinkedHashSet<T> newLinkedHashSet(T... elements) {
+  public static @Nonnull <T> LinkedHashSet<T> newLinkedHashSet(@Nonnull T... elements) {
     checkNotNull(elements);
     LinkedHashSet<T> set = new LinkedHashSet<T>();
     for (T e : elements) {

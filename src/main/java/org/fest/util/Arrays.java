@@ -59,8 +59,8 @@ public class Arrays {
    * @param values the values to store in the array.
    * @return an array containing the given arguments.
    */
-  public static <T> T[] array(@Nullable T... values) {
-    return values;
+  public static @Nonnull <T> T[] array(@Nonnull T... values) {
+    return checkNotNull(values);
   }
 
   /**
@@ -70,7 +70,7 @@ public class Arrays {
    * @param array the object that is expected to be an array.
    * @return the {@code String} representation of the given array.
    */
-  public static String format(@Nullable Object array) {
+  public static @Nullable String format(@Nullable Object array) {
     return FORMATTER.format(array);
   }
 

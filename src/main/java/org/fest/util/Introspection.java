@@ -46,7 +46,7 @@ public final class Introspection {
    * @throws NullPointerException if the given object is {@code null}.
    * @throws IntrospectionError if a matching property cannot be found or accessed.
    */
-  public static PropertyDescriptor getProperty(@Nonnull String propertyName, @Nonnull Object target) {
+  public static @Nonnull PropertyDescriptor getProperty(@Nonnull String propertyName, @Nonnull Object target) {
     checkNotNullOrEmpty(propertyName);
     checkNotNull(target);
     BeanInfo beanInfo = null;

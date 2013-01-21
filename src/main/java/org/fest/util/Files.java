@@ -21,7 +21,6 @@ import static org.fest.util.Closeables.closeQuietly;
 import static org.fest.util.Flushables.flush;
 import static org.fest.util.Preconditions.checkNotNull;
 import static org.fest.util.Strings.append;
-import static org.fest.util.Strings.concat;
 import static org.fest.util.Strings.quote;
 
 import java.io.BufferedReader;
@@ -125,7 +124,7 @@ public class Files {
    */
   public static @Nonnull File newTemporaryFile() {
     String tempFileName = String.format("%d.%s", System.currentTimeMillis(), ".txt");
-    return newFile(concat(temporaryFolderPath(), tempFileName));
+    return newFile(temporaryFolderPath() + tempFileName);
   }
 
   /**
@@ -139,7 +138,7 @@ public class Files {
    */
   public static @Nonnull File newTemporaryFolder() {
     String tempFileName = String.valueOf(System.currentTimeMillis());
-    return newFolder(concat(temporaryFolderPath(), tempFileName));
+    return newFolder(temporaryFolderPath() + tempFileName);
   }
 
   /**
