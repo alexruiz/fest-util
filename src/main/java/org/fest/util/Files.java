@@ -237,7 +237,7 @@ public class Files {
    */
   public static @Nonnull File currentFolder() {
     try {
-      return checkNotNull(new File(".").getCanonicalFile());
+      return new File(".").getCanonicalFile();
     } catch (IOException e) {
       throw new IORuntimeException("Unable to get current directory", e);
     }
@@ -298,7 +298,6 @@ public class Files {
 
   private static @Nonnull String loadContents(@Nonnull File file, @Nonnull Charset charset) throws IOException {
     BufferedReader reader = null;
-    boolean threw = true;
     try {
       reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charset));
       StringWriter writer = new StringWriter();
@@ -306,19 +305,9 @@ public class Files {
       while ((c = reader.read()) != -1) {
         writer.write(c);
       }
-      threw = false;
-      return checkNotNull(writer.toString());
+      return writer.toString();
     } finally {
-      if (reader != null) {
-        try {
-          reader.close();
-        } catch (IOException e) {
-          if (!threw)
-          {
-            throw e; // if there was an initial exception, don't hide it
-          }
-        }
-      }
+      closeQuietly(reader);
     }
   }
 

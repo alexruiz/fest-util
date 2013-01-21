@@ -44,7 +44,7 @@ public final class Strings {
    *         {@code null}.
    */
   public static @Nullable String quote(@Nullable String s) {
-    return s != null ? concat("'", s, "'") : null;
+    return s != null ? String.format("'%s'", s) : null;
   }
 
   /**
@@ -71,7 +71,7 @@ public final class Strings {
     for (Object o : objects) {
       b.append(o);
     }
-    return checkNotNull(b.toString());
+    return b.toString();
   }
 
   /**
@@ -131,7 +131,7 @@ public final class Strings {
           b.append(delimeter);
         }
       }
-      return checkNotNull(b.toString());
+      return b.toString();
     }
   }
 

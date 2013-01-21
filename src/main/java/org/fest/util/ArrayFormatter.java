@@ -16,7 +16,6 @@ package org.fest.util;
 
 import static java.lang.reflect.Array.getLength;
 import static org.fest.util.Arrays.isArray;
-import static org.fest.util.Preconditions.checkNotNullOrEmpty;
 import static org.fest.util.ToString.toStringOf;
 
 import java.lang.reflect.Array;
@@ -50,7 +49,7 @@ final class ArrayFormatter {
     }
     StringBuilder buffer = new StringBuilder((20 * (size - 1)));
     deepToString(array, buffer, new HashSet<Object[]>());
-    return checkNotNullOrEmpty(buffer.toString());
+    return buffer.toString();
   }
 
   private void deepToString(@Nullable Object[] array, @Nonnull StringBuilder buffer,

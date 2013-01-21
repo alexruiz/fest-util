@@ -87,7 +87,7 @@ public final class ToString {
   }
 
   private static @Nonnull String toStringOf(@Nonnull Class<?> c) {
-    return checkNotNull(c.getCanonicalName());
+    return c.getCanonicalName();
   }
 
   private static @Nonnull String toStringOf(@Nonnull Collection<?> c) {
@@ -98,11 +98,11 @@ public final class ToString {
     if (f.isNaN()) {
       return "NaN";
     }
-    return checkNotNull(String.format("%sf", f));
+    return String.format("%sf", f);
   }
 
   private static @Nonnull String toStringOf(@Nonnull Long l) {
-    return checkNotNull(String.format("%sL", l));
+    return String.format("%sL", l);
   }
 
   private static @Nullable String toStringOf(@Nonnull File f) {
