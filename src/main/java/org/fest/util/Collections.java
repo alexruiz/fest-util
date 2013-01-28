@@ -1,20 +1,21 @@
 /*
  * Created on Apr 29, 2007
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  * Copyright @2007-2013 the original author or authors.
  */
 package org.fest.util;
 
 import static java.util.Collections.emptyList;
+
 import static org.fest.util.ToString.toStringOf;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import javax.annotation.Nullable;
 
 /**
  * Utility methods related to {@code Collection}s.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  * @author Joel Costigliola
@@ -38,10 +39,10 @@ import javax.annotation.Nullable;
 public final class Collections {
   /**
    * Returns any duplicate elements from the given {@code Collection}.
-   * 
+   *
    * @param <T> the generic type of the given {@code Collection}.
    * @param c the given {@code Collection} that might have duplicate elements.
-   * @return a {@code Collection} containing the duplicate elements of the given one. If the given {@Collection} is
+   * @return a {@code Collection} containing the duplicate elements of the given one. If the given {@code Collection} is
    *         {@code null} or if no duplicates were found, an empty {@code Collection} is returned.
    */
   public static @Nonnull <T> Collection<T> duplicatesFrom(@Nullable Collection<T> c) {
@@ -62,7 +63,7 @@ public final class Collections {
 
   /**
    * Indicates whether the given {@code Collection} is {@code null} or empty.
-   * 
+   *
    * @param c the given {@code Collection}.
    * @return {@code true} if the given {@code Collection} is {@code null} or empty, otherwise {@code false}.
    */
@@ -73,7 +74,7 @@ public final class Collections {
   /**
    * Returns the {@code String} representation of the given {@code Collection}, or {@code null} if the given
    * {@code Collection} is {@code null}.
-   * 
+   *
    * @param c the {@code Collection} to format.
    * @return the {@code String} representation of the given {@code Collection}.
    */
@@ -99,7 +100,7 @@ public final class Collections {
 
   /**
    * Returns all the non-{@code null} elements in the given {@link Collection}.
-   * 
+   *
    * @param <T> the type of elements of the {@code Collection}.
    * @param c the given {@code Collection}.
    * @return all the non-{@code null} elements in the given {@code Collection}. An empty list is returned if the
