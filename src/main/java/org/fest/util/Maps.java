@@ -16,6 +16,7 @@ package org.fest.util;
 
 import static org.fest.util.ToString.toStringOf;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -30,6 +31,15 @@ import javax.annotation.Nullable;
  * @author Alex Ruiz
  */
 public class Maps {
+  /**
+   * Returns a <em>mutable</em> {@link HashMap}.
+   * 
+   * @return the created {@code Map}.
+   */
+  public static @Nonnull <K, V> Map<K, V> newHashMap() {
+    return new HashMap<K, V>();
+  }
+
   /**
    * Indicates whether the given {@code Map} is {@code null} or empty.
    * 
