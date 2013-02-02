@@ -14,6 +14,8 @@
  */
 package org.fest.util;
 
+import static org.fest.util.Preconditions.checkNotNull;
+
 import javax.annotation.Nonnull;
 
 /**
@@ -26,7 +28,7 @@ public final class SystemProperties {
 
   private static @Nonnull String getlineSeparator() {
     try {
-      return System.getProperty("line.separator");
+      return checkNotNull(System.getProperty("line.separator"));
     } catch (Exception e) {
       return "\n";
     }

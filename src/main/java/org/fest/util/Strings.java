@@ -82,7 +82,7 @@ public final class Strings {
    * Strings.join(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;).with(&quot;|&quot;)
    * </pre>
    * 
-   * which will result in the {@code String} <code>"a|b|c"</code>.
+   * which will result in the {@code String "a|b|c"}.
    * 
    * @param strings the {@code String}s to join.
    * @return an intermediate object that takes a given delimiter and knows how to join the given {@code String}s.
@@ -138,13 +138,11 @@ public final class Strings {
   /**
    * Appends a given {@code String} to the given target, only if the target does not end with the given {@code String}
    * to append. The following example illustrates proper usage of this method:
-   * 
    * <pre>
    * Strings.append(&quot;c&quot;).to(&quot;ab&quot;);
    * Strings.append(&quot;c&quot;).to(&quot;abc&quot;);
    * </pre>
-   * 
-   * resulting in the {@code String} <code>"abc"</code> for both cases.
+   * resulting in the {@code String "abc"} for both cases.
    * 
    * @param toAppend the {@code String} to append.
    * @return an intermediate object that takes the target {@code String} and knows to append the given {@code String}.

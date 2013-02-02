@@ -237,7 +237,7 @@ public class Files {
    */
   public static @Nonnull File currentFolder() {
     try {
-      return new File(".").getCanonicalFile();
+      return checkNotNull(new File(".").getCanonicalFile());
     } catch (IOException e) {
       throw new IORuntimeException("Unable to get current directory", e);
     }
@@ -305,7 +305,7 @@ public class Files {
       while ((c = reader.read()) != -1) {
         writer.write(c);
       }
-      return writer.toString();
+      return checkNotNull(writer.toString());
     } finally {
       closeQuietly(reader);
     }

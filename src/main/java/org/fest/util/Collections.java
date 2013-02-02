@@ -14,8 +14,7 @@
  */
 package org.fest.util;
 
-import static java.util.Collections.emptyList;
-
+import static org.fest.util.Lists.emptyList;
 import static org.fest.util.ToString.toStringOf;
 
 import java.util.ArrayList;
@@ -107,8 +106,8 @@ public final class Collections {
    *         given {@code Collection} is {@code null}.
    * @since 1.1.3
    */
-  public static <T> List<T> nonNullElementsIn(Collection<T> c) {
-    if (isNullOrEmpty(c)) {
+  public static @Nonnull <T> List<T> nonNullElementsIn(@Nullable Collection<T> c) {
+    if (c == null) {
       return emptyList();
     }
     List<T> nonNull = new ArrayList<T>();

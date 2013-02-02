@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -38,6 +40,15 @@ public class Maps {
    */
   public static @Nonnull <K, V> Map<K, V> newHashMap() {
     return new HashMap<K, V>();
+  }
+
+  /**
+   * Returns a <em>mutable</em> {@link ConcurrentMap}.
+   * 
+   * @return the created {@code Map}.
+   */
+  public static @Nonnull <K, V> ConcurrentMap<K, V> newConcurrentHashMap() {
+    return new ConcurrentHashMap<K, V>();
   }
 
   /**

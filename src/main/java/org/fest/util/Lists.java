@@ -17,7 +17,9 @@ package org.fest.util;
 import static org.fest.util.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 
@@ -88,6 +90,13 @@ public final class Lists {
    */
   public static @Nonnull <T> ArrayList<T> newArrayList() {
     return new ArrayList<T>();
+  }
+
+  /**
+   * @return an empty, <em>immutable</em> {@code List}.
+   */
+  public static @Nonnull <T> List<T> emptyList() {
+    return Collections.emptyList();
   }
 
   private Lists() {}
