@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -34,7 +35,7 @@ import javax.annotation.Nullable;
  */
 public class Maps {
   /**
-   * Returns a <em>mutable</em> {@link HashMap}.
+   * Returns a <em>mutable</em> {@code HashMap}.
    * 
    * @return the created {@code Map}.
    */
@@ -43,12 +44,21 @@ public class Maps {
   }
 
   /**
-   * Returns a <em>mutable</em> {@link ConcurrentMap}.
+   * Returns a <em>mutable</em> {@code ConcurrentMap}.
    * 
    * @return the created {@code Map}.
    */
   public static @Nonnull <K, V> ConcurrentMap<K, V> newConcurrentHashMap() {
     return new ConcurrentHashMap<K, V>();
+  }
+
+  /**
+   * Returns a <em>mutable</em> {@code WeakHashMap}.
+   * 
+   * @return the created {@code Map}.
+   */
+  public static @Nonnull <K, V> WeakHashMap<K, V> newWeakHashMap() {
+    return new WeakHashMap<K, V>();
   }
 
   /**

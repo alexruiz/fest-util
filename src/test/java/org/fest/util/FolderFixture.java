@@ -34,7 +34,6 @@ import java.util.logging.Logger;
  * @author Alex Ruiz
  */
 public final class FolderFixture {
-
   private static Logger logger = Logger.getLogger(FolderFixture.class.getName());
 
   private final List<FolderFixture> folders = new ArrayList<FolderFixture>();

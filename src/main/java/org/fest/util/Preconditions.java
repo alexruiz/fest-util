@@ -32,11 +32,27 @@ public final class Preconditions {
    * @throws IllegalArgumentException if the given {@code String} is empty.
    */
   public static @Nonnull String checkNotNullOrEmpty(@Nullable String s) {
-    String text = checkNotNull(s);
-    if (text.isEmpty()) {
+    String checked = checkNotNull(s);
+    if (checked.isEmpty()) {
       throw new IllegalArgumentException();
     }
-    return text;
+    return checked;
+  }
+
+  /**
+   * Verifies that the given array is not {@code null} or empty.
+   *
+   * @param array the given array.
+   * @return the validated array.
+   * @throws NullPointerException if the given array is {@code null}.
+   * @throws IllegalArgumentException if the given array is empty.
+   */
+  public static @Nonnull <T> T[] checkNotNullOrEmpty(@Nullable T[] array) {
+    T[] checked = checkNotNull(array);
+    if (checked.length == 0) {
+      throw new IllegalArgumentException();
+    }
+    return checked;
   }
 
   /**

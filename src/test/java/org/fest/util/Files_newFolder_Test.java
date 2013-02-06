@@ -27,7 +27,6 @@ import org.junit.Test;
  * @author Yvonne Wang
  */
 public class Files_newFolder_Test extends Files_TestCase {
-
   @Test
   public void should_create_new_folder() {
     File f = null;

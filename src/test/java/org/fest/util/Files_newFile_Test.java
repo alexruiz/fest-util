@@ -32,7 +32,6 @@ import org.junit.rules.ExpectedException;
  * @author Yvonne Wang
  */
 public class Files_newFile_Test extends Files_TestCase {
-
   @Rule
   public ExpectedException thrown = none();
 

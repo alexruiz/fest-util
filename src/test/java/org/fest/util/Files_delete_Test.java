@@ -28,7 +28,6 @@ import org.junit.Test;
  * @author Yvonne Wang
  */
 public class Files_delete_Test extends Files_TestCase {
-
   @Test
   public void should_delete_folder() throws IOException {
     FolderFixture dir3 = new FolderFixture("dir_3");

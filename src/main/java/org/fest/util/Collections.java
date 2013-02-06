@@ -15,11 +15,11 @@
 package org.fest.util;
 
 import static org.fest.util.Lists.emptyList;
+import static org.fest.util.Sets.newHashSet;
 import static org.fest.util.ToString.toStringOf;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -49,7 +49,7 @@ public final class Collections {
     if (c == null) {
       return duplicates;
     }
-    Set<T> unique = new HashSet<T>();
+    Set<T> unique = newHashSet();
     for (T e : c) {
       if (unique.contains(e)) {
         duplicates.add(e);

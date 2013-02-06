@@ -27,7 +27,6 @@ import org.junit.Test;
  * @author Joel Costigliola
  */
 public class Objects_castIfBelongsToType_Test {
-
   @Test
   public void should_return_object_casted_to_given_type() {
     Object o = "Frodo";

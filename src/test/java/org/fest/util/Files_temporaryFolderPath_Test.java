@@ -27,7 +27,6 @@ import org.junit.Test;
  * @author Yvonne Wang
  */
 public class Files_temporaryFolderPath_Test extends Files_TestCase {
-
   @Test
   public void should_find_path_of_temporary_folder() {
     String a = Files.temporaryFolderPath();

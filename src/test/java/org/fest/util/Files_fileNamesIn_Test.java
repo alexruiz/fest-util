@@ -16,6 +16,7 @@ package org.fest.util;
 
 import static java.io.File.separator;
 import static org.fest.util.Lists.newArrayList;
+import static org.fest.util.Sets.newHashSet;
 import static org.fest.util.Strings.concat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -83,7 +84,7 @@ public class Files_fileNamesIn_Test extends Files_TestCase {
     if (actualFiles == null || actualFiles.isEmpty()) {
       return;
     }
-    HashSet<String> withoutDuplicates = new HashSet<String>(actualFiles);
+    HashSet<String> withoutDuplicates = newHashSet(actualFiles);
     assertEquals(withoutDuplicates.size(), actualFiles.size());
   }
 }
