@@ -18,7 +18,7 @@ import static java.io.File.separator;
 import static java.lang.String.format;
 import static org.fest.util.Arrays.isNullOrEmpty;
 import static org.fest.util.Closeables.closeQuietly;
-import static org.fest.util.Flushables.flush;
+import static org.fest.util.Flushables.flushQuietly;
 import static org.fest.util.Preconditions.checkNotNull;
 import static org.fest.util.Strings.append;
 import static org.fest.util.Strings.quote;
@@ -211,7 +211,7 @@ public class Files {
     if (writer == null) {
       return;
     }
-    flush(writer);
+    flushQuietly(writer);
     closeQuietly(writer);
   }
 
@@ -225,7 +225,7 @@ public class Files {
     if (out == null) {
       return;
     }
-    flush(out);
+    flushQuietly(out);
     closeQuietly(out);
   }
 

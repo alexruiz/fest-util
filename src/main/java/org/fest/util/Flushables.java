@@ -30,7 +30,7 @@ public class Flushables {
    * 
    * @param flushables the {@code Flushable}s to flush.
    */
-  public static void flush(@Nonnull Flushable... flushables) {
+  public static void flushQuietly(@Nonnull Flushable... flushables) {
     for (Flushable f : flushables) {
       flushFlushable(f);
     }

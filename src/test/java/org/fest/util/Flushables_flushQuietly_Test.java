@@ -22,11 +22,11 @@ import java.io.IOException;
 import org.junit.Test;
 
 /**
- * Tests for {@link Flushables#flush(Flushable...)}.
+ * Tests for {@link Flushables#flushQuietly(Flushable...)}.
  * 
  * @author Yvonne Wang
  */
-public class Flushables_flush_Test {
+public class Flushables_flushQuietly_Test {
   private static class FlushableStub implements Flushable {
     boolean flushed;
     IOException toThrow;
@@ -50,14 +50,14 @@ public class Flushables_flush_Test {
   @Test
   public void should_flush_Flushables() {
     FlushableStub[] toFlush = new FlushableStub[] { new FlushableStub(), new FlushableStub() };
-    Flushables.flush(toFlush);
+    Flushables.flushQuietly(toFlush);
     assertFlushed(toFlush);
   }
 
   @Test
   public void should_ignore_thrown_errors() {
     FlushableStub[] toFlush = new FlushableStub[] { new FlushableStub(new IOException("")), new FlushableStub() };
-    Flushables.flush(toFlush);
+    Flushables.flushQuietly(toFlush);
     assertFlushed(toFlush);
   }
 
@@ -65,7 +65,7 @@ public class Flushables_flush_Test {
   public void should_ignore_null_Flushables() {
     FlushableStub c = new FlushableStub();
     FlushableStub[] toFlush = new FlushableStub[] { null, c };
-    Flushables.flush(toFlush);
+    Flushables.flushQuietly(toFlush);
     assertFlushed(c);
   }
 
