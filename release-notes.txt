@@ -1,6 +1,17 @@
 For the next release
 --------------------
 
+1.2.4 release notes 
+-------------------
+
+This version is a "compatibility" version so that fest-assert-core 2.0M9 plays nicely with fest-reflect 1.4.1 (both depending on fest-util 1.2.4)
+
+Additional Fix
+- github #13 Iterables.sizeOf(Iterable<?> iterable) runs into infinite loop for non-collection Iterable
+
+Improvement
+- use 1.0.15 parent pom that enables java 6 compatibility check 
+
 1.2.2 release notes 
 -------------------
 
