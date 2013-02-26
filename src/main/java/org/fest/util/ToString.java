@@ -17,7 +17,6 @@ package org.fest.util;
 import static org.fest.util.Arrays.isArray;
 import static org.fest.util.Strings.quote;
 
-import java.awt.Dimension;
 import java.io.File;
 import java.util.*;
 
@@ -57,9 +56,6 @@ public final class ToString {
     }
     if (o instanceof Long) {
       return toStringOf((Long) o);
-    }
-    if (o instanceof Dimension) {
-      return toStringOf(o);
     }
     if (o instanceof File) {
       return toStringOf((File) o);
