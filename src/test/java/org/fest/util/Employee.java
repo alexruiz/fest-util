@@ -20,14 +20,14 @@ package org.fest.util;
  * @author Joel Costigliola
  */
 public class Employee implements Comparable<Employee> {
-  // field public getter => valid property
+  // This is a property.
   private final int age;
 
   public int getAge() {
     return age;
   }
 
-  // fields without public getter => not a property
+  // This is not a property (does not have a public getter.)
   private final String company = "google";
 
   String getCompany() {
@@ -40,8 +40,7 @@ public class Employee implements Comparable<Employee> {
     return firstJob;
   }
 
-  // field without getter => not a property
-  @SuppressWarnings("unused")
+  // This is not a property (does not have a public getter.)
   private final double salary;
 
   public Employee(double salary, int age) {
