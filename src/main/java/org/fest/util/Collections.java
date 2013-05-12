@@ -14,19 +14,13 @@
  */
 package org.fest.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.*;
+
 import static org.fest.util.Lists.emptyList;
 import static org.fest.util.Sets.newHashSet;
 import static org.fest.util.ToString.toStringOf;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Utility methods related to {@code Collection}s.
@@ -36,11 +30,14 @@ import javax.annotation.Nullable;
  * @author Joel Costigliola
  */
 public final class Collections {
+  private Collections() {
+  }
+
   /**
    * Returns any duplicate elements from the given {@code Collection}.
    *
    * @param <T> the generic type of the given {@code Collection}.
-   * @param c the given {@code Collection} that might have duplicate elements.
+   * @param c   the given {@code Collection} that might have duplicate elements.
    * @return a {@code Collection} containing the duplicate elements of the given one. If the given {@code Collection} is
    *         {@code null} or if no duplicates were found, an empty {@code Collection} is returned.
    */
@@ -71,8 +68,8 @@ public final class Collections {
   }
 
   /**
-   * Returns the {@code String} representation of the given {@code Collection}, or {@code null} if the given
-   * {@code Collection} is {@code null}.
+   * Returns the {@code String} representation of the given {@code Collection}, or {@code null} if the given {@code
+   * Collection} is {@code null}.
    *
    * @param c the {@code Collection} to format.
    * @return the {@code String} representation of the given {@code Collection}.
@@ -87,7 +84,7 @@ public final class Collections {
     }
     StringBuilder b = new StringBuilder();
     b.append('[');
-    for (;;) {
+    for (; ; ) {
       Object e = i.next();
       b.append(e == c ? "(this Collection)" : toStringOf(e));
       if (!i.hasNext()) {
@@ -101,9 +98,9 @@ public final class Collections {
    * Returns all the non-{@code null} elements in the given {@link Collection}.
    *
    * @param <T> the type of elements of the {@code Collection}.
-   * @param c the given {@code Collection}.
-   * @return all the non-{@code null} elements in the given {@code Collection}. An empty list is returned if the
-   *         given {@code Collection} is {@code null}.
+   * @param c   the given {@code Collection}.
+   * @return all the non-{@code null} elements in the given {@code Collection}. An empty list is returned if the given
+   *         {@code Collection} is {@code null}.
    * @since 1.1.3
    */
   public static @Nonnull <T> List<T> nonNullElementsIn(@Nullable Collection<T> c) {
@@ -118,6 +115,4 @@ public final class Collections {
     }
     return nonNull;
   }
-
-  private Collections() {}
 }

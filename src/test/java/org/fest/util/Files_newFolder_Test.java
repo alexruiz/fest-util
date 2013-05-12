@@ -14,15 +14,15 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 import java.io.File;
 
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for {@link Files#newFolder(String)}.
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */

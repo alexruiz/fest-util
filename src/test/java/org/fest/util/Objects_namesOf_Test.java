@@ -14,26 +14,25 @@
  */
 package org.fest.util;
 
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.util.Arrays;
+
 import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.rules.ExpectedException.none;
 
-import java.util.Arrays;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 /**
  * Tests for {@link Objects#namesOf(Class...)}.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
 public class Objects_namesOf_Test {
-  @Rule
-  public ExpectedException thrown = none();
+  @Rule public ExpectedException thrown = none();
 
   @Test
   public void should_throw_error_if_type_array_is_null() {
@@ -48,7 +47,7 @@ public class Objects_namesOf_Test {
 
   @Test
   public void should_return_class_names() {
-    String[] e = { String.class.getName(), Integer.class.getName() };
+    String[] e = {String.class.getName(), Integer.class.getName()};
     String[] a = Objects.namesOf(String.class, Integer.class);
     assertTrue(format("expected:<%s> but got:<%s>", Arrays.toString(e), Arrays.toString(a)), Arrays.equals(e, a));
   }

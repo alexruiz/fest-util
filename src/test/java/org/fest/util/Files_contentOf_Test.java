@@ -14,28 +14,38 @@
  */
 package org.fest.util;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static org.junit.rules.ExpectedException.none;
-
-import java.io.File;
-import java.nio.charset.Charset;
-
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.charset.Charset;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.rules.ExpectedException.none;
+
 /**
  * Tests for {@link Files#contentOf(File, Charset)} and {@link Files#contentOf(File, String)}.
- * 
+ *
  * @author Olivier Michallat
+ * @author Alex Ruiz
  */
 public class Files_contentOf_Test {
-  @Rule
-  public ExpectedException thrown = none();
+  private static File file;
+  private static String expectedContent;
 
-  private final File sampleFile = new File("src/test/resources/utf8.txt");
-  private final String expectedContent = "A text file encoded in UTF-8, with diacritics:\né à";
+  @Rule public ExpectedException thrown = none();
+
+  @BeforeClass
+  public static void setUpOnce() throws URISyntaxException {
+    URL url = Files_contentOf_Test.class.getClassLoader().getResource("utf8.txt");
+    file = new File(url.toURI());
+    expectedContent = "A text file encoded in UTF-8, with diacritics:\né à";
+  }
 
   @Test
   public void should_throw_exception_if_charset_is_null() {
@@ -60,11 +70,11 @@ public class Files_contentOf_Test {
 
   @Test
   public void should_load_file_using_charset() {
-    assertEquals(expectedContent, Files.contentOf(sampleFile, Charset.forName("UTF-8")));
+    assertEquals(expectedContent, Files.contentOf(file, Charset.forName("UTF-8")));
   }
 
   @Test
   public void should_load_file_using_charset_name() {
-    assertEquals(expectedContent, Files.contentOf(sampleFile, "UTF-8"));
+    assertEquals(expectedContent, Files.contentOf(file, "UTF-8"));
   }
 }

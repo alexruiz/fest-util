@@ -14,6 +14,11 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
+import java.io.File;
+import java.util.*;
+
 import static junit.framework.Assert.assertFalse;
 import static org.fest.util.Arrays.array;
 import static org.fest.util.Lists.newArrayList;
@@ -21,19 +26,9 @@ import static org.fest.util.ToString.toStringOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Test;
-
 /**
  * Tests for {@link ToString#toStringOf(Object)}.
- * 
+ *
  * @author Joel Costigliola
  */
 public class ToString_toStringOf_Test {
@@ -111,7 +106,7 @@ public class ToString_toStringOf_Test {
 
   @Test
   public void should_return_toString_of_array_of_Class() {
-    Class<?>[] array = { String.class, File.class };
+    Class<?>[] array = {String.class, File.class};
     assertEquals("[java.lang.String, java.io.File]", ToString.toStringOf(array));
   }
 

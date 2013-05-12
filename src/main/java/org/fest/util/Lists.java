@@ -14,14 +14,13 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import static org.fest.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods related to {@code java.util.List}s.
@@ -31,10 +30,13 @@ import javax.annotation.Nonnull;
  * @author Joel Costigliola
  */
 public final class Lists {
+  private Lists() {
+  }
+
   /**
    * Creates a <em>mutable</em> {@link ArrayList} containing the given elements.
    *
-   * @param <T> the generic type of the {@code ArrayList} to create.
+   * @param <T>      the generic type of the {@code ArrayList} to create.
    * @param elements the elements to store in the {@code ArrayList}.
    * @return the created {@code ArrayList}.
    * @throws NullPointerException if the given array is {@code null}.
@@ -51,7 +53,7 @@ public final class Lists {
   /**
    * Creates a <em>mutable</em> {@link ArrayList} containing the given elements.
    *
-   * @param <T> the generic type of the {@code ArrayList} to create.
+   * @param <T>      the generic type of the {@code ArrayList} to create.
    * @param elements the elements to store in the {@code ArrayList}.
    * @return the created {@code ArrayList}.
    * @throws NullPointerException if the given {@code Iterable} is {@code null}.
@@ -68,7 +70,7 @@ public final class Lists {
   /**
    * Creates a <em>mutable</em> {@link ArrayList} containing the given elements.
    *
-   * @param <T> the generic type of the {@code ArrayList} to create.
+   * @param <T>      the generic type of the {@code ArrayList} to create.
    * @param elements the elements to store in the {@code ArrayList}.
    * @return the created {@code ArrayList}.
    * @throws NullPointerException if the given {@code Iterable} is {@code null}.
@@ -98,6 +100,4 @@ public final class Lists {
   public static @Nonnull <T> List<T> emptyList() {
     return Collections.emptyList();
   }
-
-  private Lists() {}
 }

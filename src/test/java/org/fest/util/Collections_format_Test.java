@@ -14,19 +14,19 @@
  */
 package org.fest.util;
 
-import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.Test;
+import static java.util.Arrays.asList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests for {@link Collections#format(Collection)}.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */

@@ -14,42 +14,44 @@
  */
 package org.fest.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.beans.BeanInfo;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
+
 import static java.lang.reflect.Modifier.isPublic;
 import static java.util.Locale.ENGLISH;
 import static org.fest.util.Preconditions.checkNotNull;
 import static org.fest.util.Preconditions.checkNotNullOrEmpty;
 import static org.fest.util.Strings.quote;
 
-import java.beans.BeanInfo;
-import java.beans.Introspector;
-import java.beans.PropertyDescriptor;
-import java.lang.reflect.Method;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 /**
- * Utility methods related to <a
- * href="http://java.sun.com/docs/books/tutorial/javabeans/introspection/index.html">JavaBeans Introspection</a>.
- * 
+ * Utility methods related to
+ * <a href="http://java.sun.com/docs/books/tutorial/javabeans/introspection/index.html">JavaBeans Introspection</a>.
+ *
  * @author Alex Ruiz
  */
 public final class Introspection {
+  private Introspection() {
+  }
+
   /**
    * Returns a {@link PropertyDescriptor} for a property matching the given name in the given object.
-   * 
+   *
    * @param propertyName the given property name.
-   * @param target the given object.
+   * @param target       the given object.
    * @return a {@code PropertyDescriptor} for a property matching the given name in the given object.
-   * @throws NullPointerException if the given property name is {@code null}.
+   * @throws NullPointerException     if the given property name is {@code null}.
    * @throws IllegalArgumentException if the given property name is empty.
-   * @throws NullPointerException if the given object is {@code null}.
-   * @throws IntrospectionError if a matching property cannot be found or accessed.
+   * @throws NullPointerException     if the given object is {@code null}.
+   * @throws IntrospectionError       if a matching property cannot be found or accessed.
    */
   public static @Nonnull PropertyDescriptor getProperty(@Nonnull String propertyName, @Nonnull Object target) {
     checkNotNullOrEmpty(propertyName);
     checkNotNull(target);
-    BeanInfo beanInfo = null;
+    BeanInfo beanInfo;
     Class<?> type = target.getClass();
     try {
       beanInfo = Introspector.getBeanInfo(type);
@@ -66,9 +68,9 @@ public final class Introspection {
   }
 
   private static @Nonnull IntrospectionError propertyNotFoundError(@Nonnull String propertyName,
-      @Nonnull Object target) {
+                                                                   @Nonnull Object target) {
     Method getter = findGetter(propertyName, target);
-    String format = null;
+    String format;
     if (getter == null) {
       format = "No getter for property %s in %s";
     } else if (!isPublic(getter.getModifiers())) {
@@ -99,6 +101,4 @@ public final class Introspection {
       return null;
     }
   }
-
-  private Introspection() {}
 }

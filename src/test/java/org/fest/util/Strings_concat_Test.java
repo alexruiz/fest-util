@@ -14,22 +14,21 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.rules.ExpectedException.none;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.rules.ExpectedException.none;
+
 /**
  * Tests for {@link Strings#concat(Object...)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Strings_concat_Test {
-  @Rule
-  public ExpectedException thrown = none();
+  @Rule public ExpectedException thrown = none();
 
   @Test
   public void should_throw_error_if_array_is_null() {

@@ -14,14 +14,14 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
-
 /**
  * Tests for {@link Arrays#isNullOrEmpty(Object[])}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Arrays_isNullOrEmpty_Test {
@@ -37,6 +37,6 @@ public class Arrays_isNullOrEmpty_Test {
 
   @Test
   public void should_return_false_if_array_has_elements() {
-    assertFalse(Arrays.isNullOrEmpty(new String[] { "Tuzi" }));
+    assertFalse(Arrays.isNullOrEmpty(new String[]{"Tuzi"}));
   }
 }

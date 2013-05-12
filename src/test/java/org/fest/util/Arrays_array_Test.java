@@ -14,19 +14,19 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertSame;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertSame;
 
 /**
  * Tests for {@link Arrays#array(Object...)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Arrays_array_Test {
   @Test
   public void should_return_parameter() {
-    Object[] array = { "one", "two" };
+    Object[] array = {"one", "two"};
     assertSame(Arrays.array(array), array);
   }
 }

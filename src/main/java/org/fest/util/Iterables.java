@@ -14,29 +14,31 @@
  */
 package org.fest.util;
 
-import static java.util.Collections.emptyList;
-import static org.fest.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static java.util.Collections.emptyList;
+import static org.fest.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods related to {@code Iterable}s.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  * @author Joel Costigliola
  */
 // TODO(alexRuiz): Get rid of this class.
 public final class Iterables {
+  private Iterables() {
+  }
+
   /**
    * Indicates whether the given {@link Iterable} is {@code null} or empty.
-   * 
+   *
    * @param iterable the given {@code Iterable} to check.
    * @return {@code true} if the given {@code Iterable} is {@code null} or empty, otherwise {@code false}.
    */
@@ -52,7 +54,7 @@ public final class Iterables {
 
   /**
    * Returns the size of the given {@link Iterable}.
-   * 
+   *
    * @param iterable the {@link Iterable} to get size.
    * @return the size of the given {@link Iterable}.
    * @throws NullPointerException if given {@link Iterable} is null.
@@ -73,11 +75,11 @@ public final class Iterables {
 
   /**
    * Returns all the non-{@code null} elements in the given {@link Iterable}.
-   * 
+   *
    * @param <T> the type of elements of the {@code Iterable}.
-   * @param i the given {@code Iterable}.
+   * @param i   the given {@code Iterable}.
    * @return all the non-{@code null} elements in the given {@code Iterable}. An empty list is returned if the given
-   *        {@code Iterable} is {@code null}.
+   *         {@code Iterable} is {@code null}.
    * @since 1.1.3
    */
   public static <T> List<T> nonNullElementsIn(Iterable<T> i) {
@@ -92,6 +94,4 @@ public final class Iterables {
     }
     return nonNull;
   }
-
-  private Iterables() {}
 }

@@ -14,13 +14,13 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for {@link Objects#hashCodeFor(Object)}.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */

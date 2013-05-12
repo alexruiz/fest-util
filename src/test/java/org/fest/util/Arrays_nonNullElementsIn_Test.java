@@ -14,26 +14,25 @@
  */
 package org.fest.util;
 
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.util.List;
+
 import static org.fest.util.Arrays.nonNullElementsIn;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.rules.ExpectedException.none;
 
-import java.util.List;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 /**
  * Tests for {@link Arrays#nonNullElementsIn(Object[])}.
- * 
+ *
  * @author Joel Costigliola
  * @author Alex Ruiz
  */
 public class Arrays_nonNullElementsIn_Test {
-  @Rule
-  public ExpectedException thrown = none();
+  @Rule public ExpectedException thrown = none();
 
   @Test
   public void should_throw_error_if_given_array_is_null() {
@@ -43,7 +42,7 @@ public class Arrays_nonNullElementsIn_Test {
 
   @Test
   public void should_return_an_empty_Collection_if_given_array_has_only_null_elements() {
-    String[] array = new String[] { null };
+    String[] array = new String[]{null};
     assertTrue(Arrays.nonNullElementsIn(array).isEmpty());
   }
 
@@ -55,8 +54,8 @@ public class Arrays_nonNullElementsIn_Test {
 
   @Test
   public void should_return_a_Collection_without_null_elements() {
-    String[] array = { "Frodo", null, "Sam", null };
+    String[] array = {"Frodo", null, "Sam", null};
     List<String> nonNull = nonNullElementsIn(array);
-    assertArrayEquals(new String[] { "Frodo", "Sam" }, nonNull.toArray());
+    assertArrayEquals(new String[]{"Frodo", "Sam"}, nonNull.toArray());
   }
 }

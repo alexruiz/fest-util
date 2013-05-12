@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import static org.fest.util.ToString.toStringOf;
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -24,19 +24,21 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static org.fest.util.ToString.toStringOf;
 
 /**
- * Utility methods related to maps.
- * 
+ * Utility methods related to {@code java.util.Map}s.
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
 public class Maps {
+  private Maps() {
+  }
+
   /**
    * Returns a <em>mutable</em> {@code HashMap}.
-   * 
+   *
    * @return the created {@code Map}.
    */
   public static @Nonnull <K, V> Map<K, V> newHashMap() {
@@ -45,7 +47,7 @@ public class Maps {
 
   /**
    * Returns a <em>mutable</em> {@code ConcurrentMap}.
-   * 
+   *
    * @return the created {@code Map}.
    */
   public static @Nonnull <K, V> ConcurrentMap<K, V> newConcurrentHashMap() {
@@ -54,7 +56,7 @@ public class Maps {
 
   /**
    * Returns a <em>mutable</em> {@code WeakHashMap}.
-   * 
+   *
    * @return the created {@code Map}.
    */
   public static @Nonnull <K, V> WeakHashMap<K, V> newWeakHashMap() {
@@ -63,7 +65,7 @@ public class Maps {
 
   /**
    * Indicates whether the given {@code Map} is {@code null} or empty.
-   * 
+   *
    * @param map the map to check.
    * @return {@code true} if the given {@code Map} is {@code null} or empty, otherwise {@code false}.
    */
@@ -73,7 +75,7 @@ public class Maps {
 
   /**
    * Returns the {@code String} representation of the given map, or {@code null} if the given map is {@code null}.
-   * 
+   *
    * @param map the map to format.
    * @return the {@code String} representation of the given map.
    */
@@ -87,7 +89,7 @@ public class Maps {
     }
     StringBuilder buffer = new StringBuilder();
     buffer.append("{");
-    for (;;) {
+    for (; ; ) {
       Entry<?, ?> e = (Entry<?, ?>) i.next();
       buffer.append(format(map, e.getKey()));
       buffer.append('=');
@@ -102,6 +104,4 @@ public class Maps {
   private static @Nullable Object format(@Nonnull Map<?, ?> map, @Nullable Object o) {
     return o == map ? "(this Map)" : toStringOf(o);
   }
-
-  private Maps() {}
 }

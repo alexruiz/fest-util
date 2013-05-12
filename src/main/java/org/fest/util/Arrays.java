@@ -14,26 +14,28 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import static org.fest.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods related to arrays.
- * 
+ *
  * @author Alex Ruiz
  * @author Joel Costigliola
  */
 public class Arrays {
   private static final ArrayFormatter FORMATTER = new ArrayFormatter();
 
+  private Arrays() {
+  }
+
   /**
    * Indicates whether the given object is not {@code null} and is an array.
-   * 
+   *
    * @param o the given object.
    * @return {@code true} if the given object is not {@code null} and is an array, otherwise {@code false}.
    */
@@ -43,8 +45,8 @@ public class Arrays {
 
   /**
    * Indicates whether the given array is {@code null} or empty.
-   * 
-   * @param <T> the type of elements of the array.
+   *
+   * @param <T>   the type of elements of the array.
    * @param array the array to check.
    * @return {@code true} if the given array is {@code null} or empty, otherwise {@code false}.
    */
@@ -54,8 +56,8 @@ public class Arrays {
 
   /**
    * Returns an array containing the given arguments.
-   * 
-   * @param <T> the type of the array to return.
+   *
+   * @param <T>    the type of the array to return.
    * @param values the values to store in the array.
    * @return an array containing the given arguments.
    */
@@ -64,9 +66,9 @@ public class Arrays {
   }
 
   /**
-   * Returns the {@code String} representation of the given array, or {@code null} if the given object is either
-   * {@code null} or not an array. This method supports arrays having other arrays as elements.
-   * 
+   * Returns the {@code String} representation of the given array, or {@code null} if the given object is either {@code
+   * null} or not an array. This method supports arrays having other arrays as elements.
+   *
    * @param array the object that is expected to be an array.
    * @return the {@code String} representation of the given array.
    */
@@ -76,8 +78,8 @@ public class Arrays {
 
   /**
    * Returns all the non-{@code null} elements in the given array.
-   * 
-   * @param <T> the type of elements of the array.
+   *
+   * @param <T>   the type of elements of the array.
    * @param array the given array.
    * @return all the non-{@code null} elements in the given array.
    * @throws NullPointerException if the given array is {@code null}.
@@ -97,8 +99,8 @@ public class Arrays {
   /**
    * Returns {@code true} if the given array has only {@code null} elements, {@code false} otherwise. If given array is
    * empty, this method returns {@code true}.
-   * 
-   * @param <T> the type of elements of the array.
+   *
+   * @param <T>   the type of elements of the array.
    * @param array the given array. <b>It must not be null</b>.
    * @return {@code true} if the given array has only {@code null} elements or is empty, {@code false} otherwise.
    * @throws NullPointerException if the given array is {@code null}.
@@ -120,6 +122,4 @@ public class Arrays {
   private static <T> boolean hasElements(@Nonnull T[] array) {
     return array.length > 0;
   }
-
-  private Arrays() {}
 }

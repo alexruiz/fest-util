@@ -14,33 +14,20 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import static org.fest.util.Preconditions.checkNotNull;
 
 /**
  * Filters elements of a collection by their data type.
- * 
+ *
  * @param <T> the generic type of the objects returned by the filter.
- * 
  * @author Yvonne Wang
  */
 public class TypeFilter<T> implements CollectionFilter<T> {
-  /**
-   * Creates a new {@link TypeFilter}.
-   * 
-   * @param <T> the generic type of the target type.
-   * @param type the target type for this filter.
-   * @return the created filter.
-   */
-  public static @Nonnull <T> TypeFilter<T> byType(@Nonnull Class<T> type) {
-    return new TypeFilter<T>(type);
-  }
-
   private final Class<T> type;
 
   TypeFilter(Class<T> type) {
@@ -48,8 +35,19 @@ public class TypeFilter<T> implements CollectionFilter<T> {
   }
 
   /**
+   * Creates a new {@link TypeFilter}.
+   *
+   * @param <T>  the generic type of the target type.
+   * @param type the target type for this filter.
+   * @return the created filter.
+   */
+  public static @Nonnull <T> TypeFilter<T> byType(@Nonnull Class<T> type) {
+    return new TypeFilter<T>(type);
+  }
+
+  /**
    * Filters the given collection by the type specified in this filter.
-   * 
+   *
    * @param target the collection to filter.
    * @return a list containing the filtered elements.
    * @throws NullPointerException if the given collection is {@code null}.

@@ -14,14 +14,14 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
-
 /**
  * Tests for {@link Throwables#removeFestRelatedElementsFromStackTrace(Throwable)}.
- * 
+ *
  * @author Joel Costigliola
  */
 public class Throwables_removeFestElementFromStackTrace_Test {

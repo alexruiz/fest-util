@@ -14,6 +14,14 @@
  */
 package org.fest.util;
 
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.io.File;
+import java.util.HashSet;
+import java.util.List;
+
 import static java.io.File.separator;
 import static org.fest.util.Lists.newArrayList;
 import static org.fest.util.Sets.newHashSet;
@@ -22,23 +30,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.rules.ExpectedException.none;
 
-import java.io.File;
-import java.util.HashSet;
-import java.util.List;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 /**
  * Tests for {@link Files#fileNamesIn(String, boolean)}.
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */
 public class Files_fileNamesIn_Test extends Files_TestCase {
-  @Rule
-  public ExpectedException thrown = none();
+  @Rule public ExpectedException thrown = none();
 
   @Test
   public void should_throw_error_if_directory_does_not_exist() {

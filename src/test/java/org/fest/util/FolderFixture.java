@@ -14,6 +14,12 @@
  */
 package org.fest.util;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
 import static java.io.File.separator;
 import static java.lang.String.format;
 import static org.fest.util.Arrays.isNullOrEmpty;
@@ -21,15 +27,9 @@ import static org.fest.util.Strings.concat;
 import static org.fest.util.Strings.quote;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Logger;
-
 /**
  * Creates and deletes directories in the file system.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */

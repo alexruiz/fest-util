@@ -14,16 +14,16 @@
  */
 package org.fest.util;
 
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import static org.fest.util.Strings.quote;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
-
 /**
  * Tests for {@link ArrayFormatter#format(Object)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class ArrayFormatter_format_Test {
@@ -46,70 +46,70 @@ public class ArrayFormatter_format_Test {
 
   @Test
   public void should_format_boolean_array() {
-    assertEquals("[true, false, true]", formatter.format(new boolean[] { true, false, true }));
+    assertEquals("[true, false, true]", formatter.format(new boolean[]{true, false, true}));
   }
 
   @Test
   public void should_format_char_array() {
-    assertEquals("[a, b, c]", formatter.format(new char[] { 'a', 'b', 'c' }));
+    assertEquals("[a, b, c]", formatter.format(new char[]{'a', 'b', 'c'}));
   }
 
   @Test
   public void should_format_byte_array() {
-    assertEquals("[6, 8]", formatter.format(new byte[] { 6, 8 }));
+    assertEquals("[6, 8]", formatter.format(new byte[]{6, 8}));
   }
 
   @Test
   public void should_format_short_array() {
-    assertEquals("[6, 8]", formatter.format(new short[] { 6, 8 }));
+    assertEquals("[6, 8]", formatter.format(new short[]{6, 8}));
   }
 
   @Test
   public void should_format_int_array() {
-    assertEquals("[6, 8]", formatter.format(new int[] { 6, 8 }));
+    assertEquals("[6, 8]", formatter.format(new int[]{6, 8}));
   }
 
   @Test
   public void should_format_longArray() {
-    assertEquals("[6L, 8L]", formatter.format(new long[] { 6l, 8l }));
+    assertEquals("[6L, 8L]", formatter.format(new long[]{6l, 8l}));
   }
 
   @Test
   public void should_format_float_array() {
-    assertEquals("[6.0f, 8.0f]", formatter.format(new float[] { 6f, 8f }));
+    assertEquals("[6.0f, 8.0f]", formatter.format(new float[]{6f, 8f}));
   }
 
   @Test
   public void should_format_double_array() {
-    assertEquals("[6.0, 8.0]", formatter.format(new double[] { 6d, 8d }));
+    assertEquals("[6.0, 8.0]", formatter.format(new double[]{6d, 8d}));
   }
 
   @Test
   public void should_format_String_array() {
-    assertEquals("['Hello', 'World']", formatter.format(new Object[] { "Hello", "World" }));
+    assertEquals("['Hello', 'World']", formatter.format(new Object[]{"Hello", "World"}));
   }
 
   @Test
   public void should_format_array_with_null_element() {
-    assertEquals("['Hello', null]", formatter.format(new Object[] { "Hello", null }));
+    assertEquals("['Hello', null]", formatter.format(new Object[]{"Hello", null}));
   }
 
   @Test
   public void should_format_Object_array() {
-    assertEquals("['Hello', 'Anakin']", formatter.format(new Object[] { "Hello", new Person("Anakin") }));
+    assertEquals("['Hello', 'Anakin']", formatter.format(new Object[]{"Hello", new Person("Anakin")}));
   }
 
   @Test
   public void should_format_Object_array_that_has_primitive_array_as_element() {
-    boolean booleans[] = { true, false };
-    Object[] array = { "Hello", booleans };
+    boolean booleans[] = {true, false};
+    Object[] array = {"Hello", booleans};
     assertEquals("['Hello', [true, false]]", formatter.format(array));
   }
 
   @Test
   public void should_format_Object_array_having_itself_as_element() {
-    Object[] array1 = { "Hello", "World" };
-    Object[] array2 = { array1 };
+    Object[] array1 = {"Hello", "World"};
+    Object[] array2 = {array1};
     array1[1] = array2;
     assertEquals("[['Hello', [...]]]", formatter.format(array2));
   }

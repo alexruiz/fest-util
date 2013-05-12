@@ -16,7 +16,7 @@ package org.fest.util;
 
 /**
  * Class used for testing {@link Introspection}.
- * 
+ *
  * @author Joel Costigliola
  */
 public class Employee implements Comparable<Employee> {

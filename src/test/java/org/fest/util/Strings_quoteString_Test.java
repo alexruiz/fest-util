@@ -14,14 +14,14 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import org.junit.Test;
-
 /**
  * Tests for {@link Strings#quote(String)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Strings_quoteString_Test {

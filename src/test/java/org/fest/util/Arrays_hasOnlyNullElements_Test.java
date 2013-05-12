@@ -14,22 +14,21 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.rules.ExpectedException.none;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.rules.ExpectedException.none;
+
 /**
  * Tests for {@link Arrays#hasOnlyNullElements(Object[])}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Arrays_hasOnlyNullElements_Test {
-  @Rule
-  public ExpectedException thrown = none();
+  @Rule public ExpectedException thrown = none();
 
   @Test
   public void should_throw_error_if_array_is_null() {
@@ -39,13 +38,13 @@ public class Arrays_hasOnlyNullElements_Test {
 
   @Test
   public void should_return_true_if_array_has_only_null_elements() {
-    String[] array = { null, null };
+    String[] array = {null, null};
     assertTrue(Arrays.hasOnlyNullElements(array));
   }
 
   @Test
   public void should_return_false_if_array_has_at_least_one_element_not_null() {
-    String[] array = { null, "Frodo", null };
+    String[] array = {null, "Frodo", null};
     assertFalse(Arrays.hasOnlyNullElements(array));
   }
 

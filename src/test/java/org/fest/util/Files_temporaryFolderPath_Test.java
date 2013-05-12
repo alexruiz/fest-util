@@ -14,15 +14,15 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
 import static java.io.File.separator;
 import static org.fest.util.Strings.append;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
-
 /**
  * Tests for {@link Files#temporaryFolderPath()}.
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */

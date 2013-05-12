@@ -14,14 +14,14 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-import org.junit.Test;
-
 /**
  * Tests for {@link Arrays#format(Object)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Arrays_format_Test {
@@ -37,55 +37,55 @@ public class Arrays_format_Test {
 
   @Test
   public void should_format_Object_array() {
-    Object o = new Object[] { "First", 3 };
+    Object o = new Object[]{"First", 3};
     assertEquals("['First', 3]", Arrays.format(o));
   }
 
   @Test
   public void should_format_boolean_array() {
-    Object o = new boolean[] { true, false };
+    Object o = new boolean[]{true, false};
     assertEquals("[true, false]", Arrays.format(o));
   }
 
   @Test
   public void should_format_byte_array() {
-    Object o = new byte[] { (byte) 3, (byte) 8 };
+    Object o = new byte[]{(byte) 3, (byte) 8};
     assertEquals("[3, 8]", Arrays.format(o));
   }
 
   @Test
   public void should_format_char_array() {
-    Object o = new char[] { 'a', 'b' };
+    Object o = new char[]{'a', 'b'};
     assertEquals("[a, b]", Arrays.format(o));
   }
 
   @Test
   public void should_format_double_array() {
-    Object o = new double[] { 6.8, 8.3 };
+    Object o = new double[]{6.8, 8.3};
     assertEquals("[6.8, 8.3]", Arrays.format(o));
   }
 
   @Test
   public void should_format_float_array() {
-    Object o = new float[] { 6.1f, 8.6f };
+    Object o = new float[]{6.1f, 8.6f};
     assertEquals("[6.1f, 8.6f]", Arrays.format(o));
   }
 
   @Test
   public void should_format_int_array() {
-    Object o = new int[] { 78, 66 };
+    Object o = new int[]{78, 66};
     assertEquals("[78, 66]", Arrays.format(o));
   }
 
   @Test
   public void should_format_long_array() {
-    Object o = new long[] { 160l, 98l };
+    Object o = new long[]{160l, 98l};
     assertEquals("[160L, 98L]", Arrays.format(o));
   }
 
   @Test
   public void should_format_short_array() {
-    Object o = new short[] { (short) 5, (short) 8 };
+    Object o = new short[]{(short) 5, (short) 8};
     assertEquals("[5, 8]", Arrays.format(o));
   }
 }

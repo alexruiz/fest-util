@@ -14,26 +14,25 @@
  */
 package org.fest.util;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
-import static org.fest.util.Introspection.getProperty;
-import static org.junit.rules.ExpectedException.none;
-
-import java.beans.PropertyDescriptor;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.beans.PropertyDescriptor;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+import static org.fest.util.Introspection.getProperty;
+import static org.junit.rules.ExpectedException.none;
+
 /**
  * Tests for {@link Introspection#getProperty(String, Object)}.
- * 
+ *
  * @author Joel Costigliola
  */
 public class Introspection_getProperty_Test {
-  @Rule
-  public ExpectedException thrown = none();
+  @Rule public ExpectedException thrown = none();
 
   private Employee judy;
 

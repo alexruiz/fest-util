@@ -14,14 +14,14 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
-import org.junit.Test;
-
 /**
  * Tests for {@link Objects#castIfBelongsToType(Object, Class)}.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  * @author Joel Costigliola

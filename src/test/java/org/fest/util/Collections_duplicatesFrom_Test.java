@@ -14,19 +14,19 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 import static java.util.Arrays.asList;
 import static org.fest.util.Collections.duplicatesFrom;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import org.junit.Test;
-
 /**
  * Tests for {@link Collections#duplicatesFrom(Collection)}.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  * @author Joel Costigliola
@@ -35,7 +35,7 @@ public class Collections_duplicatesFrom_Test {
   @Test
   public void should_return_existing_duplicates() {
     Collection<String> duplicates = duplicatesFrom(asList("Merry", "Frodo", "Merry", "Sam", "Frodo"));
-    assertArrayEquals(new String[] { "Merry", "Frodo" }, duplicates.toArray());
+    assertArrayEquals(new String[]{"Merry", "Frodo"}, duplicates.toArray());
   }
 
   @Test

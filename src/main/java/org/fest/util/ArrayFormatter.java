@@ -14,21 +14,20 @@
  */
 package org.fest.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.lang.reflect.Array;
+import java.util.HashSet;
+import java.util.Set;
+
 import static java.lang.reflect.Array.getLength;
 import static org.fest.util.Arrays.isArray;
 import static org.fest.util.Sets.newHashSet;
 import static org.fest.util.ToString.toStringOf;
 
-import java.lang.reflect.Array;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 /**
  * Creates a {@code String} representation of an array.
- * 
+ *
  * @author Alex Ruiz
  * @author Joel Costigliola
  */
@@ -55,7 +54,7 @@ final class ArrayFormatter {
   }
 
   private void deepToString(@Nullable Object[] array, @Nonnull StringBuilder buffer,
-      @Nonnull Set<Object[]> alreadyFormatted) {
+                            @Nonnull Set<Object[]> alreadyFormatted) {
     if (array == null) {
       buffer.append(NULL);
       return;

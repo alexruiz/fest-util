@@ -14,20 +14,21 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.Set;
 
-import javax.annotation.Nonnull;
+import static org.fest.util.Preconditions.checkNotNull;
 
 /**
- * Utility methods related to {@link Set}s.
+ * Utility methods related to {@code java.util.Set}s.
  *
  * @author Alex Ruiz
  */
 public final class Sets {
+  private Sets() {
+  }
+
   /**
    * Creates a <em>mutable</em> {@code HashSet}.
    *
@@ -42,10 +43,10 @@ public final class Sets {
   /**
    * Creates a <em>mutable</em> {@code HashSet} containing the given elements.
    *
-   * @param <T> the generic type of the {@code HashSet} to create.
+   * @param <T>      the generic type of the {@code HashSet} to create.
    * @param elements the elements to store in the {@code HashSet}.
-   * @throws NullPointerException if the given {@code Iterable} is {@code null}.
    * @return the created {@code HashSet}.
+   * @throws NullPointerException if the given {@code Iterable} is {@code null}.
    * @since 1.2.3
    */
   public static @Nonnull <T> HashSet<T> newHashSet(@Nonnull Iterable<? extends T> elements) {
@@ -70,7 +71,7 @@ public final class Sets {
   /**
    * Creates a <em>mutable</em> {@link LinkedHashSet} containing the given elements.
    *
-   * @param <T> the generic type of the {@code LinkedHashSet} to create.
+   * @param <T>      the generic type of the {@code LinkedHashSet} to create.
    * @param elements the elements to store in the {@code LinkedHashSet}.
    * @return the created {@code LinkedHashSet}.
    * @throws NullPointerException if the given array is {@code null}.
@@ -84,6 +85,4 @@ public final class Sets {
     }
     return set;
   }
-
-  private Sets() {}
 }

@@ -14,14 +14,14 @@
  */
 package org.fest.util;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
-
 /**
  * Tests for {@link Strings#isNullOrEmpty(String)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Strings_isEmpty_Test {

@@ -14,13 +14,12 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Lists.newArrayList;
-import static org.fest.util.Preconditions.checkNotNull;
-
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Nonnull;
+import static org.fest.util.Lists.newArrayList;
+import static org.fest.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods related to {@link Throwable}s.
@@ -29,10 +28,13 @@ import javax.annotation.Nonnull;
  */
 // TODO(Alex): Clean up this code.
 public final class Throwables {
+  private Throwables() {
+  }
+
   /**
    * Appends the stack trace of the current thread to the one in the given {@link Throwable}.
    *
-   * @param t the given {@code Throwable}.
+   * @param t              the given {@code Throwable}.
    * @param startingMethod the name of the method used as the starting point of the current thread's stack trace.
    */
   // TODO(Alex): Rename to 'appendStackTrace'
@@ -61,9 +63,9 @@ public final class Throwables {
   }
 
   /**
-   * Removes the FEST-related elements from the {@link Throwable} stack trace that have little value for
-   * end user. Therefore, instead of seeing this:
-   *
+   * Removes the FEST-related elements from the {@link Throwable} stack trace that have little value for end user.
+   * Therefore, instead of seeing this:
+   * <p/>
    * <pre>
    * org.junit.ComparisonFailure: expected:<'[Ronaldo]'> but was:<'[Messi]'>
    *   at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -79,9 +81,9 @@ public final class Throwables {
    *   at org.fest.assertions.api.AbstractAssert.isEqualTo(AbstractAssert.java:74)
    *   at examples.StackTraceFilterExample.main(StackTraceFilterExample.java:13)
    * </pre>
-   *
+   * <p/>
    * We get this:
-   *
+   * <p/>
    * <pre>
    * org.junit.ComparisonFailure: expected:<'[Ronaldo]'> but was:<'[Messi]'>
    *   at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
@@ -89,6 +91,7 @@ public final class Throwables {
    *   at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
    *   at examples.StackTraceFilterExample.main(StackTraceFilterExample.java:20)
    * </pre>
+   *
    * @param throwable the {@code Throwable} to filter stack trace.
    */
   // TODO(Alex): Rename to 'removeFestFromStackTrace'
@@ -116,6 +119,4 @@ public final class Throwables {
     StackTraceElement[] newStackTrace = filtered.toArray(new StackTraceElement[filtered.size()]);
     throwable.setStackTrace(newStackTrace);
   }
-
-  private Throwables() {}
 }

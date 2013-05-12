@@ -14,16 +14,16 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for {@link Files#currentFolder()}.
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */

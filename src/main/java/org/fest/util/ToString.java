@@ -14,19 +14,14 @@
  */
 package org.fest.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.File;
+import java.util.*;
+
 import static org.fest.util.Arrays.isArray;
 import static org.fest.util.Preconditions.checkNotNull;
 import static org.fest.util.Strings.quote;
-
-import java.io.File;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 /**
  * Obtains the {@code toString} representation of an object.
@@ -36,6 +31,9 @@ import javax.annotation.Nullable;
  * @author Yvonne Wang
  */
 public final class ToString {
+  private ToString() {
+  }
+
   /**
    * Returns the {@code toString} representation of the given object. It may or not the object's own implementation of
    * {@code toString}.
@@ -112,6 +110,4 @@ public final class ToString {
   private static @Nonnull String toStringOf(@Nonnull Map<?, ?> m) {
     return checkNotNull(Maps.format(m));
   }
-
-  private ToString() {}
 }

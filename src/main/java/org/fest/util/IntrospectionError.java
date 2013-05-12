@@ -19,8 +19,8 @@ import javax.annotation.Nullable;
 
 /**
  * Error that occurred when using
- * <a href="http://java.sun.com/docs/books/tutorial/javabeans/introspection/index.html">JavaBeans Instrospection</a>.
- * 
+ * <a href="http://java.sun.com/docs/books/tutorial/javabeans/introspection/index.html">JavaBeans Introspection</a>.
+ *
  * @author Alex Ruiz
  */
 public class IntrospectionError extends RuntimeException {
@@ -28,6 +28,7 @@ public class IntrospectionError extends RuntimeException {
 
   /**
    * Creates a new {@link IntrospectionError}.
+   *
    * @param message the detail message.
    */
   public IntrospectionError(@Nonnull String message) {
@@ -36,8 +37,9 @@ public class IntrospectionError extends RuntimeException {
 
   /**
    * Creates a new {@link IntrospectionError}.
+   *
    * @param message the detail message.
-   * @param cause the original cause.
+   * @param cause   the original cause.
    */
   public IntrospectionError(@Nonnull String message, @Nullable Throwable cause) {
     super(message, cause);

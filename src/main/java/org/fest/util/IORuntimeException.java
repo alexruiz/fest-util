@@ -14,10 +14,9 @@
  */
 package org.fest.util;
 
-import java.io.IOException;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.io.IOException;
 
 /**
  * Signals that an I/O exception of some sort has occurred.
@@ -38,7 +37,7 @@ public final class IORuntimeException extends RuntimeException {
    * Creates a new {@link IORuntimeException}.
    *
    * @param message the detail message.
-   * @param cause the cause of the error.
+   * @param cause   the cause of the error.
    */
   public IORuntimeException(@Nonnull String message, @Nullable IOException cause) {
     super(message, cause);

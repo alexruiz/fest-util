@@ -14,18 +14,18 @@
  */
 package org.fest.util;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Logger;
+
 import static java.io.File.separator;
 import static java.lang.String.format;
 import static org.fest.util.Strings.concat;
 import static org.fest.util.Strings.quote;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Logger;
-
 /**
  * Creates and deletes files in the file system.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */

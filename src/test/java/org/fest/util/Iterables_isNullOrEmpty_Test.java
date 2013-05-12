@@ -14,19 +14,19 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Lists.newArrayList;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.junit.Test;
+import static org.fest.util.Lists.newArrayList;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for {@link Iterables#isNullOrEmpty(Iterable)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Iterables_isNullOrEmpty_Test {

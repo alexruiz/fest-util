@@ -17,9 +17,9 @@ package org.fest.util;
 /**
  * Indicates that the visibility of a type or member has been relaxed to make the code testable. Idea borrowed from
  * Google Collections :)
- * 
+ *
  * @author Alex Ruiz
- * 
  * @since 1.1.1
  */
-public @interface VisibleForTesting {}
+public @interface VisibleForTesting {
+}

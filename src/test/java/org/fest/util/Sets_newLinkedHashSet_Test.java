@@ -14,30 +14,27 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.rules.ExpectedException.none;
-
-import java.util.LinkedHashSet;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.LinkedHashSet;
+
+import static org.junit.Assert.*;
+import static org.junit.rules.ExpectedException.none;
+
 /**
  * Tests for {@link Sets#newLinkedHashSet(Object...)}.
- * 
+ *
  * @author Yvonne Wang
  * @author Alex Ruiz
  */
 public class Sets_newLinkedHashSet_Test {
-  @Rule
-  public ExpectedException thrown = none();
+  @Rule public ExpectedException thrown = none();
 
   @Test
   public void should_return_Set_containing_all_elements_in_array() {
-    String[] expected = { "One", "Two" };
+    String[] expected = {"One", "Two"};
     LinkedHashSet<String> set = Sets.newLinkedHashSet(expected);
     assertArrayEquals(expected, set.toArray());
   }

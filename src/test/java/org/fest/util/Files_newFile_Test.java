@@ -14,26 +14,25 @@
  */
 package org.fest.util;
 
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.io.File;
+
 import static java.io.File.separator;
 import static org.fest.util.Strings.join;
 import static org.junit.Assert.assertTrue;
 import static org.junit.rules.ExpectedException.none;
 
-import java.io.File;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
 /**
  * Tests for {@link Files#newFile(String)}.
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */
 public class Files_newFile_Test extends Files_TestCase {
-  @Rule
-  public ExpectedException thrown = none();
+  @Rule public ExpectedException thrown = none();
 
   @Test
   public void should_throw_error_if_file_path_belongs_to_directory_that_is_not_empty() {

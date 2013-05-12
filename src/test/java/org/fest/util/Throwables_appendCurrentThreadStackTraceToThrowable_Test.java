@@ -14,19 +14,19 @@
  */
 package org.fest.util;
 
-import static java.lang.Thread.currentThread;
-import static org.fest.util.Strings.concat;
-import static org.junit.Assert.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.junit.Before;
-import org.junit.Test;
+import static java.lang.Thread.currentThread;
+import static org.fest.util.Strings.concat;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for {@link Throwables#appendStackTraceInCurentThreadToThrowable(Throwable, String)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Throwables_appendCurrentThreadStackTraceToThrowable_Test {

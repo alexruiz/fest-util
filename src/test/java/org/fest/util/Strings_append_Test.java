@@ -14,13 +14,13 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for {@link Strings#append(String)}.
- * 
+ *
  * @author Alex Ruiz
  */
 public class Strings_append_Test {

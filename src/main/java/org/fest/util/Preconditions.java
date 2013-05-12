@@ -23,12 +23,15 @@ import javax.annotation.Nullable;
  * @author alruiz@google.com (Alex Ruiz)
  */
 public final class Preconditions {
+  private Preconditions() {
+  }
+
   /**
    * Verifies that the given {@code String} is not {@code null} or empty.
    *
    * @param s the given {@code String}.
    * @return the validated {@code String}.
-   * @throws NullPointerException if the given {@code String} is {@code null}.
+   * @throws NullPointerException     if the given {@code String} is {@code null}.
    * @throws IllegalArgumentException if the given {@code String} is empty.
    */
   public static @Nonnull String checkNotNullOrEmpty(@Nullable String s) {
@@ -44,7 +47,7 @@ public final class Preconditions {
    *
    * @param array the given array.
    * @return the validated array.
-   * @throws NullPointerException if the given array is {@code null}.
+   * @throws NullPointerException     if the given array is {@code null}.
    * @throws IllegalArgumentException if the given array is empty.
    */
   public static @Nonnull <T> T[] checkNotNullOrEmpty(@Nullable T[] array) {
@@ -58,7 +61,7 @@ public final class Preconditions {
   /**
    * Verifies that the given object reference is not {@code null}.
    *
-   * @param <T> the type of the given object reference.
+   * @param <T>       the type of the given object reference.
    * @param reference the given object reference.
    * @return the non-{@code null} reference that was validated.
    * @throws NullPointerException if the given object reference is {@code null}.
@@ -69,6 +72,4 @@ public final class Preconditions {
     }
     return reference;
   }
-
-  private Preconditions() {}
 }

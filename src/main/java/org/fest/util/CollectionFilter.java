@@ -14,16 +14,14 @@
  */
 package org.fest.util;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.List;
 
-import javax.annotation.Nonnull;
-
 /**
  * Filters elements in a collection.
- * 
+ *
  * @param <T> the generic type of the elements to return by the filter.
- * 
  * @author Yvonne Wang
  */
 public interface CollectionFilter<T> {

@@ -14,13 +14,12 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Arrays.isArray;
-import static org.fest.util.Preconditions.checkNotNull;
-
-import java.lang.reflect.Array;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.lang.reflect.Array;
+
+import static org.fest.util.Arrays.isArray;
+import static org.fest.util.Preconditions.checkNotNull;
 
 /**
  * Utility methods related to objects.
@@ -29,8 +28,13 @@ import javax.annotation.Nullable;
  * @author Joel Costigliola
  */
 public final class Objects {
-  /** Prime number used to calculate the hash code of objects. */
+  /**
+   * Prime number used to calculate the hash code of objects.
+   */
   public static final int HASH_CODE_PRIME = 31;
+
+  private Objects() {
+  }
 
   /**
    * Indicates whether the given objects are equal.
@@ -93,7 +97,7 @@ public final class Objects {
    * @param o the given object.
    * @return the hash code for the given object
    */
-  public static int hashCodeFor(Object o) {
+  public static int hashCodeFor(@Nullable Object o) {
     return o != null ? o.hashCode() : 0;
   }
 
@@ -101,17 +105,15 @@ public final class Objects {
    * Casts the given object to the given type only if the object is of the given type. If the object is not of the given
    * type, this method returns {@code null}.
    *
-   * @param <T> the generic type to cast the given object to.
-   * @param o the object to cast.
+   * @param <T>  the generic type to cast the given object to.
+   * @param o    the object to cast.
    * @param type the given type.
    * @return the casted object, or {@code null} if the given object is not to the given type.
    */
-  public static <T> T castIfBelongsToType(Object o, Class<T> type) {
+  public static @Nullable <T> T castIfBelongsToType(@Nonnull Object o, @Nonnull Class<T> type) {
     if (o != null && type.isAssignableFrom(o.getClass())) {
       return type.cast(o);
     }
     return null;
   }
-
-  private Objects() {}
 }

@@ -14,20 +14,23 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Preconditions.checkNotNull;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static org.fest.util.Preconditions.checkNotNull;
+
 /**
  * Utility methods related to {@code String}s.
- * 
+ *
  * @author Alex Ruiz
  */
 public final class Strings {
+  private Strings() {
+  }
+
   /**
    * Indicates whether the given {@code String} is {@code null} or empty.
-   * 
+   *
    * @param s the {@code String} to check.
    * @return {@code true} if the given {@code String} is {@code null} or empty, otherwise {@code false}.
    */
@@ -36,12 +39,12 @@ public final class Strings {
   }
 
   /**
-   * Returns the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is
-   * {@code null}.
-   * 
+   * Returns the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is {@code
+   * null}.
+   *
    * @param s the given {@code String}.
-   * @return the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is
-   *         {@code null}.
+   * @return the given {@code String} surrounded by single quotes, or {@code null} if the given {@code String} is {@code
+   *         null}.
    */
   public static @Nullable String quote(@Nullable String s) {
     return s != null ? String.format("'%s'", s) : null;
@@ -49,7 +52,7 @@ public final class Strings {
 
   /**
    * Returns the given object surrounded by single quotes, only if the object is a {@code String}.
-   * 
+   *
    * @param o the given object.
    * @return the given object surrounded by single quotes, only if the object is a {@code String}.
    * @see #quote(String)
@@ -61,7 +64,7 @@ public final class Strings {
   /**
    * Concatenates the given objects into a single {@code String}. This method is more efficient than concatenating using
    * "+", since only one {@link StringBuilder} is created.
-   * 
+   *
    * @param objects the objects to concatenate.
    * @return a {@code String} containing the given objects, or empty {@code String} if the given array is empty.
    */
@@ -77,13 +80,13 @@ public final class Strings {
   /**
    * Joins the given {@code String}s using a given delimiter. The following example illustrates proper usage of this
    * method:
-   * 
+   * <p/>
    * <pre>
    * Strings.join(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;).with(&quot;|&quot;)
    * </pre>
-   * 
+   * <p/>
    * which will result in the {@code String "a|b|c"}.
-   * 
+   *
    * @param strings the {@code String}s to join.
    * @return an intermediate object that takes a given delimiter and knows how to join the given {@code String}s.
    * @see StringsToJoin#with(String)
@@ -93,17 +96,36 @@ public final class Strings {
   }
 
   /**
+   * Appends a given {@code String} to the given target, only if the target does not end with the given {@code String}
+   * to append. The following example illustrates proper usage of this method:
+   * <pre>
+   * Strings.append(&quot;c&quot;).to(&quot;ab&quot;);
+   * Strings.append(&quot;c&quot;).to(&quot;abc&quot;);
+   * </pre>
+   * resulting in the {@code String "abc"} for both cases.
+   *
+   * @param toAppend the {@code String} to append.
+   * @return an intermediate object that takes the target {@code String} and knows to append the given {@code String}.
+   * @see StringToAppend#to(String)
+   */
+  public static @Nonnull StringToAppend append(@Nonnull String toAppend) {
+    return new StringToAppend(toAppend);
+  }
+
+  /**
    * Knows how to join {@code String}s using a given delimiter.
-   * 
+   *
    * @see Strings#join(String[])
    */
   public static class StringsToJoin {
-    /** The {@code String}s to join. */
+    /**
+     * The {@code String}s to join.
+     */
     private final String[] strings;
 
     /**
      * Creates a new {@link StringsToJoin}.
-     * 
+     *
      * @param strings the {@code String}s to join.
      */
     StringsToJoin(@Nonnull String... strings) {
@@ -112,7 +134,7 @@ public final class Strings {
 
     /**
      * Specifies the delimeter to use to join {@code String}s.
-     * 
+     *
      * @param delimeter the delimeter to use.
      * @return the {@code String}s joined using the given delimeter.
      * @throws NullPointerException if the given delimeter is {@code null}.
@@ -136,23 +158,6 @@ public final class Strings {
   }
 
   /**
-   * Appends a given {@code String} to the given target, only if the target does not end with the given {@code String}
-   * to append. The following example illustrates proper usage of this method:
-   * <pre>
-   * Strings.append(&quot;c&quot;).to(&quot;ab&quot;);
-   * Strings.append(&quot;c&quot;).to(&quot;abc&quot;);
-   * </pre>
-   * resulting in the {@code String "abc"} for both cases.
-   * 
-   * @param toAppend the {@code String} to append.
-   * @return an intermediate object that takes the target {@code String} and knows to append the given {@code String}.
-   * @see StringToAppend#to(String)
-   */
-  public static @Nonnull StringToAppend append(@Nonnull String toAppend) {
-    return new StringToAppend(toAppend);
-  }
-
-  /**
    * Knows how to append a given {@code String} to the given target, only if the target does not end with the given
    * {@code String} to append.
    */
@@ -165,7 +170,7 @@ public final class Strings {
 
     /**
      * Appends the {@code String} specified in the constructor to the {@code String} passed as argument.
-     * 
+     *
      * @param s the target {@code String}.
      * @return a {@code String} containing the target {@code String} with the given {@code String} to append added to
      *         the end.
@@ -177,6 +182,4 @@ public final class Strings {
       return s;
     }
   }
-
-  private Strings() {}
 }

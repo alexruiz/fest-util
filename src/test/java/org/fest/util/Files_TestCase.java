@@ -19,7 +19,7 @@ import org.junit.Before;
 
 /**
  * Base test case for {@link Files}.
- * 
+ *
  * @author Alex Ruiz
  * @author Yvonne Wang
  */

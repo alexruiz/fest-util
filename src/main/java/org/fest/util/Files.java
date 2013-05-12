@@ -14,6 +14,13 @@
  */
 package org.fest.util;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+
 import static java.io.File.separator;
 import static java.lang.String.format;
 import static org.fest.util.Arrays.isNullOrEmpty;
@@ -23,21 +30,6 @@ import static org.fest.util.Preconditions.checkNotNull;
 import static org.fest.util.Strings.append;
 import static org.fest.util.Strings.quote;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 /**
  * Utility methods related to files.
  *
@@ -45,6 +37,9 @@ import javax.annotation.Nullable;
  * @author Alex Ruiz
  */
 public class Files {
+  private Files() {
+  }
+
   /**
    * Returns the names of the files inside the specified directory.
    *
@@ -64,7 +59,7 @@ public class Files {
   /**
    * Returns the names of the files inside the specified directory.
    *
-   * @param dir the name of the directory to start the search from.
+   * @param dir     the name of the directory to start the search from.
    * @param recurse if {@code true}, we will look in subdirectories.
    * @return the names of the files inside the specified directory.
    */
@@ -110,12 +105,14 @@ public class Files {
    * @return the path of the system's temporary directory.
    */
   public static @Nonnull String temporaryFolderPath() {
-    return append(checkNotNull(separator)).to(checkNotNull(System.getProperty("java.io.tmpdir")));
+    String fileSeparator = checkNotNull(separator);
+    String tmpDirPath = checkNotNull(System.getProperty("java.io.tmpdir"));
+    return append(fileSeparator).to(tmpDirPath);
   }
 
   /**
    * Creates a new file in the system's temporary directory. The name of the file will be the result of:
-   *
+   * <p/>
    * <pre>
    * concat(String.valueOf(System.currentTimeMillis()), &quot;.txt&quot;);
    * </pre>
@@ -129,7 +126,7 @@ public class Files {
 
   /**
    * Creates a new directory in the system's temporary directory. The name of the directory will be the result of:
-   *
+   * <p/>
    * <pre>
    * System.currentTimeMillis();
    * </pre>
@@ -265,11 +262,11 @@ public class Files {
   /**
    * Loads the text content of a file into a character string.
    *
-   * @param file the file.
+   * @param file        the file.
    * @param charsetName the name of the character set to use.
    * @return the content of the file.
    * @throws IllegalArgumentException if the given character set is not supported on this platform.
-   * @throws IORuntimeException if an I/O exception occurs.
+   * @throws IORuntimeException       if an I/O exception occurs.
    */
   public static @Nonnull String contentOf(@Nonnull File file, @Nonnull String charsetName) {
     if (!Charset.isSupported(charsetName)) {
@@ -281,11 +278,11 @@ public class Files {
   /**
    * Loads the text content of a file into a character string.
    *
-   * @param file the file.
+   * @param file    the file.
    * @param charset the character set to use.
    * @return the content of the file.
    * @throws NullPointerException if the given charset is {@code null}.
-   * @throws IORuntimeException if an I/O exception occurs.
+   * @throws IORuntimeException   if an I/O exception occurs.
    */
   public static @Nonnull String contentOf(@Nonnull File file, @Nonnull Charset charset) {
     checkNotNull(charset);
@@ -310,6 +307,4 @@ public class Files {
       closeQuietly(reader);
     }
   }
-
-  private Files() {}
 }

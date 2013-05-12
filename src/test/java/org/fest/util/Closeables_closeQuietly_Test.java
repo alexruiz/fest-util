@@ -14,29 +14,29 @@
  */
 package org.fest.util;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 import java.io.Closeable;
 import java.io.IOException;
 
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for {@link Closeables#closeQuietly(Closeable...)}.
- * 
+ *
  * @author Yvonne Wang
  */
 public class Closeables_closeQuietly_Test {
   @Test
   public void should_close_Closeables() {
-    CloseableStub[] toClose = new CloseableStub[] { new CloseableStub(), new CloseableStub() };
+    CloseableStub[] toClose = new CloseableStub[]{new CloseableStub(), new CloseableStub()};
     Closeables.closeQuietly(toClose);
     assertClosed(toClose);
   }
 
   @Test
   public void should_ignore_thrown_errors() {
-    CloseableStub[] toClose = new CloseableStub[] { new CloseableStub(new IOException("")), new CloseableStub() };
+    CloseableStub[] toClose = new CloseableStub[]{new CloseableStub(new IOException("")), new CloseableStub()};
     Closeables.closeQuietly(toClose);
     assertClosed(toClose);
   }
@@ -44,7 +44,7 @@ public class Closeables_closeQuietly_Test {
   @Test
   public void should_ignore_null_Closeables() {
     CloseableStub c = new CloseableStub();
-    CloseableStub[] toClose = new CloseableStub[] { null, c };
+    CloseableStub[] toClose = new CloseableStub[]{null, c};
     Closeables.closeQuietly(toClose);
     assertClosed(c);
   }
@@ -59,7 +59,8 @@ public class Closeables_closeQuietly_Test {
     boolean closed;
     IOException toThrow;
 
-    public CloseableStub() {}
+    public CloseableStub() {
+    }
 
     public CloseableStub(IOException toThrow) {
       this.toThrow = toThrow;

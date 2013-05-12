@@ -15,24 +15,27 @@
 
 package org.fest.util;
 
-import static org.fest.util.Lists.newArrayList;
-import static org.fest.util.Preconditions.checkNotNull;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
+import static org.fest.util.Lists.newArrayList;
+import static org.fest.util.Preconditions.checkNotNull;
+
 /**
  * Utilities related to Java data types.
- * 
+ *
  * @author Alex Ruiz
  */
 public final class Types {
   private static final Class<?>[] PRIMITIVE_TYPES =
-    { boolean.class, byte.class, short.class, int.class, long.class, float.class, double.class, char.class };
+      {boolean.class, byte.class, short.class, int.class, long.class, float.class, double.class, char.class};
 
-  private static final Class<?>[] COLLECTION_TYPES = { Collection.class, List.class, Queue.class, Set.class };
+  private static final Class<?>[] COLLECTION_TYPES = {Collection.class, List.class, Queue.class, Set.class};
+
+  private Types() {
+  }
 
   public static List<Class<?>> primitiveTypes() {
     return newArrayList(checkNotNull(PRIMITIVE_TYPES));
@@ -41,6 +44,4 @@ public final class Types {
   public static List<Class<?>> collectionTypes() {
     return newArrayList(checkNotNull(COLLECTION_TYPES));
   }
-
-  private Types() {}
 }

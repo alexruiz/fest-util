@@ -14,19 +14,19 @@
  */
 package org.fest.util;
 
-import static org.fest.util.Lists.newArrayList;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.Test;
+import static org.fest.util.Lists.newArrayList;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests for {@link Collections#nonNullElementsIn(Collection)}.
- * 
+ *
  * @author Joel Costigliola
  * @author Alex Ruiz
  */
@@ -54,6 +54,6 @@ public class Collections_nonNullElementsIn_Test {
   public void should_return_a_list_without_null_elements() {
     List<String> c = newArrayList("Frodo", null, "Sam", null);
     List<String> nonNull = Collections.nonNullElementsIn(c);
-    assertArrayEquals(new String[] { "Frodo", "Sam" }, nonNull.toArray());
+    assertArrayEquals(new String[]{"Frodo", "Sam"}, nonNull.toArray());
   }
 }
