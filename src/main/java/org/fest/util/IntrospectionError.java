@@ -24,8 +24,6 @@ import javax.annotation.Nullable;
  * @author Alex Ruiz
  */
 public class IntrospectionError extends RuntimeException {
-  private static final long serialVersionUID = 1L;
-
   /**
    * Creates a new {@link IntrospectionError}.
    *

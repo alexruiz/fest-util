@@ -18,6 +18,7 @@ import javax.annotation.Nonnull;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
+import static java.util.Collections.addAll;
 import static org.fest.util.Preconditions.checkNotNull;
 
 /**
@@ -80,9 +81,7 @@ public final class Sets {
   public static @Nonnull <T> LinkedHashSet<T> newLinkedHashSet(@Nonnull T... elements) {
     checkNotNull(elements);
     LinkedHashSet<T> set = new LinkedHashSet<T>();
-    for (T e : elements) {
-      set.add(e);
-    }
+    addAll(set, elements);
     return set;
   }
 }

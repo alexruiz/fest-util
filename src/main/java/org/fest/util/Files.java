@@ -66,7 +66,7 @@ public class Files {
   private static @Nonnull List<String> fileNamesIn(@Nonnull File dir, boolean recurse) {
     List<String> fileNames = new ArrayList<String>();
     File[] existingFiles = dir.listFiles();
-    if (isNullOrEmpty(existingFiles)) {
+    if (existingFiles == null) {
       return fileNames;
     }
     for (File existingFile : existingFiles) {
@@ -85,8 +85,6 @@ public class Files {
   }
 
   /**
-   * Returns the system's temporary directory.
-   *
    * @return the system's temporary directory.
    * @throws IORuntimeException if this method cannot find or create the system's temporary directory.
    */
