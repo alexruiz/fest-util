@@ -13,6 +13,12 @@
         <artifactId>fest</artifactId>
         <version>1.0.16</version>
     </parent>
+    <licenses>
+      <license>
+        <name>Apache-2.0</name>
+        <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      </license>
+    </licenses>
     <mailingLists>
         <mailingList>
             <name>Easy Testing Group</name>
