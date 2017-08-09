@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.lang.reflect.Array;
 
 import static org.fest.util.Arrays.isArray;
@@ -81,7 +81,7 @@ public final class Objects {
    * @return the names of the given types stored in an array.
    * @throws NullPointerException if the given array of types is {@code null}.
    */
-  public static @Nonnull String[] namesOf(@Nonnull Class<?>... types) {
+  public static @NotNull String[] namesOf(@NotNull Class<?>... types) {
     checkNotNull(types);
     String[] names = new String[types.length];
     for (int i = 0; i < types.length; i++) {
@@ -110,7 +110,7 @@ public final class Objects {
    * @param type the given type.
    * @return the casted object, or {@code null} if the given object is not to the given type.
    */
-  public static @Nullable <T> T castIfBelongsToType(@Nonnull Object o, @Nonnull Class<T> type) {
+  public static @Nullable <T> T castIfBelongsToType(@NotNull Object o, @NotNull Class<T> type) {
     if (o != null && type.isAssignableFrom(o.getClass())) {
       return type.cast(o);
     }

@@ -14,8 +14,9 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.Flushable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,7 @@ public class Flushables {
    *
    * @param flushables the {@code Flushable}s to flush.
    */
-  public static void flushQuietly(@Nonnull Flushable... flushables) {
+  public static void flushQuietly(@NotNull Flushable... flushables) {
     for (Flushable f : flushables) {
       flush(f);
     }

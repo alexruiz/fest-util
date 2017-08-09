@@ -14,7 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,13 +39,13 @@ public final class Throwables {
    * @param startingMethod the name of the method used as the starting point of the current thread's stack trace.
    */
   // TODO(Alex): Rename to 'appendStackTrace'
-  public static void appendStackTraceInCurentThreadToThrowable(@Nonnull Throwable t, @Nonnull String startingMethod) {
+  public static void appendStackTraceInCurentThreadToThrowable(@NotNull Throwable t, @NotNull String startingMethod) {
     List<StackTraceElement> stackTrace = newArrayList(checkNotNull(t.getStackTrace()));
     stackTrace.addAll(filteredStackTrace(startingMethod));
     t.setStackTrace(stackTrace.toArray(new StackTraceElement[stackTrace.size()]));
   }
 
-  private static @Nonnull List<StackTraceElement> filteredStackTrace(@Nonnull String startingMethod) {
+  private static @NotNull List<StackTraceElement> filteredStackTrace(@NotNull String startingMethod) {
     List<StackTraceElement> filtered = stackTraceInCurrentThread();
     List<StackTraceElement> toRemove = new ArrayList<StackTraceElement>();
     for (StackTraceElement e : filtered) {
@@ -95,7 +96,7 @@ public final class Throwables {
    * @param throwable the {@code Throwable} to filter stack trace.
    */
   // TODO(Alex): Rename to 'removeFestFromStackTrace'
-  public static void removeFestRelatedElementsFromStackTrace(@Nonnull Throwable throwable) {
+  public static void removeFestRelatedElementsFromStackTrace(@NotNull Throwable throwable) {
     StackTraceElement[] stackTrace = checkNotNull(throwable.getStackTrace());
     List<StackTraceElement> filtered = newArrayList(stackTrace);
     StackTraceElement previous = null;

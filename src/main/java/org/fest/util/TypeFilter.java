@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -41,7 +41,7 @@ public class TypeFilter<T> implements CollectionFilter<T> {
    * @param type the target type for this filter.
    * @return the created filter.
    */
-  public static @Nonnull <T> TypeFilter<T> byType(@Nonnull Class<T> type) {
+  public static @NotNull <T> TypeFilter<T> byType(@NotNull Class<T> type) {
     return new TypeFilter<T>(type);
   }
 
@@ -54,7 +54,7 @@ public class TypeFilter<T> implements CollectionFilter<T> {
    */
   @Override
   @SuppressWarnings("unchecked")
-  public @Nonnull List<T> filter(@Nonnull Collection<?> target) {
+  public @NotNull List<T> filter(@NotNull Collection<?> target) {
     checkNotNull(target);
     List<Object> filtered = new ArrayList<Object>();
     for (Object o : target) {

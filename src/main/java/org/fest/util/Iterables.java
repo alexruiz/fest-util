@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -59,7 +59,7 @@ public final class Iterables {
    * @return the size of the given {@link Iterable}.
    * @throws NullPointerException if given {@link Iterable} is null.
    */
-  public static int sizeOf(@Nonnull Iterable<?> iterable) {
+  public static int sizeOf(@NotNull Iterable<?> iterable) {
     checkNotNull(iterable);
     if (iterable instanceof Collection) {
       return ((Collection<?>) iterable).size();
@@ -82,7 +82,7 @@ public final class Iterables {
    *         {@code Iterable} is {@code null}.
    * @since 1.1.3
    */
-  public static <T> List<T> nonNullElementsIn(Iterable<T> i) {
+  public static <T> List<T> nonNullElementsIn(@NotNull Iterable<T> i) {
     if (isNullOrEmpty(i)) {
       return emptyList();
     }

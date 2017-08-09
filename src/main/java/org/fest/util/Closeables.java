@@ -14,8 +14,9 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.Closeable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +37,7 @@ public final class Closeables {
    *
    * @param closeables the {@code Closeable}s to close.
    */
-  public static void closeQuietly(@Nonnull Closeable... closeables) {
+  public static void closeQuietly(@NotNull Closeable... closeables) {
     for (Closeable c : closeables) {
       close(c);
     }

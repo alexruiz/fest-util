@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Verifies correct argument values and state (borrowed from Guava.)
@@ -34,7 +34,7 @@ public final class Preconditions {
    * @throws NullPointerException     if the given {@code String} is {@code null}.
    * @throws IllegalArgumentException if the given {@code String} is empty.
    */
-  public static @Nonnull String checkNotNullOrEmpty(@Nullable String s) {
+  public static @NotNull String checkNotNullOrEmpty(@Nullable String s) {
     String checked = checkNotNull(s);
     if (checked.isEmpty()) {
       throw new IllegalArgumentException();
@@ -50,7 +50,7 @@ public final class Preconditions {
    * @throws NullPointerException     if the given array is {@code null}.
    * @throws IllegalArgumentException if the given array is empty.
    */
-  public static @Nonnull <T> T[] checkNotNullOrEmpty(@Nullable T[] array) {
+  public static @NotNull <T> T[] checkNotNullOrEmpty(@Nullable T[] array) {
     T[] checked = checkNotNull(array);
     if (checked.length == 0) {
       throw new IllegalArgumentException();
@@ -66,7 +66,7 @@ public final class Preconditions {
    * @return the non-{@code null} reference that was validated.
    * @throws NullPointerException if the given object reference is {@code null}.
    */
-  public static @Nonnull <T> T checkNotNull(@Nullable T reference) {
+  public static @NotNull <T> T checkNotNull(@Nullable T reference) {
     if (reference == null) {
       throw new NullPointerException();
     }

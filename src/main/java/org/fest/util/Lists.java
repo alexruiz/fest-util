@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -41,7 +41,7 @@ public final class Lists {
    * @return the created {@code ArrayList}.
    * @throws NullPointerException if the given array is {@code null}.
    */
-  public static @Nonnull <T> ArrayList<T> newArrayList(@Nonnull T... elements) {
+  public static @NotNull <T> ArrayList<T> newArrayList(@NotNull T... elements) {
     checkNotNull(elements);
     ArrayList<T> list = newArrayList();
     for (T e : elements) {
@@ -58,7 +58,7 @@ public final class Lists {
    * @return the created {@code ArrayList}.
    * @throws NullPointerException if the given {@code Iterable} is {@code null}.
    */
-  public static @Nonnull <T> ArrayList<T> newArrayList(@Nonnull Iterable<? extends T> elements) {
+  public static @NotNull <T> ArrayList<T> newArrayList(@NotNull Iterable<? extends T> elements) {
     checkNotNull(elements);
     ArrayList<T> list = newArrayList();
     for (T e : elements) {
@@ -75,7 +75,7 @@ public final class Lists {
    * @return the created {@code ArrayList}.
    * @throws NullPointerException if the given {@code Iterable} is {@code null}.
    */
-  public static @Nonnull <T> ArrayList<T> newArrayList(@Nonnull Iterator<? extends T> elements) {
+  public static @NotNull <T> ArrayList<T> newArrayList(@NotNull Iterator<? extends T> elements) {
     checkNotNull(elements);
     ArrayList<T> list = newArrayList();
     while (elements.hasNext()) {
@@ -90,14 +90,14 @@ public final class Lists {
    * @param <T> the generic type of the {@code ArrayList} to create.
    * @return the created {@code ArrayList}, of {@code null} if the given array of elements is {@code null}.
    */
-  public static @Nonnull <T> ArrayList<T> newArrayList() {
+  public static @NotNull <T> ArrayList<T> newArrayList() {
     return new ArrayList<T>();
   }
 
   /**
    * @return an empty, <em>immutable</em> {@code List}.
    */
-  public static @Nonnull <T> List<T> emptyList() {
+  public static @NotNull <T> List<T> emptyList() {
     return Collections.emptyList();
   }
 }

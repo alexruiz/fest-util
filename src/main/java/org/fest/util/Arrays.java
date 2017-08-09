@@ -14,8 +14,9 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class Arrays {
    * @param values the values to store in the array.
    * @return an array containing the given arguments.
    */
-  public static @Nonnull <T> T[] array(@Nonnull T... values) {
+  public static @NotNull <T> T[] array(@NotNull T... values) {
     return checkNotNull(values);
   }
 
@@ -85,7 +86,7 @@ public class Arrays {
    * @throws NullPointerException if the given array is {@code null}.
    * @since 1.1.3
    */
-  public static <T> List<T> nonNullElementsIn(@Nonnull T[] array) {
+  public static <T> List<T> nonNullElementsIn(@NotNull T[] array) {
     checkNotNull(array);
     List<T> nonNullElements = new ArrayList<T>();
     for (T o : array) {
@@ -106,7 +107,7 @@ public class Arrays {
    * @throws NullPointerException if the given array is {@code null}.
    * @since 1.1.3
    */
-  public static <T> boolean hasOnlyNullElements(@Nonnull T[] array) {
+  public static <T> boolean hasOnlyNullElements(@NotNull T[] array) {
     checkNotNull(array);
     if (!hasElements(array)) {
       return false;
@@ -119,7 +120,7 @@ public class Arrays {
     return true;
   }
 
-  private static <T> boolean hasElements(@Nonnull T[] array) {
+  private static <T> boolean hasElements(@NotNull T[] array) {
     return array.length > 0;
   }
 }

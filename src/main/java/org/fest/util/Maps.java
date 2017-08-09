@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class Maps {
    *
    * @return the created {@code Map}.
    */
-  public static @Nonnull <K, V> Map<K, V> newHashMap() {
+  public static @NotNull <K, V> Map<K, V> newHashMap() {
     return new HashMap<K, V>();
   }
 
@@ -50,7 +50,7 @@ public class Maps {
    *
    * @return the created {@code Map}.
    */
-  public static @Nonnull <K, V> ConcurrentMap<K, V> newConcurrentHashMap() {
+  public static @NotNull <K, V> ConcurrentMap<K, V> newConcurrentHashMap() {
     return new ConcurrentHashMap<K, V>();
   }
 
@@ -59,7 +59,7 @@ public class Maps {
    *
    * @return the created {@code Map}.
    */
-  public static @Nonnull <K, V> WeakHashMap<K, V> newWeakHashMap() {
+  public static @NotNull <K, V> WeakHashMap<K, V> newWeakHashMap() {
     return new WeakHashMap<K, V>();
   }
 
@@ -101,7 +101,7 @@ public class Maps {
     }
   }
 
-  private static @Nullable Object format(@Nonnull Map<?, ?> map, @Nullable Object o) {
+  private static @Nullable Object format(@NotNull Map<?, ?> map, @Nullable Object o) {
     return o == map ? "(this Map)" : toStringOf(o);
   }
 }

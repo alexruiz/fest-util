@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Error that occurred when using
@@ -29,7 +29,7 @@ public class IntrospectionError extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public IntrospectionError(@Nonnull String message) {
+  public IntrospectionError(@NotNull String message) {
     super(message);
   }
 
@@ -39,7 +39,7 @@ public class IntrospectionError extends RuntimeException {
    * @param message the detail message.
    * @param cause   the original cause.
    */
-  public IntrospectionError(@Nonnull String message, @Nullable Throwable cause) {
+  public IntrospectionError(@NotNull String message, @Nullable Throwable cause) {
     super(message, cause);
   }
 }

@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import static org.fest.util.Preconditions.checkNotNull;
 
@@ -68,7 +68,7 @@ public final class Strings {
    * @param objects the objects to concatenate.
    * @return a {@code String} containing the given objects, or empty {@code String} if the given array is empty.
    */
-  public static @Nonnull String concat(@Nonnull Object... objects) {
+  public static @NotNull String concat(@NotNull Object... objects) {
     checkNotNull(objects);
     StringBuilder b = new StringBuilder();
     for (Object o : objects) {
@@ -91,7 +91,7 @@ public final class Strings {
    * @return an intermediate object that takes a given delimiter and knows how to join the given {@code String}s.
    * @see StringsToJoin#with(String)
    */
-  public static @Nonnull StringsToJoin join(@Nonnull String... strings) {
+  public static @NotNull StringsToJoin join(@NotNull String... strings) {
     return new StringsToJoin(strings);
   }
 
@@ -108,7 +108,7 @@ public final class Strings {
    * @return an intermediate object that takes the target {@code String} and knows to append the given {@code String}.
    * @see StringToAppend#to(String)
    */
-  public static @Nonnull StringToAppend append(@Nonnull String toAppend) {
+  public static @NotNull StringToAppend append(@NotNull String toAppend) {
     return new StringToAppend(toAppend);
   }
 
@@ -128,7 +128,7 @@ public final class Strings {
      *
      * @param strings the {@code String}s to join.
      */
-    StringsToJoin(@Nonnull String... strings) {
+    StringsToJoin(@NotNull String... strings) {
       this.strings = strings;
     }
 
@@ -139,7 +139,7 @@ public final class Strings {
      * @return the {@code String}s joined using the given delimeter.
      * @throws NullPointerException if the given delimeter is {@code null}.
      */
-    public @Nonnull String with(@Nonnull String delimeter) {
+    public @NotNull String with(@NotNull String delimeter) {
       checkNotNull(delimeter);
       if (Arrays.isNullOrEmpty(strings)) {
         return "";
@@ -164,7 +164,7 @@ public final class Strings {
   public static class StringToAppend {
     private final String toAppend;
 
-    StringToAppend(@Nonnull String toAppend) {
+    StringToAppend(@NotNull String toAppend) {
       this.toAppend = toAppend;
     }
 
@@ -175,7 +175,7 @@ public final class Strings {
      * @return a {@code String} containing the target {@code String} with the given {@code String} to append added to
      *         the end.
      */
-    public @Nonnull String to(@Nonnull String s) {
+    public @NotNull String to(@NotNull String s) {
       if (!s.endsWith(toAppend)) {
         return concat(s, toAppend);
       }

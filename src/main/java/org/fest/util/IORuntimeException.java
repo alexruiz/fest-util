@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.io.IOException;
 
 /**
@@ -29,7 +29,7 @@ public final class IORuntimeException extends RuntimeException {
    *
    * @param message the detail message.
    */
-  public IORuntimeException(@Nonnull String message) {
+  public IORuntimeException(@NotNull String message) {
     super(message);
   }
 
@@ -39,7 +39,7 @@ public final class IORuntimeException extends RuntimeException {
    * @param message the detail message.
    * @param cause   the cause of the error.
    */
-  public IORuntimeException(@Nonnull String message, @Nullable IOException cause) {
+  public IORuntimeException(@NotNull String message, @Nullable IOException cause) {
     super(message, cause);
   }
 }

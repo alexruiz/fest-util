@@ -14,8 +14,9 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,7 +42,7 @@ final class ArrayFormatter {
     return isObjectArray(o) ? formatObjectArray(o) : formatPrimitiveArray(o);
   }
 
-  private @Nonnull String formatObjectArray(@Nonnull Object o) {
+  private @NotNull String formatObjectArray(@NotNull Object o) {
     Object[] array = (Object[]) o;
     int size = array.length;
     if (size == 0) {
@@ -53,8 +54,8 @@ final class ArrayFormatter {
     return buffer.toString();
   }
 
-  private void deepToString(@Nullable Object[] array, @Nonnull StringBuilder buffer,
-                            @Nonnull Set<Object[]> alreadyFormatted) {
+  private void deepToString(@Nullable Object[] array, @NotNull StringBuilder buffer,
+                            @NotNull Set<Object[]> alreadyFormatted) {
     if (array == null) {
       buffer.append(NULL);
       return;
@@ -112,7 +113,7 @@ final class ArrayFormatter {
     return buffer.toString();
   }
 
-  private boolean isArrayTypePrimitive(@Nonnull Object o) {
+  private boolean isArrayTypePrimitive(@NotNull Object o) {
     return o.getClass().getComponentType().isPrimitive();
   }
 }

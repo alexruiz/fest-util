@@ -14,8 +14,9 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -48,7 +49,7 @@ public final class Introspection {
    * @throws NullPointerException     if the given object is {@code null}.
    * @throws IntrospectionError       if a matching property cannot be found or accessed.
    */
-  public static @Nonnull PropertyDescriptor getProperty(@Nonnull String propertyName, @Nonnull Object target) {
+  public static @NotNull PropertyDescriptor getProperty(@NotNull String propertyName, @NotNull Object target) {
     checkNotNullOrEmpty(propertyName);
     checkNotNull(target);
     BeanInfo beanInfo;
@@ -67,8 +68,8 @@ public final class Introspection {
     throw propertyNotFoundError(propertyName, target);
   }
 
-  private static @Nonnull IntrospectionError propertyNotFoundError(@Nonnull String propertyName,
-                                                                   @Nonnull Object target) {
+  private static @NotNull IntrospectionError propertyNotFoundError(@NotNull String propertyName,
+                                                                   @NotNull Object target) {
     Method getter = findGetter(propertyName, target);
     String format;
     if (getter == null) {
@@ -82,7 +83,7 @@ public final class Introspection {
     return new IntrospectionError(checkNotNull(msg));
   }
 
-  private static Method findGetter(@Nonnull String propertyName, @Nonnull Object target) {
+  private static Method findGetter(@NotNull String propertyName, @NotNull Object target) {
     String capitalized = propertyName.substring(0, 1).toUpperCase(ENGLISH) + propertyName.substring(1);
     // try to find getProperty
     Method getter = findMethod("get" + capitalized, target);
@@ -93,7 +94,8 @@ public final class Introspection {
     return findMethod("is" + capitalized, target);
   }
 
-  private static @Nullable Method findMethod(@Nonnull String name, @Nonnull Object target) {
+  private static @Nullable
+  Method findMethod(@NotNull String name, @NotNull Object target) {
     // TODO walk class hierarchy to check if any superclass declares the method we are looking for.
     try {
       return target.getClass().getDeclaredMethod(name);

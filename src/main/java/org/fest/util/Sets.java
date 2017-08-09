@@ -14,7 +14,7 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
@@ -37,7 +37,7 @@ public final class Sets {
    * @return the created {@code HashSet}.
    * @since 1.2.3
    */
-  public static @Nonnull <T> HashSet<T> newHashSet() {
+  public static @NotNull <T> HashSet<T> newHashSet() {
     return new HashSet<T>();
   }
 
@@ -50,7 +50,7 @@ public final class Sets {
    * @throws NullPointerException if the given {@code Iterable} is {@code null}.
    * @since 1.2.3
    */
-  public static @Nonnull <T> HashSet<T> newHashSet(@Nonnull Iterable<? extends T> elements) {
+  public static @NotNull <T> HashSet<T> newHashSet(@NotNull Iterable<? extends T> elements) {
     HashSet<T> set = newHashSet();
     for (T e : elements) {
       set.add(e);
@@ -65,7 +65,7 @@ public final class Sets {
    * @return the created {@code LinkedHashSet}.
    * @since 1.2.3
    */
-  public static @Nonnull <T> LinkedHashSet<T> newLinkedHashSet() {
+  public static @NotNull <T> LinkedHashSet<T> newLinkedHashSet() {
     return new LinkedHashSet<T>();
   }
 
@@ -78,7 +78,7 @@ public final class Sets {
    * @throws NullPointerException if the given array is {@code null}.
    * @since 1.2.3
    */
-  public static @Nonnull <T> LinkedHashSet<T> newLinkedHashSet(@Nonnull T... elements) {
+  public static @NotNull <T> LinkedHashSet<T> newLinkedHashSet(@NotNull T... elements) {
     checkNotNull(elements);
     LinkedHashSet<T> set = new LinkedHashSet<T>();
     addAll(set, elements);

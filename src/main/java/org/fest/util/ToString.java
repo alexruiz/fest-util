@@ -14,8 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import java.io.File;
 import java.util.*;
 
@@ -78,36 +78,36 @@ public final class ToString {
     return o == null ? null : o.toString();
   }
 
-  private static @Nonnull String toStringOf(@Nonnull Comparator<?> comparator) {
+  private static @NotNull String toStringOf(@NotNull Comparator<?> comparator) {
     String typeName = comparator.getClass().getSimpleName();
     String toString = quote(!typeName.isEmpty() ? typeName : "Anonymous Comparator class");
     return checkNotNull(toString);
   }
 
-  private static @Nonnull String toStringOf(@Nonnull Class<?> c) {
+  private static @NotNull String toStringOf(@NotNull Class<?> c) {
     return c.getCanonicalName();
   }
 
-  private static @Nonnull String toStringOf(@Nonnull Collection<?> c) {
+  private static @NotNull String toStringOf(@NotNull Collection<?> c) {
     return checkNotNull(Collections.format(c));
   }
 
-  private static @Nonnull String toStringOf(@Nonnull Float f) {
+  private static @NotNull String toStringOf(@NotNull Float f) {
     if (f.isNaN()) {
       return "NaN";
     }
     return String.format("%sf", f);
   }
 
-  private static @Nonnull String toStringOf(@Nonnull Long l) {
+  private static @NotNull String toStringOf(@NotNull Long l) {
     return String.format("%sL", l);
   }
 
-  private static @Nullable String toStringOf(@Nonnull File f) {
+  private static @Nullable String toStringOf(@NotNull File f) {
     return f.getAbsolutePath();
   }
 
-  private static @Nonnull String toStringOf(@Nonnull Map<?, ?> m) {
+  private static @NotNull String toStringOf(@NotNull Map<?, ?> m) {
     return checkNotNull(Maps.format(m));
   }
 }

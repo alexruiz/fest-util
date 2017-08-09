@@ -14,7 +14,8 @@
  */
 package org.fest.util;
 
-import javax.annotation.Nonnull;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -25,5 +26,5 @@ import java.util.List;
  * @author Yvonne Wang
  */
 public interface CollectionFilter<T> {
-  @Nonnull List<T> filter(@Nonnull Collection<?> target);
+  @NotNull List<T> filter(@NotNull Collection<?> target);
 }
